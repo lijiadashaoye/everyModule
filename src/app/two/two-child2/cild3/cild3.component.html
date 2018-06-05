@@ -1,0 +1,30 @@
+<div style="display:flex;">
+  <div style="border: 1px solid #666;margin: 4px;width:100px">
+    <p>cild3 works!</p>
+    <div style="border: 1px solid red;margin: 5px;">
+      <ng-content select="header"></ng-content>
+    </div>
+    <div style="border: 1px solid green;margin: 5px;">
+      <ng-content select=".card_body"></ng-content>
+    </div>
+    <div style="border: 1px solid blue;margin: 5px;">
+      <ng-content select="footer"></ng-content>
+    </div>
+  </div>
+  <div>
+    <p>二维码是个块元素</p>
+    <div>
+      <!-- <input type="text" [(ngModel)]="qrdata"> -->
+      <input type="text" #Input>
+      <button (click)="show(Input.value)">生成</button>
+    </div>
+    <qrcode *ngIf="qrdata"
+    [qrdata]="qrdata" 
+    [size]="size" 
+    [level]="level"
+    [colorlight]="colorlight"
+    [colordark]="colordark"
+    [usesvg]="usesvg"
+    ></qrcode>
+  </div>
+</div>

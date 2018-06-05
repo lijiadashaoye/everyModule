@@ -1,0 +1,49 @@
+<div class="waper">
+  <div>
+    <p>checkbox</p>
+    <label for="all">all</label>
+    <input type="checkbox" [(ngModel)]="ff" id="all" (change)="turnAll(form)">
+    <!-- ngSubmit 必须用在form标签里 -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form,$event)">
+      <label for="one">one</label>
+      <input type="checkbox" [checked]="form.get('one').value" id="one" formControlName="one" (change)="isAll()">
+      <label for="two">two</label>
+      <input type="checkbox" [checked]="form.get('two').value" id="two" formControlName="two" (change)="isAll()">
+      <label for="three">three</label>
+      <input type="checkbox" [checked]="form.get('three').value" id="three" formControlName="three" (change)="isAll()">
+      <label for="four">four</label>
+      <input type="checkbox" [checked]="form.get('four').value" id="four" formControlName="four" (change)="isAll()">
+      <br>
+      <button type="submit">submit</button>
+    </form>
+    <div>{{formGroupSelect | json}}</div>
+  </div>
+  <div>
+    <p>formArray</p>
+    <form [formGroup]="myForm">
+      <div class="like" *ngFor="let like of likes.controls;index as i;">
+        <label>
+          <input type="checkbox" [formControl]="like"> {{likesArr[i]}}
+        </label>
+      </div>
+      <div *ngFor="let select of selects" class="youselect">{{select}}</div>
+    </form>
+  </div>
+  <div>
+    <p>单独的，不需要form表单形式的</p>
+    <label for={{item.id}}>
+      <label style="width:30px;background:pink;">
+        <input type="checkbox" name="item.id" id={{item.id}} value="{{item.id}}" #ite (change)="selectItem(item,ite)">
+      </label>
+      <br> data: {{seeItem |json}}
+      <br> checked: {{ite.checked}}
+    </label>
+  </div>
+  <div>
+    <p>计时器</p>
+    <button (click)="start()">start</button>
+    <button (click)="stop()">stop</button>
+    {{time}}
+  </div>
+
+</div>

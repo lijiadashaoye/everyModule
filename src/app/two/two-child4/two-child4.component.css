@@ -1,0 +1,13 @@
+.placeholder {
+    margin: 0 auto;
+    width: 50vw;
+    height: 50vw;
+    background: pink;
+}
+
+.placeholder {
+    margin: 0 auto;
+    width: 50vh;
+    height: 50vh;
+    background: pink;
+}

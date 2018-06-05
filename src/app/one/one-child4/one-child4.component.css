@@ -1,0 +1,26 @@
+:host{
+  display:block;
+  width:400px;
+}
+p {
+  width: 100px;
+  height: 100px;
+}
+.addBorder{
+  box-sizing:border-box;
+  border:5px solid rgb(0, 0, 0);
+}
+span{
+  display:inline-block;
+  background:rgb(10, 232, 240);
+}
+.one1{
+  width:300px;
+}
+.two1{
+  height:300px;
+  border:5px solid rgb(158, 57, 57);
+}
+.three1{
+  background:rgb(152, 240, 10);
+}

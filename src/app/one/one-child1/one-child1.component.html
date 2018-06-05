@@ -1,0 +1,36 @@
+<div class="waper">
+  <div>
+    <p appHighlight> 属性指令</p>
+    <p [appHighlight]="color" author="semlinker">
+      为元素添加自定义属性并使用@Attribute()；
+      <br> 使用输入型的属性指令
+    </p>
+  </div>
+  <div>
+      Observable.interval ：
+      <p style="color:red;">{{datas}}</p>
+  </div>
+  <div>
+    <p>ng-template</p>
+    <div>
+      <p>resolve</p>
+      {{resolveDatas}}
+    </div>
+    <ng-template #tpl>
+      ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构
+    </ng-template>
+  </div>
+  <div>
+    <p>管道</p>
+    <div *ngIf="isChage">
+      <div *ngFor="let hero of (heroes | flyingHeroes)">
+        {{hero.id}}
+      </div>
+    </div>
+    <button (click)="toggles()">toggles</button>
+  </div>
+  <div>
+      <button (click)="startAd()">startAd</button>
+    <ng-template #adhost></ng-template>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+<div class="waper">
+  <form #f="ngForm" novalidate>
+    <h4>{{title}}</h4>
+    <div class="form-group">
+      <label>名字</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="users.name">
+    </div>
+    <div class="form-group">
+      <label>年龄</label>
+      <input type="number" class="form-control" name="age" [(ngModel)]="users.age">
+    </div>
+    <div class="form-group">
+      <label>性别</label>
+      <label *ngFor="let gender of genders;">
+        <input type="radio" name="gender" [(ngModel)]="users.gender" [value]="gender.value"> {{gender.display}}
+      </label>
+    </div>
+    <div class="form-group">
+      <label>角色</label>
+      <select name="role" class="form-control" [(ngModel)]="users.role">
+        <option *ngFor="let role of roles" [value]="role.value">
+          {{role.display}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>主题</label>
+      <select name="theme" class="form-control" [(ngModel)]="users.theme">
+        <option *ngFor="let theme of themes" [ngValue]="theme">
+          {{theme.display}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="isActive" [(ngModel)]="users.isActive"> 是否激活
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>话题</label>
+      <select [multiple]="ismultiple" name="topics" class="form-control" [(ngModel)]="users.topics">
+        <option *ngFor="let topic of topics" [value]="topic.value">
+          {{topic.display}}
+        </option>
+      </select>
+      <button (click)="ismultiple=!ismultiple">变成多选</button>
+    </div>
+    <div class="form-group">
+      <label>爱好</label>
+      <span *ngFor="let hobby of hobbies">
+        <input type="checkbox" name="bobby" [value]="hobby.value" [checked]="users.hobbies[hobby.value]" (change)="changeHobby(hobby, $event)"
+        /> {{hobby.display}}
+      </span>
+    </div>
+    <div class="form-group">
+      <label>地址</label>
+      <select name="province" class="form-control" [(ngModel)]="user.province" (change)="changeProvince($event.target.value)">
+        <option *ngFor="let province of provinces" [value]="province.pk">
+          {{province.pv}}
+        </option>
+      </select>
+      <select name="city" class="form-control" [(ngModel)]="users.city">
+        <option *ngFor="let city of cities" [value]="city.ck">{{city.cv}}</option>
+      </select>
+    </div>
+    <button type="submit" (click)="save()" class="btn btn-default">保存</button>
+  </form>
+  <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
+    <h2>验证</h2>
+    <label>
+      <span style="color:rgb(0, 255, 21);font-size:22px;">Observable name</span>
+      <input type="text" placeholder="Your full name" formControlName="name"><br>
+      {{user.get('name').value}}
+    </label>
+    <div class="error" *ngIf="user.get('name').hasError('required') && 
+        user.get('name').touched">
+      Name is required
+    </div>
+    <div class="error" *ngIf="user.get('name').hasError('minlength') && 
+        user.get('name').touched">
+      Minimum of 2 characters
+    </div>
+    <div formGroupName="account">
+      <span style="color:red;font-size:14px;">formGroupName="account"</span>
+      <br>
+      <label>
+        <span>Email address</span>
+        <input type="email" placeholder="Your email address" formControlName="email">
+      </label>
+      <div class="error" *ngIf="user.get('account').get('email').hasError('required') && 
+         user.get('account').get('email').touched">
+        Email is required
+      </div>
+      <div>
+        <label>
+          <span>Confirm address</span>
+          <input type="email" placeholder="Confirm your email address" formControlName="confirm">
+        </label>
+        <div class="error" *ngIf="user.get('account').get('confirm').hasError('required') && 
+         user.get('account').get('confirm').touched">
+          Confirming email is required
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="user.invalid">Sign up</button>
+  </form>
+
+  <div>
+    <h2>trackBy</h2>
+    <p *ngFor="let hero of heroes; trackBy: trackByHeroes">{{hero.id}}{{hero.name}}</p>
+    <button (click)="makeChage()">makeChage</button>
+  </div>
+  <div>
+    <h2>ngSwitch ngClass</h2>
+    <div [ngSwitch]="myVar" [ngClass]="{'aaa':myVar=='A','bbb':myVar=='B','ccc':myVar=='C'}">
+      <div *ngSwitchCase="'A'">Var is A</div>
+      <div *ngSwitchCase="'B'">Var is B</div>
+      <div *ngSwitchCase="'C'">Var is C</div>
+      <div *ngSwitchDefault>Var is else</div>
+    </div>
+    <button (click)="makeChage2()">makeChage2</button>
+  </div>
+  <div>
+    <h2>ngIf ... else</h2>
+    <ng-template #hidden>
+      <p>ng-template</p>
+    </ng-template>
+    <p *ngIf="shown; else hidden">
+      is true
+    </p>
+    <button (click)="makeChage3()">makeChage3</button>
+  </div>
+  <div>
+    <h2 #isH2>@ViewChild 和 window:scroll </h2>
+    <p #isP>isPisPisPisP</p>
+    <p #isScroll style="background:red;font-size:20px;"></p>
+    <button (click)="makeChage4()">makeChage4</button>
+  </div>
+
+</div>

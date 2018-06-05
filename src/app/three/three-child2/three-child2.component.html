@@ -1,0 +1,12 @@
+<p>
+  three-child2 works!
+</p>
+<div>
+  <c-editor [(ngModel)]="text" [placeholder]="'请输入...'"  [style]="{'min-height':'320px','padding-bottom':'20px','background':'rgba(0,0,0,.1)'}"></c-editor>
+</div>
+<div>
+  <button (click)="save()">存储数据</button>
+  <button (click)="geted()">读取数据</button>
+  <button (click)="clear()">清空页面</button>
+  <button (click)="move()">清空数据</button>
+</div>
