@@ -7,7 +7,8 @@ import { ThreeChild1Component } from './three-child1/three-child1.component';
 import { ThreeChild2Component } from './three-child2/three-child2.component';
 import { ThreeRoute } from './threeRoute';
 
-// cnpm install quill@1.3.4
+
+// cnpm install quill@1.3.4 --save
 // 在 .angular-cli.json/apps/script:["../node_modules/quill/dist/quill.js"]  // 富文本组建依赖库
 // 在 .angular-cli.json/apps/styles 中"../node_modules/quill/dist/quill.snow.css"
 import { EditorComponent } from './editor/editor.component';  // 富文本组件
