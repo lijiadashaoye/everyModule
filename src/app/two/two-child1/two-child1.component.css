@@ -1,27 +1,9 @@
-.aaa {
-    background: pink;
+.aaa{
+    background:pink;
 }
-
-.bbb {
-    background: rgb(194, 255, 192);
+.bbb{
+    background:rgb(194, 255, 192);
 }
-
-.ccc {
-    background: rgb(73, 135, 228);
-}
-
-.wapperDiv {
-    height: 100px;
-    width: 200px;
-    background: rgb(199, 231, 158);
-    overflow: auto;
-}
-
-.wapperDiv div {
-    height: 300px;
-    width: 60px;
-    background: rgb(216, 158, 231);
-}
-.scrollData{
-    font-size:16px;
+.ccc{
+    background:rgb(73, 135, 228);
 }

@@ -70,8 +70,8 @@
     <h2>验证</h2>
     <label>
       <span style="color:rgb(0, 255, 21);font-size:22px;">Observable name</span>
-      <input type="text" placeholder="Your full name" formControlName="name">
-      <br> {{user.get('name').value}}
+      <input type="text" placeholder="Your full name" formControlName="name"><br>
+      {{user.get('name').value}}
     </label>
     <div class="error" *ngIf="user.get('name').hasError('required') && 
         user.get('name').touched">
@@ -137,11 +137,5 @@
     <p #isScroll style="background:red;font-size:20px;"></p>
     <button (click)="makeChage4()">makeChage4</button>
   </div>
-  <div class="wapperDivs">
-    <h2> 监听滚动条的位置scrollTop值 </h2>
-    <span>{{scrollDatas}}</span>
-    <div class="wapperDiv" (scroll)="onscroll($event)"(click)="onscroll($event)">
-      <div></div>
-    </div>
-  </div>
+
 </div>
