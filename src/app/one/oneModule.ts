@@ -11,9 +11,6 @@ import { OneChild4Component } from './one-child4/one-child4.component';
 import { OneChild3ChildComponent } from './one-child3/one-child3-child/one-child3-child.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlyingHeroes } from './one-child1/pip';
-import { Rd1Component } from './one-child1/rd1/rd1.component';
-import { Rd2Component } from './one-child1/rd2/rd2.component';
-import { AdService } from './one-child1/ad.service'
 
 @NgModule({
     imports: [
@@ -32,13 +29,6 @@ import { AdService } from './one-child1/ad.service'
         OneChild3ChildComponent,
         HighlightDirective,
         FlyingHeroes,
-        Rd1Component,
-        Rd2Component
-    ],
-    entryComponents: [
-        Rd1Component,  // 动态生成的组件，需要同时写到这里
-        Rd2Component
-    ],
-    providers: [AdService]
+    ]
 })
 export class OneModule { }

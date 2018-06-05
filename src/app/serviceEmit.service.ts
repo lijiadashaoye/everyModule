@@ -5,7 +5,7 @@ import { Injectable, EventEmitter } from '@angular/core';
  */
 @Injectable()
 export class AppService {
-    childService = new EventEmitter<string>();
+    childService = new EventEmitter<string>();;
 
     constructor() {
     }

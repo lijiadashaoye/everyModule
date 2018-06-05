@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgxEchartsService } from 'ngx-echarts';
 @Component({
   selector: 'app-cild1',
   templateUrl: './cild1.component.html',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Cild1Component {
   chartOption;
-  constructor() { }
+  isLoading = true;
+  constructor(private nes: NgxEchartsService) { }
 
   ngOnInit() {
     this.chartOption = {
@@ -98,6 +99,17 @@ export class Cild1Component {
       }
       ]
     }
+    setTimeout(() => this.isLoading = false, 2000);
   }
 
+  onChartEvent(e, name) {
+    console.log(name, e)
+  }
+  ngAfterViewInit() {  // 实现多个图表联动
+    const chartElement1 = document.getElementById('one');
+    const chartElement2 = document.getElementById('two');
+    const chart1 = this.nes.getInstanceByDom(chartElement1);
+    const chart2 = this.nes.getInstanceByDom(chartElement2);
+    this.nes.connect([chart1, chart2]);
+  }
 }

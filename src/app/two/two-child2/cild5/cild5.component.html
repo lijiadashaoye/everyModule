@@ -1,3 +1,16 @@
-<p>
-  cild5 works!
-</p>
+<div class="waper">
+  <div class="div1" *ngFor="let item of arr;let i=index" id="{{item.num}}"
+   [ngStyle]="{order:i}">{{item.num}}</div>
+</div>
+<div>
+  <input type="number" [(ngModel)]="vals">
+  <button (click)="orders()">orders</button>
+  <button (click)="duixiang()">通过数据排序</button>
+  <button (click)="yuansu()">排序DOM元素</button>
+  <p>
+    {{arr|json}}
+  </p>
+</div>
+<div class="waper">
+fasdf
+</div>

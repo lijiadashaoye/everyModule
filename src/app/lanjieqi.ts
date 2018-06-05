@@ -11,8 +11,6 @@ export class NoopInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler):
         Observable<HttpEvent<any>> {
-            console.log(req)
-            console.log(next)
         return next.handle(req);
     }
 }

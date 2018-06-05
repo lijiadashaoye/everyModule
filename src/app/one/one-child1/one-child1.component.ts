@@ -6,12 +6,10 @@ import {
   HostListener,
   ViewChild,
   TemplateRef,
+  ViewContainerRef,
   Output,
-  EventEmitter,
-  ComponentFactoryResolver,
-  ViewContainerRef
+  EventEmitter
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval'
 import 'rxjs/add/observable/range'
@@ -34,7 +32,6 @@ import 'rxjs/add/operator/switch'
 import 'rxjs/add/operator/withLatestFrom'
 import 'rxjs/add/operator/publish'
 
-import { AdService, AdItem } from './ad.service';
 
 @Component({
   selector: 'app-one-child1',
@@ -43,33 +40,20 @@ import { AdService, AdItem } from './ad.service';
 })
 export class OneChild1Component implements OnInit {
   color: string;
-  resolveDatas;
-  datas
+  datas;
   heroes = [
     { id: 14 },
     { id: 21 },
     { id: 22 },
     { id: 31 },
   ]
-  //  动态加载组件
-  ads: AdItem[];
-  currentAdIndex = -1;
-  interval: any;
-
+  @ViewChild('tpl')
+  tplRef: TemplateRef<any>;
   constructor(
     private el: ElementRef,
-    private vcRef: ViewContainerRef,
-    private route: ActivatedRoute,
-    private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private adService: AdService,
+    private vcRef: ViewContainerRef
   ) { }
   ngOnInit() {
-    this.route.data   // 获取resolve数据
-      .subscribe(gg => {
-        this.resolveDatas = gg.resolveData;
-      });
-
     this.color = 'yellow';
     let sub = Observable.interval(1000).map(val => val + 10)
       .subscribe((val) => {
@@ -137,15 +121,11 @@ export class OneChild1Component implements OnInit {
     // a$.subscribe(v => console.log(v));
     // a$.connect();
   }
-  @ViewChild('tpl') tplRef: TemplateRef<any>;
-  ngAfterViewInit() {  // 动态创建<ng-template>标签
+  ngAfterViewInit() {
     this.vcRef.createEmbeddedView(this.tplRef)
   }
-  ngOnDestroy() {
-    clearInterval(this.interval);
-  }
   isChage: boolean = true;
-  toggles() {  // 管道
+  toggles() {
     this.isChage = false;
     for (let i = 0; i < this.heroes.length; i++) {
       if (this.heroes[i].id % 2 == 0) {
@@ -155,29 +135,6 @@ export class OneChild1Component implements OnInit {
       }
     }
     setTimeout(() => this.isChage = true, 200)
-  }
-
-  @ViewChild("adhost", { read: ViewContainerRef }) adHost: ViewContainerRef;
-  loadComponent() {  // 动态生成组件
-    this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
-    let adItem = this.ads[this.currentAdIndex];
-
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
-    this.adHost.clear();
-
-    let componentRef = this.adHost.createComponent(componentFactory);
-    componentRef.instance.data = adItem.data;
-  }
-
-  getAds() {
-    this.interval = setInterval(() => {
-      this.loadComponent();
-    }, 2000);
-  }
-  startAd() {
-    this.ads = this.adService.getAds();
-    this.loadComponent();
-    this.getAds();
   }
 }
 
