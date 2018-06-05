@@ -15,6 +15,6 @@ export class OneComponent implements OnInit {
     this.appService.childService.emit('');
   }
   canLeave() {
-    return true
+    return confirm('one.component CanDeactivate')
   }
 }

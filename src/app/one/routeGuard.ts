@@ -1,36 +1,40 @@
 import { Injectable } from '@angular/core';
 import {
     CanActivate, CanActivateChild, CanDeactivate, Router,
-    ActivatedRouteSnapshot, RouterStateSnapshot
+    ActivatedRouteSnapshot, RouterStateSnapshot,Resolve
 } from '@angular/router';
 import { OneComponent } from './one.component';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class OneGuardService {
     isLogin() {
         let login = sessionStorage.getItem('name');
         if (login) {
+            alert(' canActivate');
             return true
         } else {
-            alert('clikc login');
+            alert('clikc login canActivate');
             return false
         }
     }
     toChild() {
         let canGo = sessionStorage.getItem('go');
         if (canGo) {
+            alert('canActivateChild');
             return true
         } else {
-            alert('clikc toChild');
+            alert('clikc toChild canActivateChild');
             return false
         }
     }
     leave() {
         let canGo = sessionStorage.getItem('leave');
         if (canGo) {
+            alert('canDeactivate');
             return true
         } else {
-            alert('clikc canLeave');
+            alert('clikc canLeave canDeactivate');
             return false
         }
     }
@@ -38,7 +42,6 @@ export class OneGuardService {
 @Injectable()
 export class OneGuard implements CanActivate, CanActivateChild {
     constructor(private login: OneGuardService) {
-
     }
     canActivate(a: ActivatedRouteSnapshot, b: RouterStateSnapshot) {
         // console.log(a, b)
@@ -56,5 +59,25 @@ export class OneGuard implements CanActivate, CanActivateChild {
 export class CanLeaveGuard implements CanDeactivate<OneComponent> {
     canDeactivate(component: OneComponent) {
         return component.canLeave();
+    }
+}
+
+@Injectable()   // 用来定义怎么resolve数据的服务
+export class resolveService {
+    getData() {
+        return ['这是resolve方法获得的数据',1, 2, 3, 4, 5,]
+    }
+}
+@Injectable()  // 用来定义resolve服务
+export class ResolveGuard implements Resolve<resolveService> {
+    constructor(private resol: resolveService) { }
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<any> | Promise<any> | any {
+        // console.log(route)
+        // console.log(state.root)
+        // state.root与route内容相同
+        return this.resol.getData()
     }
 }
