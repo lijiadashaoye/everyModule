@@ -7,10 +7,7 @@ import { ThreeChild1Component } from './three-child1/three-child1.component';
 import { ThreeChild2Component } from './three-child2/three-child2.component';
 import { ThreeRoute } from './threeRoute';
 
-// cnpm install angular2-select
-import { SelectModule } from 'angular2-select';
-
-// cnpm install quill@1.3.4
+// cnpm install quill@1.3.4 --save
 // 在 .angular-cli.json/apps/script:["../node_modules/quill/dist/quill.js"]  // 富文本组建依赖库
 // 在 .angular-cli.json/apps/styles 中"../node_modules/quill/dist/quill.snow.css"
 import { EditorComponent } from './editor/editor.component';  // 富文本组件
@@ -28,7 +25,6 @@ import { AddressDataChinaService } from 'ngx-address/data/china';
     imports: [
         CommonModule,
         ThreeRoute,
-        SelectModule,
         ReactiveFormsModule,
         FormsModule,
         NgxAddressModule
