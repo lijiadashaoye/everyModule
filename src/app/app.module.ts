@@ -5,17 +5,17 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { OneModule } from './one/oneModule';
 import { MainRoute } from './mainRoute';
-import { OneGuard, OneGuardService, CanLeaveGuard } from './one/routeGuard';
 import { AppService } from './serviceEmit.service';
 import { HttpModule } from '@angular/http';
 import { HttpService } from './http.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopInterceptor } from './lanjieqi';
-
+import { PopupComponent } from './popup/popup.component';
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +24,6 @@ import { NoopInterceptor } from './lanjieqi';
     HttpModule
   ],
   providers: [
-    OneGuard,
-    OneGuardService,
-    CanLeaveGuard,
     AppService,
     HttpService,
     { provide: 'BASE_URL', useValue: 'http://localhost:3000/datas' },
