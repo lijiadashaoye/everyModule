@@ -13,7 +13,8 @@ import { ExeBackgroundDirective } from './cild3/derectiveModule';
 
 // cnpm install echarts --save
 // cnpm install ngx-echarts --save
-// 在 .angular-cli.json/apps/script:[ "../node_modules/echarts/dist/echarts.min.js"]
+// 在 .angular-cli.json/apps/script:[ "./node_modules/echarts/dist/echarts.min.js"]
+// 在styles中添加样式文件： "./node_modules/quill/dist/quill.snow.css"
 import { NgxEchartsModule } from 'ngx-echarts';
 
 // 1:cnpm install angularx-qrcode@1.0.3 --save
@@ -21,6 +22,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { NgxEchartsService } from 'ngx-echarts';
+
 
 @NgModule({
     imports: [
@@ -39,7 +42,9 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
         Cild4Component,
         Cild5Component,
         ExeBackgroundDirective,
-
     ],
+    providers:[
+        NgxEchartsService
+    ]
 })
 export class ChildModule { }

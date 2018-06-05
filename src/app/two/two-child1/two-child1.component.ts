@@ -34,12 +34,14 @@ export class TwoChild1Component implements OnInit {
   private citieData;
   private cities;
   private heroes;
+  private scrollDatas;
   constructor(
     private fb: FormBuilder,
     private rd: Renderer2
   ) { }
 
   ngOnInit(): void {
+    // console.log(document.documentElement.clientHeight)
     this.genders = datas.genders;
     this.roles = datas.roles;
     this.themes = datas.themes;
@@ -71,11 +73,11 @@ export class TwoChild1Component implements OnInit {
     this.users.hobbies[hobby.value] = event.target.checked;
   }
   ngAfterViewInit() {
-    console.log(this.user.get('name'))
-    console.log(this.user)
+    // console.log(this.user.get('name'))
+    // console.log(this.user)
     this.user.get('name').valueChanges
-    .map(x=>x+':map过')
-    .subscribe(val=>console.log(val))
+      .map(x => x + ':map过')
+      .subscribe(val => console.log(val))
   }
 
   changeProvince(pk) {
@@ -118,4 +120,10 @@ export class TwoChild1Component implements OnInit {
     console.log(e)
     this.fff.nativeElement.innerHTML = 'window:scroll'
   }
+  onscroll(e) {
+    console.log(e)
+    this.scrollDatas = '';
+    this.scrollDatas = 'scrollTop：' + e.target.scrollTop;
+  }
+
 }
