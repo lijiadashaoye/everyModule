@@ -1,0 +1,26 @@
+<div class="waper" >
+  <div *ngIf="path=='1';then temp;else temp2">
+    <div class="showContent">
+      <p>
+        {{path|json}}
+      </p>
+      <button (click)="close()">关闭1</button>
+    </div>
+  </div>
+  <ng-template #temp>
+    <div class="showContent">
+      <p>
+        {{path|json}}
+      </p>
+      <button (click)="close()">关闭2</button>
+    </div>
+  </ng-template>
+  <ng-template #temp2>
+    <div class="showContent">
+      <p>
+        {{path ? path:'path没值'|json}}
+      </p>
+      <button (click)="close()">关闭3</button>
+    </div>
+  </ng-template>
+</div>
