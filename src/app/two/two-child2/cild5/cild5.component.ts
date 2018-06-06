@@ -21,14 +21,10 @@ export class Cild5Component implements OnInit {
   ) { }
 
   ngOnInit() {
-    let div1 = $('#div1');
-    let div2 = $('#div2');
-    let div3 = $('#div3');
-    let div4 = $('#div4');
-    div1.css('order', 0);
-    div2.css('order', 1);
-    div3.css('order', 2);
-    div4.css('order', 3);
+    let domOrders = this.elem.nativeElement.querySelectorAll('.div1');
+    for (let i = 0; i < domOrders.length; i++) {
+      domOrders[i].css('order', i);
+    }
   }
   orders() {
     let div1 = this.elem.nativeElement.querySelector('.div1');
@@ -38,7 +34,7 @@ export class Cild5Component implements OnInit {
   duixiang() {
     this.arr.sort((a, b) => {
       if (a.num > b.num) {
-        return -1 
+        return -1
       } else {
         return 1
       }
@@ -50,14 +46,14 @@ export class Cild5Component implements OnInit {
     for (let i = 0; i < domOrders.length; i++) {
       arr.push(Number(domOrders[i].id))
     }
-    arr.sort((a,b) => { return b-a });
-    for(let j=0;j<arr.length;j++){
+    arr.sort((a, b) => { return b - a });
+    for (let j = 0; j < arr.length; j++) {
       for (let i = 0; i < domOrders.length; i++) {
-        if(domOrders[i].id==arr[j]){
+        if (domOrders[i].id == arr[j]) {
           this.rd.setStyle(domOrders[i], 'order', j);
         }
       }
     }
   }
-  
+
 }

@@ -13,26 +13,32 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval'
-import 'rxjs/add/observable/range'
-import 'rxjs/add/observable/timer'
-import 'rxjs/add/observable/of'
-import 'rxjs/add/observable/combineLatest'
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/observable/range';
+import 'rxjs/add/observable/timer';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/combineLatest';
+import 'rxjs/add/observable/fromEvent';
 
-import 'rxjs/add/operator/bufferCount'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/groupBy'
-import 'rxjs/add/operator/mergeMap'
-import 'rxjs/add/operator/delay'
-import 'rxjs/add/operator/takeUntil'
-import 'rxjs/add/operator/takeWhile'
-import 'rxjs/add/operator/combineAll'
-import 'rxjs/add/operator/take'
-import 'rxjs/add/operator/combineLatest'
-import 'rxjs/add/operator/mapTo'
-import 'rxjs/add/operator/switch'
-import 'rxjs/add/operator/withLatestFrom'
-import 'rxjs/add/operator/publish'
+
+import 'rxjs/add/operator/bufferCount';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/groupBy';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/takeUntil';
+import 'rxjs/add/operator/takeWhile';
+import 'rxjs/add/operator/combineAll';
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/combineLatest';
+import 'rxjs/add/operator/mapTo';
+import 'rxjs/add/operator/switch';
+import 'rxjs/add/operator/withLatestFrom';
+import 'rxjs/add/operator/publish';
+import 'rxjs/add/operator/debounce';
+import 'rxjs/add/operator/delayWhen';
+import 'rxjs/add/operator/distinct';
+
 
 import { AdService, AdItem } from './ad.service';
 
@@ -114,13 +120,15 @@ export class OneChild1Component implements OnInit {
     // .combineAll( )
     // .subscribe( x => console.log( x ));
 
-    // 当做方法用来合并数据流
-    // var weight = Observable.of(1,2,3,4);
+    // // 当做方法用来合并数据流
+    // var weight = Observable.of(1,2);
     // var height = Observable.of(1,2,3);
     // var bmi = weight.combineLatest(height, (w, h) => w+h);
     // bmi.subscribe(x => console.log('BMI is ' + x));
 
-    // 当做数据处理过滤可观察对象
+    // 当做数据处理过滤可观察对象，组合多个 Observables 来创建一个 Observable ，
+    // 该 Observable 的值根据每个输入 Observable 的最新值计算得出的，任何一个 Observable 发生
+    // 变动，都会生成顺序对应的每个 Observable 最新值组成的数组
     // const firstTimer = Observable.timer(0, 1000); // 从现在开始，每隔1秒发出0, 1, 2...
     // const secondTimer = Observable.timer(500, 1000); // 0.5秒后，每隔1秒发出0, 1, 2...
     // const combinedTimers = Observable.combineLatest(firstTimer, secondTimer);
@@ -136,6 +144,28 @@ export class OneChild1Component implements OnInit {
     // a$.subscribe(v => console.log(v + 10));
     // a$.subscribe(v => console.log(v));
     // a$.connect();
+
+    // // 在一秒内，顿狂点多次，也只发出一次最新的点击
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var result = clicks.debounce(() => Observable.interval(1000));
+    // result.subscribe(x => console.log(x));
+
+    // // 延时源Observable的发出时间，该时间由delayDurationSelector 返回的Observable决定.
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var delayedClicks = clicks.delayWhen(event =>
+    //   Observable.interval(Math.random() * 5000)
+    // );
+    // delayedClicks.subscribe(x => console.log(x));
+
+    // // 返回 Observable，它发出由源 Observable 所发出的所有与之前的项都不相同的项。达到数据、对象去重
+    // interface Person { age: number, name: string }
+    // Observable.of(
+    //   { age: 4, name: 'Foo' },
+    //   { age: 7, name: 'Bar' },
+    //   { age: 5, name: 'Foo' })
+    //   .distinct((p: Person) => p.name)
+    //   .subscribe(x => console.log(x));
+
   }
   @ViewChild('tpl') tplRef: TemplateRef<any>;
   ngAfterViewInit() {  // 动态创建<ng-template>标签
