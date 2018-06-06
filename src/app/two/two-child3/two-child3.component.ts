@@ -1,5 +1,12 @@
-import { Component, OnInit, ElementRef, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  Inject
+} from '@angular/core';
+import {
+  Observable
+} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/range';
 import 'rxjs/add/observable/timer';
@@ -49,9 +56,15 @@ import 'rxjs/add/operator/throttle';
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/operator/toPromise';
 
-import { HttpService } from '../../http.service';
-import { UserData } from './user-data.model'
-import { Subject } from 'rxjs/Subject';
+import {
+  HttpService
+} from '../../http.service';
+import {
+  UserData
+} from './user-data.model'
+import {
+  Subject
+} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-two-child3',
@@ -73,7 +86,7 @@ export class TwoChild3Component implements OnInit {
   constructor(
     private el: ElementRef,
     private http: HttpService,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.everyObservable();
@@ -89,7 +102,16 @@ export class TwoChild3Component implements OnInit {
     }
   }
   seeOf() {
-    Observable.of({ n: 'ff', age: 1 }, { n: 'dd', age: 2 }, { n: 'ss', age: 3 })
+    Observable.of({
+        n: 'ff',
+        age: 1
+      }, {
+        n: 'dd',
+        age: 2
+      }, {
+        n: 'ss',
+        age: 3
+      })
       .subscribe(obj => {
         console.log(obj)
         this.seeOfs += obj.age
@@ -183,9 +205,9 @@ export class TwoChild3Component implements OnInit {
       .subscribe((val) => {
         let data = val;
         this.datas = data++
-        if (this.datas >= 15) {
-          sub.unsubscribe()
-        }
+          if (this.datas >= 15) {
+            sub.unsubscribe()
+          }
       })
 
     // 类似于 map，但仅用于选择每个发出对象的某个嵌套属性。
@@ -335,7 +357,8 @@ export class TwoChild3Component implements OnInit {
     //   .sampleTime(1000)
     //   .subscribe(x => console.log(x));
 
-    // // 当发出一个新的内部 Observable 时，switchMap 会停止发出先前发出的内部 Observable 并开始发出新的内部 Observable 的值
+    // // 当发出一个新的内部 Observable 时，switchMap 会停止发出先前发出的内部 Observable,
+    // // 并开始发出新的内部 Observable 的值
     // // 每次点击返回一个 interval Observable
     // var clicks = Observable.fromEvent(document, 'click');
     // var result = clicks.switchMap((ev) => Observable.interval(1000));
