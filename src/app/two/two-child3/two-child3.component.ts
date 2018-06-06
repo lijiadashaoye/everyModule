@@ -26,7 +26,6 @@ import 'rxjs/add/operator/mapTo';
 import 'rxjs/add/operator/switch';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/withLatestFrom';
-import 'rxjs/add/operator/publish';
 import 'rxjs/add/operator/debounce';
 import 'rxjs/add/operator/delayWhen';
 import 'rxjs/add/operator/distinct';
@@ -46,6 +45,9 @@ import 'rxjs/add/operator/min';
 import 'rxjs/add/operator/mergeAll';
 import 'rxjs/add/operator/partition';
 import 'rxjs/add/operator/sampleTime';
+import 'rxjs/add/operator/throttle';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/operator/toPromise';
 
 import { HttpService } from '../../http.service';
 import { UserData } from './user-data.model'
@@ -247,10 +249,10 @@ export class TwoChild3Component implements OnInit {
     //   }
     // });
 
-    // result.subscribe(x => console.log(x));
-    // Observable.interval( 1000 )
-    // .takeUntil( Observable.of( 1 ).delay( 3000 ))
-    // .subscribe( x => console.log( x ));
+    // // 它发出源 Observable 的值，但要等到直到第二个 Observable 执行完成。
+    // Observable.interval(1000)
+    //   .takeUntil(Observable.of(1).delay(3000))
+    //   .subscribe(x => console.log(x));
 
     // Observable.of( 1,2,3,4,3,2,1)
     // .takeWhile( x => x < 4 )
@@ -262,18 +264,9 @@ export class TwoChild3Component implements OnInit {
     // .combineAll( )
     // .subscribe( x => console.log( x ));
 
-
-
     // Observable.interval(1000).take(4).map(x=>x+10)
     // .withLatestFrom( Observable.interval( 1000 ))
     // .subscribe( x => console.log( x ));
-
-    // var a$ = Observable.interval(1000).take(4)
-    //   .publish()
-
-    // a$.subscribe(v => console.log(v + 10));
-    // a$.subscribe(v => console.log(v));
-    // a$.connect();
 
     // // 在一秒内，顿狂点多次，也只发出一次最新的点击
     // var clicks = Observable.fromEvent(document, 'click');
@@ -339,6 +332,24 @@ export class TwoChild3Component implements OnInit {
     // var clicks = Observable.fromEvent(document, 'click');
     // var result = clicks.switchMap((ev) => Observable.interval(1000));
     // result.subscribe(x => console.log(x));
+
+    // // 该 Observable 执行节流操作，以限制源 Observable 的 发送频率。
+    // // 以限定时间内最多点击一次的频率发出点击事件
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var result = clicks.throttle(ev => Observable.interval(3000));
+    // result.subscribe(x => console.log(x));
+
+    // // 以每秒最多点击一次的频率发出点击事件
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var result = clicks.throttleTime(1000);
+    // result.subscribe(x => console.log(x));
+
+    // // 将 Observable 序列转换为符合 ES2015 标准的 Promise 。
+    // let source = Observable
+    //   .of(42)
+    //   .toPromise();
+    // source.then((value) => console.log('Value:', value))
+    //   .catch((err) => console.log('Error:', err));
 
   }
 }
