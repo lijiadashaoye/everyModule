@@ -1,32 +1,43 @@
-<p>json-server</p>
-<button (click)="useJsonServer(0)">useJsonServer(0)</button>
-<button (click)="useJsonServer(1)">useJsonServer(1)</button>
-<br> {{useJsonServers|json}}
-<p>Observable</p>
-<input class="pluck" type="text" placeholder="pluck">
-<input class="map" type="text" placeholder="map">
-{{Observable1|json}}{{Observable2|json}}
-<br>
-<input class="combineLatest1" type="text" placeholder="combineLatest">
-<input class="combineLatest2" type="text" placeholder="combineLatest">
-{{combineLatestData|json}}
-<br>
-<button (click)="seeOf()">seeOf()</button>{{seeOfs>0?seeOfs:''}}
-<br>
-<input class="distinc1" type="text" placeholder="distinc">
-{{distincData|json}}
-<br>
-<input class="distinctUntilChanged" type="text" placeholder="distinctUntilChanged">
-{{distinctUntilChangedData|json}}
-<br>
-<input class="merges1" type="text" placeholder="merges1">
-<input class="merges2" type="text" placeholder="merges2">
-<button (click)="merges()">merges()</button>{{mergeData}}
-<br>
-<button (click)="seeScan()">seeScan()</button>{{scanData}}{{doData|json}}
-<br>
-<button (click)="useNewSubject()">useNewSubject()</button>
-<button (click)="bufferCounts()">bufferCounts()</button>
-<button (click)="bufferTimes()">bufferTimes()</button>
-<button (click)="forkJoin_concat()">forkJoin_concat()</button>
-<br>
+<div class="waper">
+    <div>
+        <div>
+            <p>json-server</p>
+            <p>需要先运行：json-server mock/data.json</p>
+            <button (click)="useJsonServer(0)">useJsonServer(0)</button>
+            <button (click)="useJsonServer(1)">useJsonServer(1)</button>
+            <br> {{useJsonServers|json}}
+        </div>
+        <div>
+            Observable.interval ：
+            <p style="color:red;">{{datas}}</p>
+        </div>
+    </div>
+    <div>
+        <p>Observable</p>
+        <input class="pluck" type="text" placeholder="pluck">{{Observable1|json}}
+        <br>
+        <input class="map" type="text" placeholder="map"> {{Observable2|json}}
+        <br>
+        <input class="combineLatest1" type="text" placeholder="combineLatest1">
+        <input class="combineLatest2" type="text" placeholder="combineLatest2">
+        <br>
+        <span style="font-size:12px;">combineLatest1+combineLatest2：</span>
+        <span style="color:red;"> {{combineLatestData|json}}</span>
+        <br>
+        <button (click)="seeOf()">seeOf()</button>seeOfs：{{seeOfs>0?seeOfs:''}}
+        <br>
+        <input class="distinc1" type="text" placeholder="distinc"> {{distincData|json}}
+        <br>
+        <input class="merges1" type="text" placeholder="merges1">
+        <input class="merges2" type="text" placeholder="merges2">
+        <br>{{mergeData}}
+        <br>
+        <button (click)="seeScan()">seeScan()</button>{{scanData}}{{doData|json}}
+        <br>
+        <button (click)="useNewSubject()">useNewSubject()</button>
+        <button (click)="bufferCounts()">bufferCounts()</button>
+        <button (click)="bufferTimes()">bufferTimes()</button>
+        <button (click)="forkJoin_concat()">forkJoin_concat()</button>
+    </div>
+
+</div>
