@@ -24,6 +24,7 @@ import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/combineLatest';
 import 'rxjs/add/operator/mapTo';
 import 'rxjs/add/operator/switch';
+import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/publish';
 import 'rxjs/add/operator/debounce';
@@ -39,7 +40,12 @@ import 'rxjs/add/operator/bufferCount';
 import 'rxjs/add/operator/bufferTime';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/expand';
-
+import 'rxjs/add/operator/find';
+import 'rxjs/add/operator/max';
+import 'rxjs/add/operator/min';
+import 'rxjs/add/operator/mergeAll';
+import 'rxjs/add/operator/partition';
+import 'rxjs/add/operator/sampleTime';
 
 import { HttpService } from '../../http.service';
 import { UserData } from './user-data.model'
@@ -68,7 +74,9 @@ export class TwoChild3Component implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.everyObservable()
+    this.everyObservable2()
   }
   seeOf() {
     Observable.of({ n: 'ff', age: 1 }, { n: 'dd', age: 2 }, { n: 'ss', age: 3 })
@@ -80,16 +88,27 @@ export class TwoChild3Component implements OnInit {
   useJsonServer(id) {
     this.http.toGet(id).subscribe(val => this.useJsonServers = val)
   }
-
   seeScan() {
+    // scan()会将执行过程中的每一个值进行输出
     let inter$ = Observable.interval(600)
       .filter(val => val % 2 == 0)
       .take(4)
       .do(val => this.doData = `do执行了,传进来的y值为${val}`)
       .scan((x, y) => x + y);
     inter$.subscribe(val => this.scanData = val)
+
+    // reduce 只会发出一个值，并且是当源 Observable 完成时才发出。它等价于使用 scan 操作符后面再跟 last 操作符。
+    // 计算5秒内发生的点击次数
+    var clicksInFiveSeconds = Observable.fromEvent(document, 'click')
+      .takeUntil(Observable.interval(5000));
+    var ones = clicksInFiveSeconds.mapTo(1);
+    var seed = 0;
+    var count = ones.reduce((acc, one) => acc + one, seed);
+    count.subscribe(x => console.log(x));
   }
   merges() {
+    // merge 创建一个输出 Observable ，发出每个给定的输入 Observable 中的所有值。
+    // 只是 将所有输入 Observables 的所有值不进行任何转换发送到输出 Observable 
     let merges1 = this.el.nativeElement.querySelector('.merges1');
     let merges2 = this.el.nativeElement.querySelector('.merges2');
     let merges1$ = Observable.fromEvent(merges1, 'keyup')
@@ -99,6 +118,25 @@ export class TwoChild3Component implements OnInit {
 
     Observable.merge(merges1$, merges2$)
       .subscribe(val => this.mergeData = val)
+
+    // var timer1 = Observable.interval(1000).take(4);
+    // var timer2 = Observable.interval(1000).take(5);
+    // var timer3 = Observable.interval(1000).take(3);
+    // var concurrent = 3; // 参数,可以同时订阅的输入 Observables 的最大数量。
+    // var merged = timer1.merge(timer2, timer3,timer3, concurrent);
+    // merged.subscribe(x => console.log(x));
+
+    // // 每次点击都会从0到9计数(每秒计数一次) ，但只允许最多同时只能有两个计时器 mergeAll(2)
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var higherOrder = clicks.map((ev) => Observable.interval(1000));
+    // var firstOrder = higherOrder.mergeAll(2);
+    // firstOrder.subscribe(x => console.log(x));
+
+    // // 返回的 Observable 基于应用一个函数来发送项，该函数提供给源 Observable 发出的每个项， 
+    // // 并返回一个 Observable，然后合并这些作为结果的 Observable，并发出本次合并的结果。
+    // Observable.of('a', 'b', 'c')
+    //   .mergeMap(x => Observable.interval(1000).map(i => x + i))
+    //   .subscribe(val=>console.log(val))
   }
   useNewSubject() {
     this.newSubject.next('newSubject value');
@@ -110,19 +148,22 @@ export class TwoChild3Component implements OnInit {
     observers.subscribe(value => console.log(value))
   }
   bufferCounts() {
+    // 将过往的值收集到一个数组中，当数组数量到达设定的 bufferSize 时发出该数组。
     Observable.interval(500).bufferCount(5).take(5)
       .subscribe(val => console.log(val))
   }
   bufferTimes() {
+    // 将过往的值收集到数组中，并周期性地发出这些数组。
     Observable.interval(472).bufferTime(2213).take(5)
       .subscribe(val => console.log(val))
   }
   forkJoin_concat() {
-    let one = Observable.interval(1000).take(5);
+    let one = Observable.interval(1000).take(2);
     let two = Observable.interval(1000).take(3);
-
+    // 通过顺序地发出多个 Observables 的值将它们连接起来，一个接一个的。
     Observable.concat(one, two)
       .subscribe(value => console.log(value))
+    // 将多个 Observables 的最后一个值，组成对应顺序的数组发出来。
     Observable.forkJoin(one, two)
       .subscribe(value => console.log(value))
   }
@@ -137,6 +178,7 @@ export class TwoChild3Component implements OnInit {
         }
       })
 
+    // 类似于 map，但仅用于选择每个发出对象的某个嵌套属性。
     let pluck1 = this.el.nativeElement.querySelector('.pluck');
     let pluck1$ = Observable.fromEvent(pluck1, 'keyup').pluck('target', 'value')
       .subscribe(val => this.Observable1 = val);
@@ -152,12 +194,27 @@ export class TwoChild3Component implements OnInit {
     Observable.combineLatest(combineLatest1$, combineLatest2$, (x, y) => x + y)
       .subscribe(val => this.combineLatestData = val)
 
+    // // 当做方法用来合并数据流
+    // var weight = Observable.of(1,2);
+    // var height = Observable.of(1,2,3);
+    // var bmi = weight.combineLatest(height, (w, h) => w+h);
+    // bmi.subscribe(x => console.log('BMI is ' + x));
+
+    // 当做数据处理过滤可观察对象，组合多个 Observables 来创建一个 Observable ，
+    // 该 Observable 的值根据每个输入 Observable 的最新值计算得出的，任何一个 Observable 发生
+    // 变动，都会生成顺序对应的每个 Observable 最新值组成的数组
+    // const firstTimer = Observable.timer(0, 1000); // 从现在开始，每隔1秒发出0, 1, 2...
+    // const secondTimer = Observable.timer(500, 1000); // 0.5秒后，每隔1秒发出0, 1, 2...
+    // const combinedTimers = Observable.combineLatest(firstTimer, secondTimer);
+    // combinedTimers.subscribe(value => console.log(value));
+
     let distinc1 = this.el.nativeElement.querySelector('.distinc1');
     Observable.fromEvent(distinc1, 'keyup')
       .debounceTime(400)
       .pluck('target', 'value')
       .distinct()
       .subscribe(val => this.distincData = val)
+
     // // 返回 Observable，它发出由源 Observable 所发出的所有与之前的项都不相同的项。达到数据、对象去重
     // interface Person { age: number, name: string }
     // Observable.of(
@@ -190,10 +247,6 @@ export class TwoChild3Component implements OnInit {
     //   }
     // });
 
-    // var letters = Observable.of('a', 'b', 'c');
-    // var result = letters.mergeMap(x =>
-    //   Observable.interval(1000).map(i => x + i)
-    // );
     // result.subscribe(x => console.log(x));
     // Observable.interval( 1000 )
     // .takeUntil( Observable.of( 1 ).delay( 3000 ))
@@ -209,19 +262,7 @@ export class TwoChild3Component implements OnInit {
     // .combineAll( )
     // .subscribe( x => console.log( x ));
 
-    // // 当做方法用来合并数据流
-    // var weight = Observable.of(1,2);
-    // var height = Observable.of(1,2,3);
-    // var bmi = weight.combineLatest(height, (w, h) => w+h);
-    // bmi.subscribe(x => console.log('BMI is ' + x));
 
-    // 当做数据处理过滤可观察对象，组合多个 Observables 来创建一个 Observable ，
-    // 该 Observable 的值根据每个输入 Observable 的最新值计算得出的，任何一个 Observable 发生
-    // 变动，都会生成顺序对应的每个 Observable 最新值组成的数组
-    // const firstTimer = Observable.timer(0, 1000); // 从现在开始，每隔1秒发出0, 1, 2...
-    // const secondTimer = Observable.timer(500, 1000); // 0.5秒后，每隔1秒发出0, 1, 2...
-    // const combinedTimers = Observable.combineLatest(firstTimer, secondTimer);
-    // combinedTimers.subscribe(value => console.log(value));
 
     // Observable.interval(1000).take(4).map(x=>x+10)
     // .withLatestFrom( Observable.interval( 1000 ))
@@ -261,5 +302,43 @@ export class TwoChild3Component implements OnInit {
     //   .expand(x => Observable.of(2 * x).delay(1000))
     //   .take(5)
     //   .subscribe(x => console.log(x));
+  }
+  everyObservable2() {
+    // // 只发出源 Observable 所发出的值中第一个满足条件的值。
+    // Observable.interval(100)
+    //   .find(x => x != 0 && x % 3 == 0)
+    //   .subscribe(x => console.log(x));
+
+    // // 使用比较函数来获取最大值的项max(),最小值的项min()
+    // interface Person {
+    //   age: number,
+    //   name: string
+    // }
+    // Observable.of<Person>({ age: 7, name: 'Foo' },
+    //   { age: 5, name: 'Bar' },
+    //   { age: 9, name: 'Beer' })
+    //   .max<Person>((a: Person, b: Person) => a.age < b.age ? -1 : 1)
+    //   .subscribe((x: Person) => console.log(x.name));
+
+    // // 将点击事件划分为点击 DIV 元素和点击其他元素
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var parts = clicks.partition(ev => ev['target'].tagName === 'DIV');
+    // var clicksOnDivs = parts[0];
+    // var clicksElsewhere = parts[1];
+    // clicksOnDivs.subscribe(x => console.log('DIV clicked: ', x));
+    // clicksElsewhere.subscribe(x => console.log('Other clicked: ', x));
+
+    // // 该 Observable 发出特定的时间周期从源 Observable 取样的最新值。
+    // // 每秒， 发出最近的一个点击
+    // Observable.fromEvent(document, 'click')
+    //   .sampleTime(1000)
+    //   .subscribe(x => console.log(x));
+
+    // // 当发出一个新的内部 Observable 时，switchMap 会停止发出先前发出的内部 Observable 并开始发出新的内部 Observable 的值
+    // // 每次点击返回一个 interval Observable
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var result = clicks.switchMap((ev) => Observable.interval(1000));
+    // result.subscribe(x => console.log(x));
+
   }
 }
