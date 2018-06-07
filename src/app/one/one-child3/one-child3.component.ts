@@ -12,7 +12,7 @@ import 'rxjs/add/observable/fromEvent';
 })
 export class OneChild3Component implements OnInit {
   froms: FormGroup;
-  w;
+  worker;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -48,10 +48,11 @@ export class OneChild3Component implements OnInit {
     console.log(navigator.onLine)  // 判断设备是否可以上网
   }
   startWorker() {  // web werker
-    this.w = ''
+    this.worker = ''
     if (typeof (Worker) !== "undefined") {
-      this.w = new Worker("assets/webWorker.js");
-      this.w.onmessage = function (event) {
+      this.worker = new Worker("assets/webWorker.js");
+      this.worker.postMessage(10);
+      this.worker.onmessage = (event) => {
         document.getElementById("result").innerHTML = event.data;
       };
     }
@@ -60,7 +61,7 @@ export class OneChild3Component implements OnInit {
     }
   }
   stopWorker() {
-    this.w.terminate();
+    this.worker.terminate();
   }
   // sse() {
   //   if (typeof (EventSource) !== "undefined") {
