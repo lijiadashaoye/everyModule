@@ -1,15 +1,25 @@
 import {
-  Component, OnInit, HostBinding, HostListener, ChangeDetectionStrategy, ChangeDetectorRef,
-  ElementRef, Renderer2
+  Component,
+  OnInit,
+  HostBinding,
+  HostListener,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
-import { animates, buttonAnimt, queryAnimat } from './animat';
+import {
+  animates,
+  buttonAnimt,
+  queryAnimat
+} from './animat';
 
 @Component({
   selector: 'app-one-child4',
   templateUrl: './one-child4.component.html',
   styleUrls: ['./one-child4.component.css'],
   animations: [animates, buttonAnimt, queryAnimat],
-  changeDetection: ChangeDetectionStrategy.OnPush   // 组件有变化时才进行检查，性能优化
+  changeDetection: ChangeDetectionStrategy.OnPush // 组件有变化时才进行检查，性能优化
 })
 export class OneChild4Component implements OnInit {
 
@@ -24,21 +34,21 @@ export class OneChild4Component implements OnInit {
     private ch: ChangeDetectorRef,
     private rd: Renderer2,
     private el: ElementRef
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.interval = setInterval(() => {
       if (this.one == true) {
         this.two = true;
-        this.one=false;
-        this.three=false;
+        this.one = false;
+        this.three = false;
       } else
-        if (this.two == true) {
-          this.three = true;
-          this.two=false;
-        }else{
-          this.one=true
-        }
+      if (this.two == true) {
+        this.three = true;
+        this.two = false;
+      } else {
+        this.one = true
+      }
       this.ch.markForCheck()
     }, 2000)
 
@@ -61,4 +71,3 @@ export class OneChild4Component implements OnInit {
     this.rd.setAttribute(elem, 'style', 'background:red')
   }
 }
-
