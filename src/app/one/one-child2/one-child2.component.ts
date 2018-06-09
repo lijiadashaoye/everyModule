@@ -22,11 +22,9 @@ export class OneChild2Component implements OnInit {
 
   ngOnInit() {
     this.time = 0;
-
     this.myForm = this.fb.group({
       likes: this.fb.array([false, false, false, false, false])
     });
-
     this.form = this.fb.group({
       one: false,
       two: false,
