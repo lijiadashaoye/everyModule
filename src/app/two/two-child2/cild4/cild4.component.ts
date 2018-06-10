@@ -36,6 +36,9 @@ export class Cild4Component implements OnInit {
     console.log(trs.rows)
     console.log(trs.rows[0].cells)
   }
+  whe(e){
+    console.log(e)
+  }
   mouseDown(e) {
     e.returnValue = false;  // 去掉其他部分被选中时一闪一闪的效果
     const mouseX = e.offsetX;

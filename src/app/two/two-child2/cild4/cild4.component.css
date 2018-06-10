@@ -14,6 +14,14 @@ opacity: 0.4;
 }
 #img2{
     clip:rect(0,100px,100px,0)
+    /*
+    rect(top right bottom left)
+    表示的含义就是：
+    top:最终剪裁的矩形的上边距离原始元素的上边缘30像素；
+    right:剪裁矩形的右边缘距离原元素左边缘的距离是200像素；
+    bottom:剪裁矩形的下边缘距离原元素顶部的距离为200像素；
+    left:剪裁矩形的左边缘距离原元素左边缘的距离时20像素。
+    */
 }
 #main{
     position: absolute;
