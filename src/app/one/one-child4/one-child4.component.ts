@@ -37,6 +37,8 @@ export class OneChild4Component implements OnInit {
   ) {}
 
   ngOnInit() {
+    let kk=document.getElementById('dd').getBoundingClientRect();// 查询元素的尺寸数据
+    console.log(kk)
     this.interval = setInterval(() => {
       if (this.one == true) {
         this.two = true;
