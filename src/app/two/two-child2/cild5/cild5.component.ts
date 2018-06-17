@@ -84,47 +84,51 @@ export class Cild5Component implements OnInit {
   cav() {
     let cav = this.elem.nativeElement.querySelector('#cav');
     let c = cav.getContext('2d');
-    c.beginPath();
-    c.moveTo(20, 10);
-    c.lineTo(100, 50);
-    c.lineTo(100, 120);
-    c.closePath();
-    c.fillStyle = 'red';
-    c.strokeStyle = 'blue';
-    c.lineWidth = 5;
-    c.fill();
-    c.stroke();
 
-    c.beginPath();
-    c.moveTo(100, 10);
-    c.lineTo(150, 30);
-    c.lineTo(80, 130);
-    c.closePath();
-    c.fillStyle = 'red';
-    c.strokeStyle = 'blue';
-    c.lineWidth = 5;
-    c.fill();
-    c.stroke();
+    c.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明
+    c.fillStyle = '#dddddd'; // 设置颜色
+    c.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
+    // 利用Path绘制复杂路径:
+    var path=new Path2D();
+    path.arc(75, 75, 50, 0, Math.PI*2, true);
+    path.moveTo(110,75);
+    path.arc(75, 75, 35, 0, Math.PI, false);
+    path.moveTo(65, 65);
+    path.arc(60, 65, 5, 0, Math.PI*2, true);
+    path.moveTo(95, 65);
+    path.arc(90, 65, 5, 0, Math.PI*2, true);
+    c.strokeStyle = '#0000ff';
+    c.stroke(path);
 
-    c.beginPath();
-    c.arc(200, 60, 50,0,1.5*Math.PI,true)
-    c.strokeStyle = 'blue';
-    c.lineWidth = 5;
-    c.stroke();
-    c.closePath();
+    c.moveTo(160, 50);
+    c.arcTo(250, 50, 300, 300, 60); // arcTo(x1,y1,x2,y2,r);
+    c.strokeStyle = 'blue'; // x1	弧的起点的 x 坐标。
+    c.lineWidth = 5; // y1	弧的起点的 y 坐标。
+    c.stroke(); // x2	弧的终点的 x 坐标。
+    // y2	弧的终点的 y 坐标。
+    // r	弧的半径。       
 
-    c.moveTo(160,50);
-    c.arcTo(250,50,300,300,60);  // arcTo(x1,y1,x2,y2,r);
-    c.strokeStyle = 'blue';      // x1	弧的起点的 x 坐标。
-    c.lineWidth = 5;             // y1	弧的起点的 y 坐标。
-    c.stroke();                  // x2	弧的终点的 x 坐标。
-                                 // y2	弧的终点的 y 坐标。
-                                 // r	弧的半径。       
-                                 
-  
     // 将canvas转成base64图片，用img显示出来，达到图片截取
     let imgs = this.elem.nativeElement.querySelector('#img');
     // console.log(cav.toDataURL())
-    imgs.src=cav.toDataURL()
+    imgs.src = cav.toDataURL()
+    // navigator.geolocation.getCurrentPosition(function (success) {
+    //   console.log(success.coords.latitude)
+    // }, function (error) {
+    //   console.log(error)
+    // })
+  }
+  show() {
+    let arr = [1, 23, 13, 24, 53, 61, 27, 19, 18];
+    let ind;
+    let kk = arr.every(function (item, index) {
+      ind=index;
+      return item < 33;
+    });
+    console.log(kk,ind)
+    let kk1 = arr.filter(i => i < 50);
+    console.log(kk1)
+    console.log(kk1.map(x=>x+10))
+
   }
 }

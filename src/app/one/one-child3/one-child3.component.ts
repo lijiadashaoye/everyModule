@@ -93,6 +93,7 @@ export class OneChild3Component implements OnInit {
     this.source.onmessage = function (event) {
       document.getElementById("result").innerHTML += event.data + "<br/>";
     }
+    this.source.send('asdfasdf')  // 发送信息
   }
   closeSSE() { // 关闭 SSE 连接。
     this.source.close()
