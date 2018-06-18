@@ -9,6 +9,9 @@ import * as $ from 'jquery'
 import {
   calcBindingFlags
 } from '_@angular_core@5.2.11@@angular/core/src/view/util';
+import {
+  BehaviorSubject, Observable
+} from 'rxjs';
 
 @Component({
   selector: 'app-cild5',
@@ -89,19 +92,27 @@ export class Cild5Component implements OnInit {
     c.fillStyle = '#dddddd'; // 设置颜色
     c.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
     // 利用Path绘制复杂路径:
-    var path=new Path2D();
-    path.arc(75, 75, 50, 0, Math.PI*2, true);
-    path.moveTo(110,75);
+    var path = new Path2D();
+    path.arc(75, 75, 50, 0, Math.PI * 2, true);
+    path.moveTo(110, 75);
     path.arc(75, 75, 35, 0, Math.PI, false);
     path.moveTo(65, 65);
-    path.arc(60, 65, 5, 0, Math.PI*2, true);
+    path.arc(60, 65, 5, 0, Math.PI * 2, true);
     path.moveTo(95, 65);
-    path.arc(90, 65, 5, 0, Math.PI*2, true);
+    path.arc(90, 65, 5, 0, Math.PI * 2, true);
     c.strokeStyle = '#0000ff';
     c.stroke(path);
 
-    c.moveTo(160, 50);
-    c.arcTo(250, 50, 300, 300, 60); // arcTo(x1,y1,x2,y2,r);
+    c.shadowOffsetX = 2;
+    c.shadowOffsetY = 2;
+    c.shadowBlur = 3;
+    c.shadowColor = '#666666';
+    c.font = '24px Arial';
+    c.fillStyle = '#333333';
+    c.fillText('带阴影的文字', 150, 30);
+
+    c.moveTo(160, 70);
+    c.arcTo(250, 70, 300, 300, 60); // arcTo(x1,y1,x2,y2,r);
     c.strokeStyle = 'blue'; // x1	弧的起点的 x 坐标。
     c.lineWidth = 5; // y1	弧的起点的 y 坐标。
     c.stroke(); // x2	弧的终点的 x 坐标。
@@ -119,16 +130,12 @@ export class Cild5Component implements OnInit {
     // })
   }
   show() {
-    let arr = [1, 23, 13, 24, 53, 61, 27, 19, 18];
-    let ind;
-    let kk = arr.every(function (item, index) {
-      ind=index;
-      return item < 33;
-    });
-    console.log(kk,ind)
-    let kk1 = arr.filter(i => i < 50);
-    console.log(kk1)
-    console.log(kk1.map(x=>x+10))
-
+    let kk = new BehaviorSubject(null);
+    let jj=Observable.interval(1000).take(10);
+    jj.subscribe(_=>{
+      kk.next(_)
+    })
+    kk.subscribe(val=>console.log(val))
+    kk.subscribe(val=>console.log(val+10))
   }
 }
