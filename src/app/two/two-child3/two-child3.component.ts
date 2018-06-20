@@ -93,14 +93,14 @@ export class TwoChild3Component implements OnInit {
     this.everyObservable();
     this.everyObservable2();
 
-    // for..in迭代的是对象的 键 的列表，而for..of则迭代对象的键对应的值。
-    let list = [4, 5, 6];
-    for (let i in list) {
-      console.log(i); // "0", "1", "2",
-    }
-    for (let i of list) {
-      console.log(i); // "4", "5", "6"
-    }
+    // // for..in迭代的是对象的 键 的列表，而for..of则迭代对象的键对应的值。
+    // let list = [4, 5, 6];
+    // for (let i in list) {
+    //   console.log(i); // "0", "1", "2",
+    // }
+    // for (let i of list) {
+    //   console.log(i); // "4", "5", "6"
+    // }
   }
   seeOf() {
     Observable.of({
@@ -388,5 +388,6 @@ export class TwoChild3Component implements OnInit {
     // var clicks = Observable.fromEvent(document, 'click');
     // var result = tim.audit(ev => clicks);
     // result.subscribe(x => console.log(x));
+
   }
 }
