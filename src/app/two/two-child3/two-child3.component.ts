@@ -55,7 +55,10 @@ import 'rxjs/add/operator/sampleTime';
 import 'rxjs/add/operator/throttle';
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/audit'
+import 'rxjs/add/operator/audit';
+import 'rxjs/add/operator/concatMap';
+import 'rxjs/add/operator/count';
+import 'rxjs/add/operator/exhaust';
 
 import {
   HttpService
@@ -92,6 +95,7 @@ export class TwoChild3Component implements OnInit {
   ngOnInit() {
     this.everyObservable();
     this.everyObservable2();
+    this.everyObservable3();
 
     // // for..in迭代的是对象的 键 的列表，而for..of则迭代对象的键对应的值。
     // let list = [4, 5, 6];
@@ -241,6 +245,7 @@ export class TwoChild3Component implements OnInit {
     // const combinedTimers = Observable.combineLatest(firstTimer, secondTimer);
     // combinedTimers.subscribe(value => console.log(value));
 
+    // 对之前出现过的所有值进行去重排查
     let distinc1 = this.el.nativeElement.querySelector('.distinc1');
     Observable.fromEvent(distinc1, 'keyup')
       .debounceTime(400)
@@ -257,7 +262,7 @@ export class TwoChild3Component implements OnInit {
     //   .distinct((p: Person) => p.name)
     //   .subscribe(x => console.log(x));
 
-    // // 它发出源 Observable 发出的所有与前一项不相同的项
+    // // 源 Observable 发出最新值与前一项不相同即可
     // Observable.of(1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 4)
     //   .distinctUntilChanged()
     //   .subscribe(x => console.log(x));
@@ -280,18 +285,17 @@ export class TwoChild3Component implements OnInit {
     //   }
     // });
 
-    // // 它发出源 Observable 的值，但要等到直到第二个 Observable 执行完成。
-    // Observable.interval(1000)
-    //   .takeUntil(Observable.of(1).delay(3000))
+    // // 它发出源 Observable 的值，直到第二个 Observable 执行完成才停止发出出源 Observable 的值。
+    // // 源 Observable 与takeUntil里的Observable从最开始都会执行，但takeUntil里的Observable发出值后，
+    // // 源 Observable就不再执行了
+    // Observable.interval(1000).map(val => val + 'ff')
+    //   .takeUntil(Observable.interval(2200))
     //   .subscribe(x => console.log(x));
 
-    // Observable.of( 1,2,3,4,3,2,1)
-    // .takeWhile( x => x < 4 )
-    // .subscribe( x => console.log( x ))
-
-    // Observable.interval(1000).take(4)
-    // .map( ev => Observable.of( 1, 2, 3 ))
-    // .take( 3 )
+    // // 当高阶 Observable 完成时，通过使用 combineLatest 将其打平。
+    // Observable.interval(600).take(4)
+    // .map( ev => Observable.interval(1000).take(5))
+    // // .take( 2 )
     // .combineAll( )
     // .subscribe( x => console.log( x ));
 
@@ -310,12 +314,6 @@ export class TwoChild3Component implements OnInit {
     //   Observable.interval(Math.random() * 5000)
     // );
     // delayedClicks.subscribe(x => console.log(x));
-
-    // // 由一个 Observable1 触发另一个可以执行一系类操作的 Observable2，
-    // // 并忽略 Observable1 之后发送的值，直到 Observable2 执行完毕才从Observable1取值
-    // var clicks = Observable.fromEvent(document, 'click');
-    // var result = clicks.exhaustMap((ev) => Observable.interval(300).take(10));
-    // result.subscribe(x => console.log(x));
 
     // // 将上一次Observable发出的值进行处理后（expand()内的函数），再将处理完的值进行用样的方法进行处理，递归效果
     // // 每次点击开始发出的值都是乘以2的，最多连乘5次用take()限制的，
@@ -365,15 +363,24 @@ export class TwoChild3Component implements OnInit {
     // var result = clicks.switchMap((ev) => Observable.interval(1000));
     // result.subscribe(x => console.log(x));
 
+    // // 让一个值通过，然后在接下来的 n 毫秒内忽略源值。
+    // throttle,通过函数计算设置停滞时间，可以使用多变的时间，如用Math.random()生成时间
+    // throttleTime，通过直接写出来的数字来设置停滞时间
     // // 该 Observable 执行节流操作，以限制源 Observable 的 发送频率。
     // // 以限定时间内最多点击一次的频率发出点击事件
-    // var clicks = Observable.fromEvent(document, 'click');
-    // var result = clicks.throttle(ev => Observable.interval(3000));
+
+    // 不定时发出值，导致值也不确定
+    // var clicks = Observable.interval(500)
+    // var result = clicks.throttle(ev => {
+    //   let time=Math.random()*1000;
+    //   console.log(time);
+    //   return Observable.interval(time)
+    // });
     // result.subscribe(x => console.log(x));
 
     // // 以每秒最多点击一次的频率发出点击事件
-    // var clicks = Observable.fromEvent(document, 'click');
-    // var result = clicks.throttleTime(1000);
+    // var clicks = Observable.interval(1000);
+    // var result = clicks.throttleTime(2000);
     // result.subscribe(x => console.log(x));
 
     // // 将 Observable 序列转换为符合 ES2015 标准的 Promise 。
@@ -389,5 +396,59 @@ export class TwoChild3Component implements OnInit {
     // var result = tim.audit(ev => clicks);
     // result.subscribe(x => console.log(x));
 
+  }
+
+  everyObservable3() {
+    // // 每次点击都会触发从0到3的定时器(时间间隔为1秒)，定时器之间是串行的,即：每一个外部Observable
+    // // 返回值都对应触发一次内部Observable执行一次
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var result = clicks.concatMap(ev => Observable.interval(1000).take(4));
+    // result.subscribe(x => console.log(x));
+
+    // // 记录1到7中间有多少个奇数，count内的函数是最终返回一个boolean的判断函数，count返回为true的值
+    // var numbers =Observable.range(1, 7);
+    // var result = numbers.count(i => i % 2 === 1);
+    // result.subscribe(x => console.log(x));
+
+    // // 记录第一次点击之前经过了几秒
+    // var seconds = Observable.interval(1000);
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var secondsBeforeClick = seconds.takeUntil(clicks)
+    // var result = secondsBeforeClick.count();
+    // result.subscribe(x => console.log(x));
+
+    // 发出每一个外部Observable的值，直到takeWhile里的函数返回false才停止值输出
+    // var clicks = Observable.interval(1000)
+    // var result = clicks.takeWhile(ev => ev < 4);
+    // result.subscribe(x => console.log(x));
+
+    // 在debounceTime内，外部Observable不会有另外的值发出的话，才把外部Observable的值作为终值发出
+    // 所以，此语句永远不会有值发出
+    // var clicks = Observable.interval(610)
+    // var result = clicks.debounceTime(620);
+    // result.subscribe(x => console.log(x));
+
+    //  // 等待的时间随机，导致值也不确定
+    // var clicks = Observable.interval(500)
+    // var result = clicks.delayWhen(ev => {
+    //   let time=Math.random()*10000;
+    //   return Observable.interval(time)
+    // });
+    // result.subscribe(x => console.log(x));
+
+    // 接收源 Observable 并只专注于传播第一个 Observable 直到它完成，然后订阅下一个 Observable
+    // 如果前一个 Observable 还未完成的话，exhaust 会忽略每个新的内部 Observable,整个语句返回的是
+    // 内部Observable产生的值
+    // 这俩等效
+
+    var clicks = Observable.fromEvent(document, 'click');
+    // var higherOrder = clicks.map((ev) => Observable.interval(1000).take(5));
+    // var result = higherOrder.exhaust();
+    // result.subscribe(x => console.log(x));
+
+    // 由一个 Observable1 触发另一个可以执行一系类操作的 Observable2，
+    // 并忽略 Observable1 之后发送的值，直到 Observable2 执行完毕才从Observable1取值
+    var result2 = clicks.exhaustMap((ev) => Observable.interval(300).take(5));
+    result2.subscribe(x => console.log(x));
   }
 }
