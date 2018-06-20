@@ -359,6 +359,7 @@ export class TwoChild3Component implements OnInit {
     //   .sampleTime(1000)
     //   .subscribe(x => console.log(x));
 
+    // flatMapLatest在RxJS 5.x中已更名为switchMap
     // // 当发出一个新的内部 Observable 时，switchMap 会停止发出先前发出的内部 Observable,
     // // 并开始发出新的内部 Observable 的值
     // // 每次点击返回一个 interval Observable
@@ -451,12 +452,24 @@ export class TwoChild3Component implements OnInit {
 
     // 由一个 Observable1 触发另一个可以执行一系类操作的 Observable2，
     // 并忽略 Observable1 之后发送的值，直到 Observable2 执行完毕才从Observable1取值
+    // exhaustMap在从流还没有结束的时候如果主流仍然有数据在发射，它会忽略此时主流发射的数据，
+    // 而在从流结束以后才会去响应主流中发射的数据。
     // var result2 = clicks.exhaustMap((ev) => Observable.interval(300).take(5));
     // result2.subscribe(x => console.log(x));
   }
 
   // 对数组分组，根据id
   everyObservable4() {
+    // mergeMap = map + mergeAll
+    // concatMap = map + concatAll
+    // switchMap = map + switch
+
+    // 需要保证执行顺序的可以使用 concatMap 操作符
+    // 需要取消inner Observable可以使用switchMap操作符
+    // 需要简单执行可以使用mergeMap操作符
+
+    // flatMap将响应数据“打平”，也就是说把映射后新的Observable转化为了数据流，
+    // 订阅之后会获得这个新Observable发射的数据，而不是Observable本身。
     // Observable.of(
     //   { id: 1, name: 'aze1' },
     //   { id: 2, name: 'sf2' },
