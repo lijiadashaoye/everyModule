@@ -1,6 +1,5 @@
 <div class="waper">
-  <div class="div1" *ngFor="let item of arr;let i=index" id="{{item.num}}"
-   [ngStyle]="{order:i}">{{item.num}}</div>
+  <div class="div1" *ngFor="let item of arr;let i=index" id="{{item.num}}" [ngStyle]="{order:i}">{{item.num}}</div>
 </div>
 <div>
   <input type="number" [(ngModel)]="vals">
@@ -12,5 +11,13 @@
   </p>
 </div>
 <div class="waper">
-fasdf
+  <div>
+    <canvas id="cav"></canvas>
+    <img src="imgs" id="img">
+  </div>
+  <div>
+    <button (click)="show()">show</button>
+
+  </div>
+
 </div>

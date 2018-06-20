@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup
+} from '@angular/forms';
 @Component({
   selector: 'app-one-child2',
   templateUrl: './one-child2.component.html',
@@ -7,26 +13,28 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class OneChild2Component implements OnInit {
   time;
-  ff = false;  // 判断是否点击全选
+  ff = false; // 判断是否点击全选
   num = 0;
-  interval;  // 计时只能用在全局，放在嵌套的函数里就不好使（无法停止，this指向不明）
+  interval; // 计时只能用在全局，放在嵌套的函数里就不好使（无法停止，this指向不明）
   myForm: FormGroup;
   form: FormGroup;
   likesArr: string[] = ['喜欢', '不喜欢', '非常喜欢', '超级喜欢', '喜欢得不得了'];
   selects: string[] = [];
-  item = { id: 1 }
+  item = {
+    id: 1
+  }
   seeItem;
   formGroupSelect;
 
-  constructor(private fb: FormBuilder) { }
-
+  constructor(private fb: FormBuilder) {}
+  get likes() {
+    return this.myForm.get('likes');
+  };
   ngOnInit() {
     this.time = 0;
-
     this.myForm = this.fb.group({
       likes: this.fb.array([false, false, false, false, false])
     });
-
     this.form = this.fb.group({
       one: false,
       two: false,
@@ -42,9 +50,7 @@ export class OneChild2Component implements OnInit {
       this.selects = selects;
     });
   }
-  get likes() {
-    return this.myForm.get('likes');
-  }
+
   start() {
     this.time = 5;
     this.interval = setInterval(() => {
@@ -61,7 +67,7 @@ export class OneChild2Component implements OnInit {
     event.preventDefault();
     this.formGroupSelect = form.value
   }
-  turnAll(form) {  // 点击全选
+  turnAll(form) { // 点击全选
     let value = form.value;
     if (this.ff == true) {
       for (let i in value) {
@@ -75,7 +81,7 @@ export class OneChild2Component implements OnInit {
       this.num = 0
     }
   }
-  isAll() {  // 判断是否将全部checkbox一个一个点过了
+  isAll() { // 判断是否将全部checkbox一个一个点过了
     for (let i in this.form.value) {
       if (this.form.value[i] == true) {
         this.num++
