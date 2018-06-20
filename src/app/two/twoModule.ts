@@ -24,6 +24,7 @@ import {
 import {
     TwoChild4Component
 } from './two-child4/two-child4.component';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -40,4 +41,4 @@ import {
     ],
     providers: []
 })
-export class TwoModule {}
+export class TwoModule { }

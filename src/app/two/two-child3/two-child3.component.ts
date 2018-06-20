@@ -17,6 +17,8 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/bindCallback';
 import 'rxjs/add/observable/concat';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/observable/zip';
+
 
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/pluck';
@@ -64,7 +66,7 @@ import {
   HttpService
 } from '../../http.service';
 import {
-  UserData
+  UserData,
 } from './user-data.model'
 import {
   Subject
@@ -468,5 +470,24 @@ export class TwoChild3Component implements OnInit {
     //   .groupBy(p => p.id)
     //   .flatMap((group$) => group$.reduce((acc, cur) => [...acc, cur], []))
     //   .subscribe(p => console.log(p));
+
+    // combineLatest与zip很相似，combineLatest一开始也会等待每个子流都发射完一次数据，但是
+    // 在合并时，如果子流1在等待其他流发射数据期间又发射了新数据，则使用子流最新发射的数据进行
+    // 合并，之后每当有某个流发射新数据，不再等待其他流同步发射数据，而是使用其他流之前的最近一次数据进行合并。
+
+    // 将多个 Observable 组合以创建一个 Observable，该 Observable 的值是
+    // 由所有输入 Observables 的值按顺序计算而来的。
+    // zip会等待每个子流都发射完一次数据然后合并发射，之后继续等待
+    // 从不同的源头结合年龄和名称
+    // let age$ = Observable.of<number>(27, 25, 29);
+    // let name$ = Observable.of<string>('Foo', 'Bar', 'Beer');
+    // let isDev$ = Observable.of<boolean>(true, true, false);
+    // Observable
+    //   .zip(age$,
+    //     name$,
+    //     isDev$,
+    //     (age: number, name: string, isDev: boolean) => ({ age, name, isDev }))
+    //   .subscribe(x => console.log(x));
+
   }
 }
