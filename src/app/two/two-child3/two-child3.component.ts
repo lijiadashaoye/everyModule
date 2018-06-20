@@ -96,6 +96,7 @@ export class TwoChild3Component implements OnInit {
     this.everyObservable();
     this.everyObservable2();
     this.everyObservable3();
+    this.everyObservable4();
 
     // // for..in迭代的是对象的 键 的列表，而for..of则迭代对象的键对应的值。
     // let list = [4, 5, 6];
@@ -169,8 +170,7 @@ export class TwoChild3Component implements OnInit {
     // var firstOrder = higherOrder.mergeAll(2);
     // firstOrder.subscribe(x => console.log(x));
 
-    // // 返回的 Observable 基于应用一个函数来发送项，该函数提供给源 Observable 发出的每个项， 
-    // // 并返回一个 Observable，然后合并这些作为结果的 Observable，并发出本次合并的结果。
+    // 返回将外部Observable的每个值，作为mergeMap内部函数的参数执行后的结果
     // Observable.of('a', 'b', 'c')
     //   .mergeMap(x => Observable.interval(1000).map(i => x + i))
     //   .subscribe(val=>console.log(val))
@@ -326,7 +326,7 @@ export class TwoChild3Component implements OnInit {
     //   .subscribe(x => console.log(x));
   }
   everyObservable2() {
-    // // 只发出源 Observable 所发出的值中第一个满足条件的值。
+    // // 只发出源 Observable 所发出的值中第一个满足条件的值,只发出一次
     // Observable.interval(100)
     //   .find(x => x != 0 && x % 3 == 0)
     //   .subscribe(x => console.log(x));
@@ -342,6 +342,7 @@ export class TwoChild3Component implements OnInit {
     //   .max<Person>((a: Person, b: Person) => a.age < b.age ? -1 : 1)
     //   .subscribe((x: Person) => console.log(x.name));
 
+    // 将源 Observable 一分为二，一个是所有满足函数的值，另一个是所有不满足的值
     // // 将点击事件划分为点击 DIV 元素和点击其他元素
     // var clicks = Observable.fromEvent(document, 'click');
     // var parts = clicks.partition(ev => ev['target'].tagName === 'DIV');
@@ -441,14 +442,31 @@ export class TwoChild3Component implements OnInit {
     // 内部Observable产生的值
     // 这俩等效
 
-    var clicks = Observable.fromEvent(document, 'click');
+    // var clicks = Observable.fromEvent(document, 'click');
     // var higherOrder = clicks.map((ev) => Observable.interval(1000).take(5));
     // var result = higherOrder.exhaust();
     // result.subscribe(x => console.log(x));
 
     // 由一个 Observable1 触发另一个可以执行一系类操作的 Observable2，
     // 并忽略 Observable1 之后发送的值，直到 Observable2 执行完毕才从Observable1取值
-    var result2 = clicks.exhaustMap((ev) => Observable.interval(300).take(5));
-    result2.subscribe(x => console.log(x));
+    // var result2 = clicks.exhaustMap((ev) => Observable.interval(300).take(5));
+    // result2.subscribe(x => console.log(x));
+  }
+
+  // 对数组分组，根据id
+  everyObservable4() {
+    // Observable.of(
+    //   { id: 1, name: 'aze1' },
+    //   { id: 2, name: 'sf2' },
+    //   { id: 2, name: 'dg2' },
+    //   { id: 1, name: 'erg1' },
+    //   { id: 1, name: 'df1' },
+    //   { id: 2, name: 'sfqfb2' },
+    //   { id: 3, name: 'qfs3' },
+    //   { id: 2, name: 'qsgqsfg2' }
+    // )
+    //   .groupBy(p => p.id)
+    //   .flatMap((group$) => group$.reduce((acc, cur) => [...acc, cur], []))
+    //   .subscribe(p => console.log(p));
   }
 }
