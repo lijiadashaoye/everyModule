@@ -55,6 +55,7 @@ import 'rxjs/add/operator/sampleTime';
 import 'rxjs/add/operator/throttle';
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/audit'
 
 import {
   HttpService
@@ -86,7 +87,7 @@ export class TwoChild3Component implements OnInit {
   constructor(
     private el: ElementRef,
     private http: HttpService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.everyObservable();
@@ -103,9 +104,9 @@ export class TwoChild3Component implements OnInit {
   }
   seeOf() {
     Observable.of({
-        n: 'ff',
-        age: 1
-      }, {
+      n: 'ff',
+      age: 1
+    }, {
         n: 'dd',
         age: 2
       }, {
@@ -205,9 +206,9 @@ export class TwoChild3Component implements OnInit {
       .subscribe((val) => {
         let data = val;
         this.datas = data++
-          if (this.datas >= 15) {
-            sub.unsubscribe()
-          }
+        if (this.datas >= 15) {
+          sub.unsubscribe()
+        }
       })
 
     // 类似于 map，但仅用于选择每个发出对象的某个嵌套属性。
@@ -382,5 +383,10 @@ export class TwoChild3Component implements OnInit {
     // source.then((value) => console.log('Value:', value))
     //   .catch((err) => console.log('Error:', err));
 
+    // // 不发出第一个Observable的发出的值，只有第二个Observable发出值时，才把第一个Observable的最新值发出来
+    // let tim = Observable.interval(1000)
+    // var clicks = Observable.fromEvent(document, 'click');
+    // var result = tim.audit(ev => clicks);
+    // result.subscribe(x => console.log(x));
   }
 }

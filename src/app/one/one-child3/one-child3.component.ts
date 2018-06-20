@@ -64,25 +64,25 @@ export class OneChild3Component implements OnInit {
   stopWorker() {
     this.worker.terminate()
   }
-  sse() {
-    if (typeof (EventSource) !== "undefined") {
-      let url = 'http://javascript.ruanyifeng.com/htmlapi/eventsource.html';
-      this.source = new EventSource(url);
-      this.source.onopen = function (event) {
-        console.log(event)
-      };
-      this.source.onerror = function (event) {
-        console.log(event)
-      };
-      // 客户端收到服务器发来的数据，就会触发message事件，可以在onmessage属性定义回调函数。
-      this.source.onmessage = function (event) {
-        document.getElementById("result").innerHTML += event.data + "<br />";
-      };
-    }
-    else {
-      document.getElementById("result").innerHTML = "抱歉，您的浏览器不支持 server-sent 事件 ...";
-    }
-  }
+  // sse() {
+  //   if (typeof (EventSource) !== "undefined") {
+  //     let url = 'http://javascript.ruanyifeng.com/htmlapi/eventsource.html';
+  //     this.source = new EventSource(url);
+  //     this.source.onopen = function (event) {
+  //       console.log(event)
+  //     };
+  //     this.source.onerror = function (event) {
+  //       console.log(event)
+  //     };
+  //     // 客户端收到服务器发来的数据，就会触发message事件，可以在onmessage属性定义回调函数。
+  //     this.source.onmessage = function (event) {
+  //       document.getElementById("result").innerHTML += event.data + "<br />";
+  //     };
+  //   }
+  //   else {
+  //     document.getElementById("result").innerHTML = "抱歉，您的浏览器不支持 server-sent 事件 ...";
+  //   }
+  // }
   closeSSE() {  // 关闭 SSE 连接。
     this.source.close()
   }
