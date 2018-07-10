@@ -363,7 +363,7 @@ export class TwoChild3Component implements OnInit {
     // // 当发出一个新的内部 Observable 时，switchMap 会停止发出先前发出的内部 Observable,
     // // 并开始发出新的内部 Observable 的值
     // // 每次点击返回一个 interval Observable
-     // switchMap 的触发取决于外部的Observable，但result返回是内部的值
+    // switchMap 的触发取决于外部的Observable，但result返回是内部的值
     // var clicks = Observable.fromEvent(document, 'click');
     // var result = clicks.switchMap((ev) => Observable.interval(1000));
     // result.subscribe(x => console.log(x));
