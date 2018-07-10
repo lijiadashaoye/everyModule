@@ -10,9 +10,9 @@ import {
   calcBindingFlags
 } from '_@angular_core@5.2.11@@angular/core/src/view/util';
 import {
-  BehaviorSubject, Observable
+  BehaviorSubject,
+  Observable
 } from 'rxjs';
-
 @Component({
   selector: 'app-cild5',
   templateUrl: './cild5.component.html',
@@ -131,11 +131,12 @@ export class Cild5Component implements OnInit {
   }
   show() {
     let kk = new BehaviorSubject(null);
-    let jj=Observable.interval(1000).take(10);
-    jj.subscribe(_=>{
+    let jj = Observable.interval(1000).take(10);
+    jj.subscribe(_ => {
       kk.next(_)
     })
-    kk.subscribe(val=>console.log(val))
-    kk.subscribe(val=>console.log(val+10))
+    kk.subscribe(val => console.log(val))
+    kk.subscribe(val => console.log(val + 10))
   }
+ 
 }
