@@ -89,10 +89,17 @@ export class TwoChild3Component implements OnInit {
   mergeData;
   newSubject;
   datas;
+  f: any;
   constructor(
     private el: ElementRef,
     private http: HttpService,
-  ) { }
+  ) {
+    this.f = (phrase) => {
+      return class {
+        sayHi() { console.log(phrase) }
+      }
+    }
+  }
 
   ngOnInit() {
     this.everyObservable();
@@ -503,5 +510,9 @@ export class TwoChild3Component implements OnInit {
     //     (age: number, name: string, isDev: boolean) => ({ age, name, isDev }))
     //   .subscribe(x => console.log(x));
 
+  }
+  extendsFun() {
+    class User extends this.f("Hello") { }
+    new User().sayHi(); // Hello
   }
 }
