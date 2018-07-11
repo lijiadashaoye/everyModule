@@ -8,8 +8,7 @@ import {
   FormBuilder,
   FormGroup,
   FormControl,
-  Validators,
-  AbstractControl
+  Validators
 } from '@angular/forms'
 import {
   Observable
@@ -59,7 +58,7 @@ export class OneChild3Component implements OnInit {
     console.log(froms)
   }
   // 表单内单独添加验证函数
-  oneValid(c: AbstractControl): {
+  oneValid(c: FormControl): {
     [key: string]: any
   } { // 验证器只有出错时才返回值,
     if (!c.value) {

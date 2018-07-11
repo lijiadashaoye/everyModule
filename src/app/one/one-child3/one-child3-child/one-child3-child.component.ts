@@ -7,7 +7,6 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS,
-  AbstractControl
 } from '@angular/forms'
 
 @Component({
@@ -52,7 +51,7 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor {
     this.isvalid.emit(true);
   }
 
-  validate(c: AbstractControl): { [key: string]: any } {  // 验证器只有出错时才返回值
+  validate(c: FormControl): { [key: string]: any } {  // 验证器只有出错时才返回值
     let data = /^li/;
     const val = c.value;
     if (!val) {
