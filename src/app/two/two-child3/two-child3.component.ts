@@ -512,6 +512,7 @@ export class TwoChild3Component implements OnInit {
 
   }
   extendsFun() {
+    // 对于高级编程模式，当我们使用的类是根据许多条件使用函数来生成时，这就很有用。
     class User extends this.f("Hello") { }
     new User().sayHi(); // Hello
   }
