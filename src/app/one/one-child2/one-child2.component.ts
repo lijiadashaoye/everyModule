@@ -6,6 +6,7 @@ import {
   FormBuilder,
   FormGroup
 } from '@angular/forms';
+import { OneComponent } from '../one.component'
 @Component({
   selector: 'app-one-child2',
   templateUrl: './one-child2.component.html',
@@ -25,8 +26,12 @@ export class OneChild2Component implements OnInit {
   }
   seeItem;
   formGroupSelect;
+  intervals;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    public oneComponent: OneComponent  // 子组建获取、修改父组件的方法（把父组件注入到子组件中）
+  ) { }
   get likes() {
     return this.myForm.get('likes');
   };
@@ -49,6 +54,10 @@ export class OneChild2Component implements OnInit {
       });
       this.selects = selects;
     });
+
+    this.intervals = setInterval(() => {
+      this.oneComponent.childInterval++;
+    }, 1000);
   }
 
   start() {
@@ -97,5 +106,7 @@ export class OneChild2Component implements OnInit {
   selectItem(item, ite) {
     this.seeItem = item;
   }
-
+  ngOnDestroy(): void {
+    clearInterval(this.intervals)
+  }
 }
