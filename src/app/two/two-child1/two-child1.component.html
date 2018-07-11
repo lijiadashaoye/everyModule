@@ -138,9 +138,15 @@
     <button (click)="makeChage4()">makeChage4</button>
   </div>
   <div class="wapperDivs">
+    <h2>async 同步执行for循环</h2>
+
+    <p *ngFor="let asyncdata of asyncData">{{asyncdata}}</p>
+    <button (click)="anss()">anss</button>
+  </div>
+  <div class="wapperDivs">
     <h2> 监听滚动条的位置scrollTop值 </h2>
     <span>{{scrollDatas}}</span>
-    <div class="wapperDiv" (scroll)="onscroll($event)"(click)="onscroll($event)">
+    <div class="wapperDiv" (scroll)="onscroll($event)" (click)="onscroll($event)">
       <div></div>
     </div>
   </div>

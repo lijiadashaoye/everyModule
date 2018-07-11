@@ -35,6 +35,7 @@ export class TwoChild1Component implements OnInit {
   private cities;
   private heroes;
   private scrollDatas;
+  private asyncData;
   constructor(
     private fb: FormBuilder,
     private rd: Renderer2
@@ -42,6 +43,7 @@ export class TwoChild1Component implements OnInit {
 
   ngOnInit(): void {
     // console.log(document.documentElement.clientHeight)
+    this.heroes = datas.heroes;
     this.genders = datas.genders;
     this.roles = datas.roles;
     this.themes = datas.themes;
@@ -89,7 +91,7 @@ export class TwoChild1Component implements OnInit {
   }
   makeChage() {
     let num = Math.floor(Number(Math.random() * this.heroes.length));
-    this.heroes[num]['name'] = Math.floor(Number(this.heroes[num]['name']) / 5).toString()
+    this.heroes[num]['name'] = Math.floor(Number(this.heroes[num]['name']) / 5).toString();
   }
   save() {
     console.log(this.users);
@@ -126,6 +128,20 @@ export class TwoChild1Component implements OnInit {
     console.log(e)
     this.scrollDatas = '';
     this.scrollDatas = 'scrollTop：' + e.target.scrollTop;
+  }
+
+  async anss() {
+    let dishes = [{ name: "fish", time: 3 }, { name: "fish1", time: 5 }, { name: "fish3", time: 3 }];
+    this.asyncData = [];
+    for (let d of dishes) {
+      this.asyncData.push("开始做" + d.name)
+      await (() => {
+        return new Promise(res => {
+          setTimeout(res, d.time * 1000)
+        })
+      })();
+      this.asyncData.push(`做好了 ${d.name}，用时${d.time}秒`)
+    }
   }
 
 }
