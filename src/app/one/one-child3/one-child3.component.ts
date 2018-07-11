@@ -1,13 +1,15 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   FormControl,
-  Validators
+  Validators,
+  AbstractControl
 } from '@angular/forms'
 import {
   Observable
@@ -19,7 +21,6 @@ import 'rxjs/add/observable/fromEvent';
   selector: 'app-one-child3',
   templateUrl: './one-child3.component.html',
   styleUrls: ['./one-child3.component.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 // ChangeDetectionStrategy.OnPush：组件的变化监测只检查输入属性（即@Input修饰的变量）的值是否发生变化，
 // 当这个值为引用类型（Object，Array等）时，则只对比该值的引用。
@@ -43,13 +44,14 @@ export class OneChild3Component implements OnInit {
     this.froms = this.fb.group({
       one1: ['', Validators.compose([Validators.required, this.oneValid])],
       two1: ['', Validators.compose([Validators.required, this.oneValid])],
-      three: {
-        child1: 'lichild1',
-        child2: 'lichild2'
-      }
+      three: [
+        {
+          child1: 'lichild1',
+          child2: 'lichild2'
+        }
+      ]
     })
     // this.otherFun();
-    this.otherFun2()
   }
   isSubmit(froms, ev: Event) {
     ev.preventDefault()
@@ -57,7 +59,7 @@ export class OneChild3Component implements OnInit {
     console.log(froms)
   }
   // 表单内单独添加验证函数
-  oneValid(c: FormControl): {
+  oneValid(c: AbstractControl): {
     [key: string]: any
   } { // 验证器只有出错时才返回值,
     if (!c.value) {
@@ -71,8 +73,8 @@ export class OneChild3Component implements OnInit {
       validData: '验证不通过'
     }
   }
-  childValid(e) { // 子表单验证的结果
-    console.log(e)
+  childValid() { // 子表单验证的结果
+
   }
   otherFun() {
     console.log(navigator.onLine) // 判断设备是否可以上网
@@ -114,8 +116,4 @@ export class OneChild3Component implements OnInit {
   closeSSE() {  // 关闭 SSE 连接。
     this.source.close()
   }
-  otherFun2() {
-
-  }
-
 }

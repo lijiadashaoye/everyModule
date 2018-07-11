@@ -2,12 +2,18 @@
   <div>
     <p>自定义表单组件</p>
     <form [formGroup]="froms" (ngSubmit)="isSubmit(froms,$event)">
-      <input type="text" placeholder="第一个" formControlName="one1">
-      <input type="text" placeholder="第二个" formControlName="two1">
-      <app-one-child3-child formControlName="three" (isvalid)="childValid($event)"></app-one-child3-child>
+      <label>当前表单
+        <input type="text" placeholder="第一个" formControlName="one1">
+      </label><br>
+      <label>当前表单
+        <input type="text" placeholder="第二个" formControlName="two1">
+      </label><br>
+      <label>表单组件
+        <app-one-child3-child formControlName="three" (isvalid)="childValid()"></app-one-child3-child>
+      </label>
       <br>
       <button type="submit">提交</button>{{froms.value|json}}
-      <br>froms.valid : {{froms.valid | json}},含有表单组件的表单，渲染后就会执行验证，所以整个表单的valid永远是false
+      <br>froms.valid : {{froms.valid | json}}
       <br>froms.controls['one1'].errors : {{froms.controls['one1'].errors | json}}
     </form>
   </div>
