@@ -107,10 +107,12 @@ export class TwoChild1Component implements OnInit {
   makeChage3() {
     this.shown ? this.shown = false : this.shown = true
   }
+  // angular的dom操作方法
   @ViewChild('isP') isP: ElementRef;
   @ViewChild('isH2', { read: ViewContainerRef }) isH2: ViewContainerRef;
   makeChage4() {
     console.log(this.isH2)
+    console.log('#isP的id：' + this.isP.nativeElement.id)
     this.rd.setAttribute(this.isP.nativeElement, 'style', 'background:skyblue;')
   }
 
