@@ -9,7 +9,6 @@ import { Cild2Component } from './cild2/cild2.Component';
 import { Cild3Component } from './cild3/cild3.component';
 import { Cild4Component } from './cild4/cild4.component';
 import { Cild5Component } from './cild5/cild5.component';
-import { ExeBackgroundDirective } from './cild3/derectiveModule';
 
 // cnpm install echarts --save
 // cnpm install ngx-echarts --save
@@ -41,7 +40,6 @@ import { NgxEchartsService } from 'ngx-echarts';
         Cild3Component,
         Cild4Component,
         Cild5Component,
-        ExeBackgroundDirective,
     ],
     providers:[
         NgxEchartsService

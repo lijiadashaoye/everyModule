@@ -13,7 +13,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlyingHeroes } from './one-child1/pip';
 import { Rd1Component } from './one-child1/rd1/rd1.component';
 import { Rd2Component } from './one-child1/rd2/rd2.component';
-import { AdService } from './one-child1/ad.service'
+import { AdService } from './one-child1/ad.service';
+
+import { NgContentComponent } from './one-child1/ng-content/ng-content.component';
+import { NgContentChildComponent } from './one-child1/ng-content-child/ng-content-child.component'
+
 
 @NgModule({
     imports: [
@@ -33,7 +37,9 @@ import { AdService } from './one-child1/ad.service'
         HighlightDirective,
         FlyingHeroes,
         Rd1Component,
-        Rd2Component
+        Rd2Component,
+        NgContentComponent,
+        NgContentChildComponent
     ],
     entryComponents: [
         Rd1Component,  // 动态生成的组件，需要同时写到这里

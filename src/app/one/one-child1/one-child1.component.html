@@ -1,13 +1,13 @@
 <div class="waper">
   <div>
-    <p appHighlight> 属性指令</p>
+    <h2 appHighlight> 属性指令</h2>
     <p [appHighlight]="color" author="semlinker">
       为元素添加自定义属性并使用@Attribute()；
       <br> 使用输入型的属性指令
     </p>
   </div>
   <div>
-    <p>ng-template</p>
+    <h2>ng-template</h2>
     <div>
       <p>resolve</p>
       {{resolveDatas}}
@@ -17,7 +17,11 @@
     </ng-template>
   </div>
   <div>
-    <p>管道</p>
+    <h2>ng-content</h2>
+    <app-ng-content></app-ng-content>
+  </div>
+  <div>
+    <h2>管道</h2>
     <div *ngIf="isChage">
       <div *ngFor="let hero of (heroes | flyingHeroes)">
         {{hero.id}}
@@ -26,7 +30,7 @@
     <button (click)="toggles()">toggles</button>
   </div>
   <div>
-      <button (click)="startAd()">startAd</button>
+    <button (click)="startAd()">startAd</button>
     <ng-template #adhost></ng-template>
   </div>
 </div>

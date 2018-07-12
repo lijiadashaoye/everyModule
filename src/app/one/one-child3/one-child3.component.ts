@@ -73,7 +73,7 @@ export class OneChild3Component implements OnInit {
     }
   }
   childValid() { // 子表单验证的结果
-
+    console.log(this.froms)
   }
   otherFun() {
     console.log(navigator.onLine) // 判断设备是否可以上网

@@ -19,7 +19,6 @@ import 'rxjs/add/observable/concat';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/observable/zip';
 
-
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/map';

@@ -49,6 +49,7 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor {
   makeChild2() {
     this.makeChild = '两个input框实现change联动'
     this.isvalid.emit(true);
+    console.log(this.fromc)
   }
 
   validate(c: FormControl): { [key: string]: any } {  // 验证器只有出错时才返回值
