@@ -13,6 +13,10 @@ import { OneComponent } from '../one.component'
   styleUrls: ['./one-child2.component.css']
 })
 export class OneChild2Component implements OnInit {
+
+  imgData;
+  imgData2 = 'assets/1.jpg';
+
   time;
   ff = false; // 判断是否点击全选
   num = 0;
@@ -58,6 +62,7 @@ export class OneChild2Component implements OnInit {
     this.intervals = setInterval(() => {
       this.oneComponent.childInterval++;
     }, 1000);
+    this.imgData = 'https://upload-images.jianshu.io/upload_images/311249-f67fda8e02d91fd6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240'
   }
 
   start() {
