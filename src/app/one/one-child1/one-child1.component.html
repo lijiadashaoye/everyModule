@@ -8,15 +8,25 @@
   </div>
   <div>
     <h2>ng-template</h2>
-    <ng-template #tpl>
-      ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构
-    </ng-template>
+    <div>
+      <ng-template #tpl>
+        ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构 
+      </ng-template>
+    </div>
   </div>
 
   <div>
-    <h2>ng-content</h2>
-    <app-ng-content></app-ng-content>
+    <h2>ViewChildren</h2>
+    <app-ng-view></app-ng-view>
   </div>
+
+  <div>
+    <h2>ContentChildren</h2>
+    <app-ng-content>
+      <app-ng-content-child></app-ng-content-child>
+    </app-ng-content>
+  </div>
+
   <div>
     <h2>resolve</h2>
     {{resolveDatas}}

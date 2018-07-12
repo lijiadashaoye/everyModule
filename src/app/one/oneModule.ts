@@ -17,6 +17,8 @@ import { AdService } from './one-child1/ad.service';
 
 import { NgContentComponent } from './one-child1/ng-content/ng-content.component';
 import { NgContentChildComponent } from './one-child1/ng-content-child/ng-content-child.component'
+import { NgViewChildComponent } from './one-child1/ng-view-child/ng-view-child.component';
+import { NgViewComponent } from './one-child1/ng-view/ng-view.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { NgContentChildComponent } from './one-child1/ng-content-child/ng-conten
         Rd1Component,
         Rd2Component,
         NgContentComponent,
-        NgContentChildComponent
+        NgContentChildComponent,
+        NgViewChildComponent,
+        NgViewComponent
     ],
     entryComponents: [
         Rd1Component,  // 动态生成的组件，需要同时写到这里

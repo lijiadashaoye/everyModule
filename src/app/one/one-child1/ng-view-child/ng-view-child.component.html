@@ -1,0 +1,14 @@
+<div style="border: 1px solid #666;margin: 4px;">
+  <p>
+    这是ng-view-child.component子组件的内容
+  </p>
+  <div style="border: 1px solid red;margin: 5px;">
+    <ng-content select=".header"></ng-content>
+  </div>
+  <div style="border: 1px solid green;margin: 5px;">
+    <ng-content select=".content"></ng-content>
+  </div>
+  <div style="border: 1px solid blue;margin: 5px;">
+    <ng-content select=".footer"></ng-content>
+  </div>
+</div>

@@ -35,7 +35,7 @@ const one: Routes = [{
     component: OneComponent,
     // canActivate: [OneGuard],
     // canActivateChild: [OneGuard],
-    // // canDeactivate: [OneGuard],  // 第一种写法，通过服务进行判断
+    // canDeactivate: [OneGuard],      // 第一种写法，通过服务进行判断
     // canDeactivate: [CanLeaveGuard], // 第二种写法，通过对应的组件进行判断
     children: [{
             path: 'oneChild1',
