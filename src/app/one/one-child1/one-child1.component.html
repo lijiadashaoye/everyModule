@@ -8,17 +8,18 @@
   </div>
   <div>
     <h2>ng-template</h2>
-    <div>
-      <p>resolve</p>
-      {{resolveDatas}}
-    </div>
     <ng-template #tpl>
       ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构
     </ng-template>
   </div>
+
   <div>
     <h2>ng-content</h2>
     <app-ng-content></app-ng-content>
+  </div>
+  <div>
+    <h2>resolve</h2>
+    {{resolveDatas}}
   </div>
   <div>
     <h2>管道</h2>
@@ -30,7 +31,7 @@
     <button (click)="toggles()">toggles</button>
   </div>
   <div>
-      <h2>动态生成组件</h2>
+    <h2>动态生成组件</h2>
     <button (click)="startAd()">startAd</button>
     <ng-template #adhost></ng-template>
   </div>

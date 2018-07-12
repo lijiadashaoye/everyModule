@@ -65,7 +65,7 @@ export class CanLeaveGuard implements CanDeactivate<OneComponent> {
 @Injectable()   // 用来定义怎么resolve数据的服务
 export class resolveService {
     getData() {
-        return ['这是resolve方法获得的数据',1, 2, 3, 4, 5,]
+        return ['这是resolve方法获得的数据',1, 2,]
     }
 }
 @Injectable()  // 用来定义resolve服务
