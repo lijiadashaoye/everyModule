@@ -69,6 +69,7 @@
   </form>
   <form (ngSubmit)="onSubmit(user)" [formGroup]="user">
     <h2>验证</h2>
+    <h5>*ngIf name required</h5>
     <label>
       <span style="color:rgb(27, 49, 240);font-size:22px;">Observable name</span>
       <input type="text" placeholder="Your full name" formControlName="name">
@@ -82,6 +83,7 @@
         user.get('name').touched">
       Minimum of 2 characters
     </div>
+    <h2>formGroupName</h2>
     <div formGroupName="account">
       <span style="color:red;font-size:14px;">formGroupName="account"</span>
       <br>
