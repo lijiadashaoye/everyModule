@@ -180,9 +180,9 @@ export class TwoChild3Component implements OnInit {
 
     // 返回将外部Observable的每个值，作为mergeMap内部函数的参数执行后的结果
     // 仅当内部的 Observable 对象发出值后，才会合并源 Observable 对象输出的值，并最终输出合并的值。
-    Observable.of('a', 'b', 'c')
-      .mergeMap(x => Observable.interval(1000).take(5).map(i => x + i))
-      .subscribe(val => console.log(val))
+    // Observable.of('a', 'b', 'c')
+    //   .mergeMap(x => Observable.interval(1000).take(5).map(i => x + i))
+    //   .subscribe(val => console.log(val))
     // 输出：a0,b0,c0, a1,b1,c1, a2,b2,c2, a3,b3,c3
   }
   useNewSubject() {
