@@ -52,10 +52,3 @@ export interface Hero {
     id: number,
     name: string
 }
-export function emailMatcher(c: AbstractControl) {  // 自定义验证函数,此处是对整表单中的单个control进行验证
-    if (c['controls']) {
-        return { 'from': '对整个表单进行验证' }
-    } else {
-        return { 'from': '单个表单进行验证' }
-    }
-}

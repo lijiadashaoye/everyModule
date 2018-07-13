@@ -19,7 +19,6 @@ import {
 import { datas } from './datas';
 import { Hero } from './datas';
 import { User } from './datas';
-import { emailMatcher } from './datas';
 
 @Component({
   selector: 'app-two-child1',
@@ -27,7 +26,6 @@ import { emailMatcher } from './datas';
   styleUrls: ['./two-child1.component.css'],
 })
 export class TwoChild1Component implements OnInit {
-  private title = 'form表单';
   private users;
   private user: FormGroup;
   private groups: FormGroup;
@@ -59,6 +57,7 @@ export class TwoChild1Component implements OnInit {
     this.provinces = datas.provinces;
     this.citieData = datas.citieData;
     this.cities = this.citieData.filter(city => city.pk)
+    // 模版表单
     this.users = {   // 新增用户
       name: '',
       gender: this.genders[0].value,
@@ -70,27 +69,45 @@ export class TwoChild1Component implements OnInit {
       province: 16, // 福建省
       city: 1315 // 厦门市
     }
+    // 动态表单
     this.user = this.fb.group({   //  表单的
-      name: ['1', [Validators.required, Validators.minLength(2), emailMatcher]], // 对单个表单进行验证
+      name: ['1', [Validators.required, Validators.minLength(2), this.nameMatcher]], // 对单个表单进行验证
       account: this.fb.group({
         email: ['', Validators.required],
         confirm: ['', Validators.required]
-      }),
-    }, { validator: emailMatcher })  // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
+      })
+    })
 
     this.funValid = this.fb.group({
-      ages: ['55', this.ageRange(20, 120)],
-    })
+      ages: ['', this.ageRange(20, 120)],
+      go: ['']
+    }, { validator: this.formMatcher })  // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
   }
+
+  nameMatcher(c: FormControl) {  // 自定义验证函数,此处是对整表单中的单个control进行验证
+    if (c.value > 10) {
+      return { 'from': '单个表单进行验证' }
+    } else {
+      return null
+    }
+  }
+  formMatcher(c: FormControl) {
+    let ages = c.get('ages').value;
+    let go = c.get('go').value;
+    if (ages && go) {
+      return { 'from': '对整个表单进行验证' }
+    }else{
+      return null
+    }
+  }
+
   // 可传参数的验证函数
   ageRange(min: number, max: number): ValidatorFn {
     return (c: FormControl): { [key: string]: any } | null => {
       let age = c.value;
       if (age && (isNaN(age) || age < min || age > max)) {
-        console.log(age)
         return { 'range': true, min: min, max: max };
       }
-      console.log(null)
       return null;
     }
   }

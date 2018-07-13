@@ -1,6 +1,6 @@
 <div class="waper">
-  <form #f="ngForm" novalidate>
-    <h2>{{title}}</h2>
+  <form #f="ngForm" style="width:400px;">
+    <h2>form表单</h2>
     <div class="form-group">
       <label>名字</label>
       <input type="text" readonly class="form-control" name="name" [(ngModel)]="users.name">
@@ -67,7 +67,7 @@
     <button type="submit" (click)="save()" class="btn btn-default">保存</button>
 
   </form>
-  <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
+  <form (ngSubmit)="onSubmit(user)" [formGroup]="user">
     <h2>验证</h2>
     <label>
       <span style="color:rgb(27, 49, 240);font-size:22px;">Observable name</span>
@@ -151,10 +151,6 @@
       <div></div>
     </div>
   </div>
-  <form [formGroup]="funValid">
-    <h2>使用带参数验证函数</h2>
-    <input type="text" placeholder="Your full age" formControlName="ages">
-  </form>
 </div>
 <!-- <div>
   目前 Angular 支持的内建 validators 如下： 
@@ -169,3 +165,12 @@
     email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+_]+@[a-z0-9.-]+')]]
   });
 </div> -->
+<div>
+  <form [formGroup]="funValid">
+    <h2>使用带参数验证函数</h2>
+    <input type="text" placeholder="ages" formControlName="ages">
+    <br>
+    <br>
+    <input type="text" placeholder="go" formControlName="go">
+  </form>
+</div>
