@@ -179,9 +179,11 @@ export class TwoChild3Component implements OnInit {
     // firstOrder.subscribe(x => console.log(x));
 
     // 返回将外部Observable的每个值，作为mergeMap内部函数的参数执行后的结果
-    // Observable.of('a', 'b', 'c')
-    //   .mergeMap(x => Observable.interval(1000).map(i => x + i))
-    //   .subscribe(val=>console.log(val))
+    // 仅当内部的 Observable 对象发出值后，才会合并源 Observable 对象输出的值，并最终输出合并的值。
+    Observable.of('a', 'b', 'c')
+      .mergeMap(x => Observable.interval(1000).take(5).map(i => x + i))
+      .subscribe(val => console.log(val))
+    // 输出：a0,b0,c0, a1,b1,c1, a2,b2,c2, a3,b3,c3
   }
   useNewSubject() {
     this.newSubject.next('newSubject value');
@@ -205,10 +207,13 @@ export class TwoChild3Component implements OnInit {
   forkJoin_concat() {
     let one = Observable.interval(1000).take(2);
     let two = Observable.interval(1000).take(3);
-    // 通过顺序地发出多个 Observables 的值将它们连接起来，一个接一个的。
+
+    // 顺序地发出多个 Observables 的值,将它们连接起来，一个接一个的。
     Observable.concat(one, two)
       .subscribe(value => console.log(value))
+
     // 将多个 Observables 的最后一个值，组成对应顺序的数组发出来。
+    // forkJoin 是 Rx 版本的 Promise.all()，即表示等到所有的 Observable 都完成后，才一次性返回值。
     Observable.forkJoin(one, two)
       .subscribe(value => console.log(value))
   }
