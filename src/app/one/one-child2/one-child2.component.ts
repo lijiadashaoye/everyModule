@@ -36,9 +36,14 @@ export class OneChild2Component implements OnInit {
     private fb: FormBuilder,
     public oneComponent: OneComponent  // 子组建获取、修改父组件的方法（把父组件注入到子组件中）
   ) { }
+  // 类的get 和 set 属性
   get likes() {
     return this.myForm.get('likes');
   };
+  set likes(value) {
+    console.log(value)
+  };
+
   ngOnInit() {
     this.time = 0;
     this.myForm = this.fb.group({
