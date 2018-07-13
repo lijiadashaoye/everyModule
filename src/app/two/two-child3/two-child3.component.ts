@@ -99,7 +99,11 @@ export class TwoChild3Component implements OnInit {
       }
     }
   }
-
+  extendsFun() {
+    // 对于高级编程模式，当我们使用的类是根据许多条件使用函数来生成时，这就很有用。
+    class User extends this.f("Hello") { }
+    new User().sayHi(); // Hello
+  }
   ngOnInit() {
     this.everyObservable();
     this.everyObservable2();
@@ -169,7 +173,7 @@ export class TwoChild3Component implements OnInit {
     // var timer2 = Observable.interval(1000).take(5);
     // var timer3 = Observable.interval(1000).take(3);
     // var concurrent = 3; // 参数,可以同时订阅的输入 Observables 的最大数量。
-    // var merged = timer1.merge(timer2, timer3,timer3, concurrent);
+    // var merged = timer1.merge(timer2, timer3, concurrent);
     // merged.subscribe(x => console.log(x));
 
     // // 每次点击都会从0到9计数(每秒计数一次) ，但只允许最多同时只能有两个计时器 mergeAll(2)
@@ -179,6 +183,7 @@ export class TwoChild3Component implements OnInit {
     // firstOrder.subscribe(x => console.log(x));
 
     // 返回将外部Observable的每个值，作为mergeMap内部函数的参数执行后的结果
+    // 即，内部每出现一个新值，都会读取一次所有的外部值
     // 仅当内部的 Observable 对象发出值后，才会合并源 Observable 对象输出的值，并最终输出合并的值。
     // Observable.of('a', 'b', 'c')
     //   .mergeMap(x => Observable.interval(1000).take(5).map(i => x + i))
@@ -370,7 +375,7 @@ export class TwoChild3Component implements OnInit {
     //   .sampleTime(1000)
     //   .subscribe(x => console.log(x));
 
-    // flatMapLatest在RxJS 5.x中已更名为switchMap
+
     // // 当发出一个新的内部 Observable 时，switchMap 会停止发出先前发出的内部 Observable,
     // // 并开始发出新的内部 Observable 的值
     // // 每次点击返回一个 interval Observable
@@ -480,6 +485,7 @@ export class TwoChild3Component implements OnInit {
     // 需要取消内部 Observable可以使用switchMap操作符
     // 需要简单执行可以使用mergeMap操作符
 
+    // flatMapLatest在RxJS 5.x中已更名为switchMap
     // flatMap将响应数据“打平”，也就是说把映射后新的Observable转化为了数据流，
     // 订阅之后会获得这个新Observable发射的数据，而不是Observable本身。
     // Observable.of(
@@ -515,9 +521,5 @@ export class TwoChild3Component implements OnInit {
     //   .subscribe(x => console.log(x));
 
   }
-  extendsFun() {
-    // 对于高级编程模式，当我们使用的类是根据许多条件使用函数来生成时，这就很有用。
-    class User extends this.f("Hello") { }
-    new User().sayHi(); // Hello
-  }
+
 }
