@@ -5,8 +5,9 @@ import {
   Inject
 } from '@angular/core';
 import {
-  Observable
-} from 'rxjs/Observable';
+  Observable,
+  BehaviorSubject
+} from 'rxjs';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/range';
 import 'rxjs/add/observable/timer';
@@ -110,14 +111,15 @@ export class TwoChild3Component implements OnInit {
     this.everyObservable3();
     this.everyObservable4();
 
-    // // for..in迭代的是对象的 键 的列表，而for..of则迭代对象的键对应的值。
-    // let list = [4, 5, 6];
-    // for (let i in list) {
-    //   console.log(i); // "0", "1", "2",
-    // }
-    // for (let i of list) {
-    //   console.log(i); // "4", "5", "6"
-    // }
+    let list = [
+      { name: '赵四' }, { name: '旺旺' }, { name: '二狗' }
+    ];
+    for (let i in list) {  // for..in迭代的是数组，i为索引值
+      console.log(i);
+    }
+    for (let i of list) {  // for..of则迭代数组,i为索引对应的值。
+      console.log(i);
+    }
   }
   seeOf() {
     Observable.of({
@@ -520,6 +522,16 @@ export class TwoChild3Component implements OnInit {
     //     (age: number, name: string, isDev: boolean) => ({ age, name, isDev }))
     //   .subscribe(x => console.log(x));
 
+  }
+
+  show() {
+    let kk = new BehaviorSubject(null);
+    let jj = Observable.interval(1000).take(5);
+    jj.subscribe(_ => {
+      kk.next(_)
+    })
+    kk.subscribe(val => console.log(val))
+    kk.subscribe(val => console.log(val + 10))
   }
 
 }

@@ -1,20 +1,22 @@
 <div class="waper">
     <div>
         <div>
-            <p>json-server</p>
+            <h2>json-server</h2>
             <p>需要先运行：json-server mock/data.json</p>
             <button (click)="useJsonServer(0)">useJsonServer(0)</button>
             <button (click)="useJsonServer(1)">useJsonServer(1)</button>
             <br> {{useJsonServers|json}}
         </div>
         <div>
-            Observable.interval ：
+            <h2>Observable.interval：</h2>
             <p style="color:red;">{{datas}}</p>
-
+        </div>
+        <div>
+            <button (click)="extendsFun()">extends 高级用法</button>
         </div>
     </div>
     <div>
-        <p>Observable</p>
+        <h2>Observable</h2>
         <input class="pluck" type="text" placeholder="pluck">{{Observable1|json}}
         <br>
         <input class="map" type="text" placeholder="map"> {{Observable2|json}}
@@ -38,11 +40,8 @@
         <button (click)="useNewSubject()">useNewSubject()</button>
         <button (click)="bufferCounts()">bufferCounts()</button>
         <button (click)="bufferTimes()">bufferTimes()</button>
+        <br>
         <button (click)="forkJoin_concat()">forkJoin_concat()</button>
+        <button (click)="show()">BehaviorSubject</button>
     </div>
-    <div>
-        <p>先按ctrl + k，在按ctrl + 0，可以实现vscode代码折叠</p>
-        <button (click)="extendsFun()">extends 高级用法</button>
-    </div>
-
 </div>

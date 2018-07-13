@@ -95,9 +95,9 @@ export class TwoChild1Component implements OnInit {
     let ages = c.get('ages').value;
     let go = c.get('go').value;
     if (ages && go) {
-      return { 'from': '对整个表单进行验证' }
-    }else{
       return null
+    } else {
+      return { 'from': '对整个表单进行验证' }
     }
   }
 
