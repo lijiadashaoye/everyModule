@@ -8,7 +8,13 @@ import {
   HostListener,
   forwardRef
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NG_VALIDATORS, } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+  FormControl
+} from '@angular/forms';
 
 import { datas } from './datas';
 import { Hero } from './datas';
@@ -23,8 +29,9 @@ import { emailMatcher } from './datas';
 export class TwoChild1Component implements OnInit {
   private title = 'form表单';
   private users;
-  private user;
+  private user: FormGroup;
   private groups: FormGroup;
+  private funValid: FormGroup;
   private genders;
   private roles;
   private themes;
@@ -68,9 +75,26 @@ export class TwoChild1Component implements OnInit {
       account: this.fb.group({
         email: ['', Validators.required],
         confirm: ['', Validators.required]
-      })
+      }),
     }, { validator: emailMatcher })  // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
+
+    this.funValid = this.fb.group({
+      ages: ['55', this.ageRange(20, 120)],
+    })
   }
+  // 可传参数的验证函数
+  ageRange(min: number, max: number): ValidatorFn {
+    return (c: FormControl): { [key: string]: any } | null => {
+      let age = c.value;
+      if (age && (isNaN(age) || age < min || age > max)) {
+        console.log(age)
+        return { 'range': true, min: min, max: max };
+      }
+      console.log(null)
+      return null;
+    }
+  }
+
   changeHobby(hobby, event) {
     this.users.hobbies[hobby.value] = event.target.checked;
   }
@@ -125,9 +149,9 @@ export class TwoChild1Component implements OnInit {
     this.fff.nativeElement.innerHTML = 'window:scroll'
   }
   onscroll(e) {
-    console.log(e)
     this.scrollDatas = '';
     this.scrollDatas = 'scrollTop：' + e.target.scrollTop;
+    console.log(this.scrollDatas)
   }
 
   async anss() {
@@ -143,5 +167,4 @@ export class TwoChild1Component implements OnInit {
       this.asyncData.push(`做好了 ${d.name}，用时${d.time}秒`)
     }
   }
-
 }

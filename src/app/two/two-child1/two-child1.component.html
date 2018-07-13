@@ -1,6 +1,6 @@
 <div class="waper">
   <form #f="ngForm" novalidate>
-    <h4>{{title}}</h4>
+    <h2>{{title}}</h2>
     <div class="form-group">
       <label>名字</label>
       <input type="text" readonly class="form-control" name="name" [(ngModel)]="users.name">
@@ -55,7 +55,7 @@
     </div>
     <div class="form-group">
       <label>地址</label>
-      <select name="province" class="form-control" [(ngModel)]="user.province" (change)="changeProvince($event.target.value)">
+      <select name="province" class="form-control" [(ngModel)]="users.province" (change)="changeProvince($event.target.value)">
         <option *ngFor="let province of provinces" [value]="province.pk">
           {{province.pv}}
         </option>
@@ -65,6 +65,7 @@
       </select>
     </div>
     <button type="submit" (click)="save()" class="btn btn-default">保存</button>
+
   </form>
   <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
     <h2>验证</h2>
@@ -137,7 +138,7 @@
     <p #isScroll style="background:red;font-size:20px;"></p>
     <button (click)="makeChage4()">makeChage4</button>
   </div>
-  <div class="wapperDivs">
+  <div>
     <h2>async 同步执行for循环</h2>
 
     <p *ngFor="let asyncdata of asyncData">{{asyncdata}}</p>
@@ -150,4 +151,21 @@
       <div></div>
     </div>
   </div>
+  <form [formGroup]="funValid">
+    <h2>使用带参数验证函数</h2>
+    <input type="text" placeholder="Your full age" formControlName="ages">
+  </form>
 </div>
+<!-- <div>
+  目前 Angular 支持的内建 validators 如下： 
+  required - 设置表单控件值是非空的。 
+  email - 设置表单控件值的格式是 email。 
+  minlength - 设置表单控件值的最小长度。 
+  maxlength - 设置表单控件值的最大长度。
+  pattern - 设置表单控件的值需匹配 pattern 对应的模式。 
+  示例： 
+  this.signupForm = this.fb.group({
+    userName: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+_]+@[a-z0-9.-]+')]]
+  });
+</div> -->
