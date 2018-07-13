@@ -2,17 +2,16 @@
   <div>
     <h2 appHighlight> 属性指令</h2>
     <p [appHighlight]="color" author="semlinker">
-      为元素添加自定义属性并使用@Attribute()；
+      为元素添加自定义属性并使用@Attribute()读取属性
       <br> 使用输入型的属性指令
     </p>
   </div>
   <div>
     <h2>ng-template</h2>
-    <div>
+    <div [ngTemplateOutlet]="tpl"></div>
       <ng-template #tpl>
         ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构 
       </ng-template>
-    </div>
   </div>
 
   <div>
