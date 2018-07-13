@@ -109,7 +109,11 @@ export class OneChild2Component implements OnInit {
     }
   }
   selectItem(item, ite) {
-    this.seeItem = item;
+    if (ite.checked) {
+      this.seeItem = item;
+    } else {
+      this.seeItem = null;
+    }
   }
   ngOnDestroy(): void {
     clearInterval(this.intervals)

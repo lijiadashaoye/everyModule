@@ -45,11 +45,13 @@
     <button (click)="stop()">stop</button>
     {{time}}
   </div>
-
+</div>
+<div>
+  <h2>可部署的图片写入方式</h2>
   <div class="allImg">
-    <h2>可部署的图片写入方式</h2>
     <div>
-      直接写入:[src]="'assets/1.jpg'"
+      直接写入url字符串:
+      <br> [src]="'assets/1.jpg'"
       <img [src]="'assets/1.jpg'">
     </div>
     <div>
@@ -57,13 +59,14 @@
       <img [src]="imgData">
     </div>
     <div>
-      用变量：[src]="imgData2"
+      用变量：
+      <br>[src]="imgData2"
       <img [src]="imgData2">
     </div>
     <div>
-      用双括号扩住变量：src=
+      用双括号扩住变量：
+      <br>src无中括号
       <img src="{{imgData2}}">
     </div>
   </div>
-
 </div>
