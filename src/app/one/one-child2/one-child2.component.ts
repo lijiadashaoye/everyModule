@@ -6,12 +6,17 @@ import {
   FormBuilder,
   FormGroup
 } from '@angular/forms';
+import { OneComponent } from '../one.component'
 @Component({
   selector: 'app-one-child2',
   templateUrl: './one-child2.component.html',
   styleUrls: ['./one-child2.component.css']
 })
 export class OneChild2Component implements OnInit {
+
+  imgData;
+  imgData2 = 'assets/1.jpg';
+
   time;
   ff = false; // 判断是否点击全选
   num = 0;
@@ -25,11 +30,20 @@ export class OneChild2Component implements OnInit {
   }
   seeItem;
   formGroupSelect;
+  intervals;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    public oneComponent: OneComponent  // 子组建获取、修改父组件的方法（把父组件注入到子组件中）
+  ) { }
+  // 类的get 和 set 属性
   get likes() {
     return this.myForm.get('likes');
   };
+  set likes(value) {
+    console.log(value)
+  };
+
   ngOnInit() {
     this.time = 0;
     this.myForm = this.fb.group({
@@ -49,6 +63,11 @@ export class OneChild2Component implements OnInit {
       });
       this.selects = selects;
     });
+
+    this.intervals = setInterval(() => {
+      this.oneComponent.childInterval++;
+    }, 1000);
+    this.imgData = 'https://upload-images.jianshu.io/upload_images/311249-f67fda8e02d91fd6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240'
   }
 
   start() {
@@ -95,7 +114,13 @@ export class OneChild2Component implements OnInit {
     }
   }
   selectItem(item, ite) {
-    this.seeItem = item;
+    if (ite.checked) {
+      this.seeItem = item;
+    } else {
+      this.seeItem = null;
+    }
   }
-
+  ngOnDestroy(): void {
+    clearInterval(this.intervals)
+  }
 }

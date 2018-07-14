@@ -3,7 +3,7 @@
 }
 
 .bbb {
-    background: rgb(194, 255, 192);
+    background: rgb(199, 154, 5);
 }
 
 .ccc {
@@ -12,7 +12,7 @@
 
 .wapperDiv {
     height: 100px;
-    width: 200px;
+    width: 150px;
     background: rgb(199, 231, 158);
     overflow: auto;
 }

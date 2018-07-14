@@ -103,7 +103,7 @@ export class Cild1Component {
   }
 
   onChartEvent(e, name) {
-    console.log(name, e)
+    // console.log(name, e)
   }
   ngAfterViewInit() {  // 实现多个图表联动
     const chartElement1 = document.getElementById('one');

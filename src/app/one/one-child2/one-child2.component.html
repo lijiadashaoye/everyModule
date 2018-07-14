@@ -1,6 +1,6 @@
 <div class="waper">
   <div>
-    <p>checkbox</p>
+    <h2>checkbox</h2>
     <label for="all">all</label>
     <input type="checkbox" [(ngModel)]="ff" id="all" (change)="turnAll(form)">
     <!-- ngSubmit 必须用在form标签里 -->
@@ -19,18 +19,18 @@
     <div>{{formGroupSelect | json}}</div>
   </div>
   <div>
-    <p>formArray</p>
+    <h2>formArray</h2>
     <form [formGroup]="myForm">
-      <div class="like" *ngFor="let like of likes.controls;index as i;">
+      <div class="like" *ngFor="let like of likes.controls;index as i;let odd=odd">
         <label>
-          <input type="checkbox" [formControl]="like"> {{likesArr[i]}}
+          <input type="checkbox" [formControl]="like"> {{likesArr[i]}} {{odd?' --偶数行':' --奇数行'}}
         </label>
       </div>
       <div *ngFor="let select of selects" class="youselect">{{select}}</div>
     </form>
   </div>
   <div>
-    <p>单独的，不需要form表单形式的</p>
+    <h2>单独的，不需要form表单形式的</h2>
     <label for={{item.id}}>
       <label style="width:30px;background:pink;">
         <input type="checkbox" name="item.id" id={{item.id}} value="{{item.id}}" #ite (change)="selectItem(item,ite)">
@@ -40,10 +40,33 @@
     </label>
   </div>
   <div>
-    <p>计时器</p>
+    <h2>计时器</h2>
     <button (click)="start()">start</button>
     <button (click)="stop()">stop</button>
     {{time}}
   </div>
-
+</div>
+<div>
+  <h2>可部署的图片写入方式</h2>
+  <div class="allImg">
+    <div>
+      直接写入url字符串:
+      <br> [src]="'assets/1.jpg'"
+      <img [src]="'assets/1.jpg'">
+    </div>
+    <div>
+      来自网络
+      <img [src]="imgData">
+    </div>
+    <div>
+      用变量：
+      <br>[src]="imgData2"
+      <img [src]="imgData2">
+    </div>
+    <div>
+      用双括号扩住变量：
+      <br>src无中括号
+      <img src="{{imgData2}}">
+    </div>
+  </div>
 </div>

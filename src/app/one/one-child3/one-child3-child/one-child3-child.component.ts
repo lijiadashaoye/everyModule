@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, forwardRef, Output, EventEmitter } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,7 +6,7 @@ import {
   FormControl,
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
-  NG_VALIDATORS
+  NG_VALIDATORS,
 } from '@angular/forms'
 
 @Component({
@@ -27,47 +27,62 @@ import {
   ]
 })
 export class OneChild3ChildComponent implements OnInit, ControlValueAccessor {
-  @Output() isvalid=new EventEmitter<boolean>();
-  froms: FormGroup;
-  registerOnChanged;  // 用来承接向上传递数据的函数
+  @Output() isvalid = new EventEmitter<boolean>();
+  fromc: FormGroup;
   makeChild;
+  private propagateChange = (_: any) => { };// 用来承接向上传递数据的函数
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.froms = this.fb.group({
+    this.fromc = this.fb.group({
       child1: ['', Validators.compose([Validators.required, this.validate])],
-      child2: ['', Validators.required]
+      child2: ['']
+    })
+    this.fromc.valueChanges.subscribe(val => {
+      this.propagateChange(val);
     })
   }
   isSubmit(froms, ev: Event) {
     ev.preventDefault();
-    this.registerOnChanged(this.froms.value);
+    this.propagateChange(froms.value);
   }
   makeChild2() {
-    this.makeChild='两个input框实现change联动'
+    this.makeChild = '两个input框实现change联动'
     this.isvalid.emit(true);
+    console.log(this.fromc)
   }
 
   validate(c: FormControl): { [key: string]: any } {  // 验证器只有出错时才返回值
-    if (!c.value) {
-      return null
-    }
     let data = /^li/;
-    if (data.test(c.value)) {
+    const val = c.value;
+    if (!val) {
       return null
     }
-    return {
-      'child1-valid': '第二个表单验证不通过'
+    if (typeof val == 'object') {
+      if (data.test(val.child1)) {
+        return null
+      }
+      return {
+        'child1-valid': '表单验证不通过'
+      }
+    } else {
+      if (data.test(val)) {
+        return null
+      }
+      return {
+        'child1-valid': '表单验证不通过'
+      }
     }
-
   }
   //ControlValueAccessor 必须有的三个函数
-  writeValue(obj: any): void {   // obj根据传进来的数据而定类型string?object?array?
-    this.froms.get('child1').patchValue(obj.child1);  // 初始化值
-    this.froms.get('child2').patchValue(obj.child2);
+  public writeValue(obj: any): void {   // obj根据传进来的数据而定类型string?object?array?
+    if (obj) {
+      this.fromc.get('child1').patchValue(obj.child1);  // 初始化值
+      this.fromc.get('child2').patchValue(obj.child2);
+    }
   }
-  registerOnChange(fn: any): void {
-    this.registerOnChanged = fn
+  public registerOnChange(fn: any): void {
+    this.propagateChange = fn
   }
-  registerOnTouched(fn: any): void { }
+  public registerOnTouched(fn: any): void { }
 }

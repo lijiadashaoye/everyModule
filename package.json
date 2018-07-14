@@ -4,12 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently  \"ng serve\" \"npm run server\"",
+    "start": "concurrently  \"ng serve --o --port 2454\" \"npm run server --proxy-config proxy.conf.json\"",
     "build": "ng build --aot -prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server":"json-server --watch ./mock/data.json"
+    "server": "json-server --watch ./mock/data.json"
   },
   "private": true,
   "dependencies": {

@@ -3,14 +3,12 @@ import {
   OnInit,
   ElementRef,
   Renderer2,
-  Attribute
 } from '@angular/core';
 import * as $ from 'jquery'
 import {
   calcBindingFlags
 } from '_@angular_core@5.2.11@@angular/core/src/view/util';
 import {
-  BehaviorSubject,
   Observable
 } from 'rxjs';
 @Component({
@@ -129,14 +127,6 @@ export class Cild5Component implements OnInit {
     //   console.log(error)
     // })
   }
-  show() {
-    let kk = new BehaviorSubject(null);
-    let jj = Observable.interval(1000).take(10);
-    jj.subscribe(_ => {
-      kk.next(_)
-    })
-    kk.subscribe(val => console.log(val))
-    kk.subscribe(val => console.log(val + 10))
-  }
+ 
  
 }

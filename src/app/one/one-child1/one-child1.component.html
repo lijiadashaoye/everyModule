@@ -1,23 +1,37 @@
 <div class="waper">
   <div>
-    <p appHighlight> 属性指令</p>
+    <h2 appHighlight> 属性指令</h2>
     <p [appHighlight]="color" author="semlinker">
-      为元素添加自定义属性并使用@Attribute()；
+      为元素添加自定义属性并使用@Attribute()读取属性
       <br> 使用输入型的属性指令
     </p>
   </div>
   <div>
-    <p>ng-template</p>
-    <div>
-      <p>resolve</p>
-      {{resolveDatas}}
-    </div>
-    <ng-template #tpl>
-      ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构
-    </ng-template>
+    <h2>ng-template</h2>
+    <div [ngTemplateOutlet]="tpl"></div>
+      <ng-template #tpl>
+        ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构 
+      </ng-template>
+  </div>
+
+  <div>
+    <h2>ViewChildren</h2>
+    <app-ng-view></app-ng-view>
+  </div>
+
+  <div>
+    <h2>ContentChildren</h2>
+    <app-ng-content>
+      <app-ng-content-child></app-ng-content-child>
+    </app-ng-content>
+  </div>
+
+  <div>
+    <h2>resolve</h2>
+    {{resolveDatas}}
   </div>
   <div>
-    <p>管道</p>
+    <h2>管道</h2>
     <div *ngIf="isChage">
       <div *ngFor="let hero of (heroes | flyingHeroes)">
         {{hero.id}}
@@ -26,7 +40,8 @@
     <button (click)="toggles()">toggles</button>
   </div>
   <div>
-      <button (click)="startAd()">startAd</button>
+    <h2>动态生成组件</h2>
+    <button (click)="startAd()">startAd</button>
     <ng-template #adhost></ng-template>
   </div>
 </div>

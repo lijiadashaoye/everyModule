@@ -5,8 +5,9 @@ import {
   Inject
 } from '@angular/core';
 import {
-  Observable
-} from 'rxjs/Observable';
+  Observable,
+  BehaviorSubject
+} from 'rxjs';
 import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/range';
 import 'rxjs/add/observable/timer';
@@ -18,7 +19,6 @@ import 'rxjs/add/observable/bindCallback';
 import 'rxjs/add/observable/concat';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/observable/zip';
-
 
 import 'rxjs/add/operator/merge';
 import 'rxjs/add/operator/pluck';
@@ -89,25 +89,37 @@ export class TwoChild3Component implements OnInit {
   mergeData;
   newSubject;
   datas;
+  f: any;
   constructor(
     private el: ElementRef,
     private http: HttpService,
-  ) { }
-
+  ) {
+    this.f = (phrase) => {
+      return class {
+        sayHi() { console.log(phrase) }
+      }
+    }
+  }
+  extendsFun() {
+    // 对于高级编程模式，当我们使用的类是根据许多条件使用函数来生成时，这就很有用。
+    class User extends this.f("Hello") { }
+    new User().sayHi(); // Hello
+  }
   ngOnInit() {
     this.everyObservable();
     this.everyObservable2();
     this.everyObservable3();
     this.everyObservable4();
 
-    // // for..in迭代的是对象的 键 的列表，而for..of则迭代对象的键对应的值。
-    // let list = [4, 5, 6];
-    // for (let i in list) {
-    //   console.log(i); // "0", "1", "2",
-    // }
-    // for (let i of list) {
-    //   console.log(i); // "4", "5", "6"
-    // }
+    let list = [
+      { name: '赵四' }, { name: '旺旺' }, { name: '二狗' }
+    ];
+    for (let i in list) {  // for..in迭代的是数组，i为索引值
+      console.log(i);
+    }
+    for (let i of list) {  // for..of则迭代数组,i为索引对应的值。
+      console.log(i);
+    }
   }
   seeOf() {
     Observable.of({
@@ -164,7 +176,7 @@ export class TwoChild3Component implements OnInit {
     // var timer2 = Observable.interval(1000).take(5);
     // var timer3 = Observable.interval(1000).take(3);
     // var concurrent = 3; // 参数,可以同时订阅的输入 Observables 的最大数量。
-    // var merged = timer1.merge(timer2, timer3,timer3, concurrent);
+    // var merged = timer1.merge(timer2, timer3, concurrent);
     // merged.subscribe(x => console.log(x));
 
     // // 每次点击都会从0到9计数(每秒计数一次) ，但只允许最多同时只能有两个计时器 mergeAll(2)
@@ -174,9 +186,12 @@ export class TwoChild3Component implements OnInit {
     // firstOrder.subscribe(x => console.log(x));
 
     // 返回将外部Observable的每个值，作为mergeMap内部函数的参数执行后的结果
+    // 即，内部每出现一个新值，都会读取一次所有的外部值
+    // 仅当内部的 Observable 对象发出值后，才会合并源 Observable 对象输出的值，并最终输出合并的值。
     // Observable.of('a', 'b', 'c')
-    //   .mergeMap(x => Observable.interval(1000).map(i => x + i))
-    //   .subscribe(val=>console.log(val))
+    //   .mergeMap(x => Observable.interval(1000).take(5).map(i => x + i))
+    //   .subscribe(val => console.log(val))
+    // 输出：a0,b0,c0, a1,b1,c1, a2,b2,c2, a3,b3,c3
   }
   useNewSubject() {
     this.newSubject.next('newSubject value');
@@ -200,10 +215,13 @@ export class TwoChild3Component implements OnInit {
   forkJoin_concat() {
     let one = Observable.interval(1000).take(2);
     let two = Observable.interval(1000).take(3);
-    // 通过顺序地发出多个 Observables 的值将它们连接起来，一个接一个的。
+
+    // 顺序地发出多个 Observables 的值,将它们连接起来，一个接一个的。
     Observable.concat(one, two)
       .subscribe(value => console.log(value))
+
     // 将多个 Observables 的最后一个值，组成对应顺序的数组发出来。
+    // forkJoin 是 Rx 版本的 Promise.all()，即表示等到所有的 Observable 都完成后，才一次性返回值。
     Observable.forkJoin(one, two)
       .subscribe(value => console.log(value))
   }
@@ -360,10 +378,11 @@ export class TwoChild3Component implements OnInit {
     //   .sampleTime(1000)
     //   .subscribe(x => console.log(x));
 
-    // flatMapLatest在RxJS 5.x中已更名为switchMap
+
     // // 当发出一个新的内部 Observable 时，switchMap 会停止发出先前发出的内部 Observable,
     // // 并开始发出新的内部 Observable 的值
     // // 每次点击返回一个 interval Observable
+    // switchMap 的触发取决于外部的Observable，但result返回是内部的值
     // var clicks = Observable.fromEvent(document, 'click');
     // var result = clicks.switchMap((ev) => Observable.interval(1000));
     // result.subscribe(x => console.log(x));
@@ -466,9 +485,10 @@ export class TwoChild3Component implements OnInit {
     // switchMap = map + switch
 
     // 需要保证执行顺序的可以使用 concatMap 操作符
-    // 需要取消inner Observable可以使用switchMap操作符
+    // 需要取消内部 Observable可以使用switchMap操作符
     // 需要简单执行可以使用mergeMap操作符
 
+    // flatMapLatest在RxJS 5.x中已更名为switchMap
     // flatMap将响应数据“打平”，也就是说把映射后新的Observable转化为了数据流，
     // 订阅之后会获得这个新Observable发射的数据，而不是Observable本身。
     // Observable.of(
@@ -504,4 +524,15 @@ export class TwoChild3Component implements OnInit {
     //   .subscribe(x => console.log(x));
 
   }
+
+  show() {
+    let kk = new BehaviorSubject(null);
+    let jj = Observable.interval(1000).take(5);
+    jj.subscribe(_ => {
+      kk.next(_)
+    })
+    kk.subscribe(val => console.log(val))
+    kk.subscribe(val => console.log(val + 10))
+  }
+
 }

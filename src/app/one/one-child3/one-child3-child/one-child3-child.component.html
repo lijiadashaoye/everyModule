@@ -1,8 +1,10 @@
-<form [formGroup]="froms">
+<form [formGroup]="fromc">
   <input type="text" placeholder="child-1" formControlName="child1" (change)="makeChild2()">
-  <input type="text" placeholder="child-2" formControlName="child2" (change)="isSubmit(froms,$event)">
+  <input type="text" placeholder="child-2" formControlName="child2" (change)="isSubmit(fromc,$event)">
   <span style="font-size:14px;">{{makeChild}}</span>
-  <br>子表单组件的验证：value是否以 li 开头，froms.controls['child1']
-  <br>child.valid:{{froms.controls['child1'].valid|json}}
-  <br>child.errors:{{froms.controls['child1'].errors|json}}
+  <div style="border:1px solid red;padding:5px;">
+    子表单组件的验证：fromc.controls['child1']的value是否以 li 开头
+    <br>当前表单的valid验证（child.valid）:{{fromc.controls['child1'].valid|json}}
+    <br>child.errors:{{fromc.controls['child1'].errors|json}}
+  </div>
 </form>

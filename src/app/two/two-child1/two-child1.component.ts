@@ -8,12 +8,17 @@ import {
   HostListener,
   forwardRef
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NG_VALIDATORS, } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ValidatorFn,
+  FormControl
+} from '@angular/forms';
 
 import { datas } from './datas';
 import { Hero } from './datas';
 import { User } from './datas';
-import { emailMatcher } from './datas';
 
 @Component({
   selector: 'app-two-child1',
@@ -21,10 +26,10 @@ import { emailMatcher } from './datas';
   styleUrls: ['./two-child1.component.css'],
 })
 export class TwoChild1Component implements OnInit {
-  private title = 'form表单';
   private users;
-  private user;
+  private user: FormGroup;
   private groups: FormGroup;
+  private funValid: FormGroup;
   private genders;
   private roles;
   private themes;
@@ -35,6 +40,7 @@ export class TwoChild1Component implements OnInit {
   private cities;
   private heroes;
   private scrollDatas;
+  private asyncData;
   constructor(
     private fb: FormBuilder,
     private rd: Renderer2
@@ -42,6 +48,7 @@ export class TwoChild1Component implements OnInit {
 
   ngOnInit(): void {
     // console.log(document.documentElement.clientHeight)
+    this.heroes = datas.heroes;
     this.genders = datas.genders;
     this.roles = datas.roles;
     this.themes = datas.themes;
@@ -50,6 +57,7 @@ export class TwoChild1Component implements OnInit {
     this.provinces = datas.provinces;
     this.citieData = datas.citieData;
     this.cities = this.citieData.filter(city => city.pk)
+    // 模版表单
     this.users = {   // 新增用户
       name: '',
       gender: this.genders[0].value,
@@ -61,14 +69,49 @@ export class TwoChild1Component implements OnInit {
       province: 16, // 福建省
       city: 1315 // 厦门市
     }
+    // 动态表单
     this.user = this.fb.group({   //  表单的
-      name: ['1', [Validators.required, Validators.minLength(2), emailMatcher]], // 对单个表单进行验证
+      name: ['1', [Validators.required, Validators.minLength(2), this.nameMatcher]], // 对单个表单进行验证
       account: this.fb.group({
         email: ['', Validators.required],
         confirm: ['', Validators.required]
       })
-    }, { validator: emailMatcher })  // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
+    })
+
+    this.funValid = this.fb.group({
+      ages: ['', this.ageRange(20, 120)],
+      go: ['']
+    }, { validator: this.formMatcher })  // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
   }
+
+  nameMatcher(c: FormControl) {  // 自定义验证函数,此处是对整表单中的单个control进行验证
+    if (c.value > 10) {
+      return { 'from': '单个表单进行验证' }
+    } else {
+      return null
+    }
+  }
+  formMatcher(c: FormControl) {
+    let ages = c.get('ages').value;
+    let go = c.get('go').value;
+    if (ages && go) {
+      return null
+    } else {
+      return { 'from': '对整个表单进行验证' }
+    }
+  }
+
+  // 可传参数的验证函数
+  ageRange(min: number, max: number): ValidatorFn {
+    return (c: FormControl): { [key: string]: any } | null => {
+      let age = c.value;
+      if (age && (isNaN(age) || age < min || age > max)) {
+        return { 'range': true, min: min, max: max };
+      }
+      return null;
+    }
+  }
+
   changeHobby(hobby, event) {
     this.users.hobbies[hobby.value] = event.target.checked;
   }
@@ -89,7 +132,7 @@ export class TwoChild1Component implements OnInit {
   }
   makeChage() {
     let num = Math.floor(Number(Math.random() * this.heroes.length));
-    this.heroes[num]['name'] = Math.floor(Number(this.heroes[num]['name']) / 5).toString()
+    this.heroes[num]['name'] = Math.floor(Number(this.heroes[num]['name']) / 5).toString();
   }
   save() {
     console.log(this.users);
@@ -107,10 +150,12 @@ export class TwoChild1Component implements OnInit {
   makeChage3() {
     this.shown ? this.shown = false : this.shown = true
   }
+  // angular的dom操作方法
   @ViewChild('isP') isP: ElementRef;
   @ViewChild('isH2', { read: ViewContainerRef }) isH2: ViewContainerRef;
   makeChage4() {
     console.log(this.isH2)
+    console.log('#isP的id：' + this.isP.nativeElement.id)
     this.rd.setAttribute(this.isP.nativeElement, 'style', 'background:skyblue;')
   }
 
@@ -121,9 +166,22 @@ export class TwoChild1Component implements OnInit {
     this.fff.nativeElement.innerHTML = 'window:scroll'
   }
   onscroll(e) {
-    console.log(e)
     this.scrollDatas = '';
     this.scrollDatas = 'scrollTop：' + e.target.scrollTop;
+    console.log(this.scrollDatas)
   }
 
+  async anss() {
+    let dishes = [{ name: "fish", time: 3 }, { name: "fish1", time: 5 }, { name: "fish3", time: 3 }];
+    this.asyncData = [];
+    for (let d of dishes) {
+      this.asyncData.push("开始做" + d.name)
+      await (() => {
+        return new Promise(res => {
+          setTimeout(res, d.time * 1000)
+        })
+      })();
+      this.asyncData.push(`做好了 ${d.name}，用时${d.time}秒`)
+    }
+  }
 }

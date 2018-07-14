@@ -1,6 +1,6 @@
 <div class="waper">
-  <form #f="ngForm" novalidate>
-    <h4>{{title}}</h4>
+  <form #f="ngForm" style="width:400px;">
+    <h2>form表单</h2>
     <div class="form-group">
       <label>名字</label>
       <input type="text" readonly class="form-control" name="name" [(ngModel)]="users.name">
@@ -47,15 +47,15 @@
       <button (click)="ismultiple=!ismultiple">变成多选</button>
     </div>
     <div class="form-group">
-      <label>爱好</label>
-      <span *ngFor="let hobby of hobbies">
+      <span>爱好</span>
+      <label *ngFor="let hobby of hobbies">
         <input type="checkbox" name="bobby" [value]="hobby.value" [checked]="users.hobbies[hobby.value]" (change)="changeHobby(hobby, $event)"
         /> {{hobby.display}}
-      </span>
+      </label>
     </div>
     <div class="form-group">
       <label>地址</label>
-      <select name="province" class="form-control" [(ngModel)]="user.province" (change)="changeProvince($event.target.value)">
+      <select name="province" class="form-control" [(ngModel)]="users.province" (change)="changeProvince($event.target.value)">
         <option *ngFor="let province of provinces" [value]="province.pk">
           {{province.pv}}
         </option>
@@ -65,11 +65,13 @@
       </select>
     </div>
     <button type="submit" (click)="save()" class="btn btn-default">保存</button>
+
   </form>
-  <form novalidate (ngSubmit)="onSubmit(user)" [formGroup]="user">
-    <h2>验证</h2>
+  <form (ngSubmit)="onSubmit(user)" [formGroup]="user">
+    <h2>模板表单的验证</h2>
+    <h5>*ngIf name required</h5>
     <label>
-      <span style="color:rgb(0, 255, 21);font-size:22px;">Observable name</span>
+      <span style="color:rgb(27, 49, 240);font-size:22px;">Observable name</span>
       <input type="text" placeholder="Your full name" formControlName="name">
       <br> {{user.get('name').value}}
     </label>
@@ -81,6 +83,7 @@
         user.get('name').touched">
       Minimum of 2 characters
     </div>
+    <h2>formGroupName</h2>
     <div formGroupName="account">
       <span style="color:red;font-size:14px;">formGroupName="account"</span>
       <br>
@@ -133,15 +136,45 @@
   </div>
   <div>
     <h2 #isH2>@ViewChild 和 window:scroll </h2>
-    <p #isP>isPisPisPisP</p>
+    <p #isP id="isP">isPisPisPisP</p>
     <p #isScroll style="background:red;font-size:20px;"></p>
     <button (click)="makeChage4()">makeChage4</button>
+  </div>
+  <div>
+    <h2>async 同步执行for循环</h2>
+
+    <p *ngFor="let asyncdata of asyncData">{{asyncdata}}</p>
+    <button (click)="anss()">anss</button>
   </div>
   <div class="wapperDivs">
     <h2> 监听滚动条的位置scrollTop值 </h2>
     <span>{{scrollDatas}}</span>
-    <div class="wapperDiv" (scroll)="onscroll($event)"(click)="onscroll($event)">
+    <div class="wapperDiv" (scroll)="onscroll($event)" (click)="onscroll($event)">
       <div></div>
     </div>
   </div>
+</div>
+<!-- <div>
+  目前 Angular 支持的内建 validators 如下： 
+  required - 设置表单控件值是非空的。 
+  email - 设置表单控件值的格式是 email。 
+  minlength - 设置表单控件值的最小长度。 
+  maxlength - 设置表单控件值的最大长度。
+  pattern - 设置表单控件的值需匹配 pattern 对应的模式。 
+  示例： 
+  this.signupForm = this.fb.group({
+    userName: ['', [Validators.required, Validators.minLength(3)]],
+    email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+_]+@[a-z0-9.-]+')]]
+  });
+</div> -->
+<div>
+  <form [formGroup]="funValid">
+    <h2>使用带参数验证函数</h2>
+    <input type="text" placeholder="ages" formControlName="ages">
+    <br>
+    <input type="text" placeholder="go" formControlName="go">
+  </form>
+  <p>
+    funValid.errors：{{ funValid.errors | json}}
+  </p>
 </div>

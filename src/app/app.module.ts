@@ -11,11 +11,12 @@ import { HttpService } from './http.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopInterceptor } from './lanjieqi';
 import { PopupComponent } from './popup/popup.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    PopupComponent
+    PopupComponent,
   ],
   imports: [
     BrowserModule,

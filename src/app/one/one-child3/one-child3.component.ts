@@ -1,7 +1,8 @@
 import {
   Component,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   FormBuilder,
@@ -19,25 +20,37 @@ import 'rxjs/add/observable/fromEvent';
   selector: 'app-one-child3',
   templateUrl: './one-child3.component.html',
   styleUrls: ['./one-child3.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
+// ChangeDetectionStrategy.OnPush：组件的变化监测只检查输入属性（即@Input修饰的变量）的值是否发生变化，
+// 当这个值为引用类型（Object，Array等）时，则只对比该值的引用。
+
+// 显然，OnPush策略相比Default降低了变化监测的复杂度，很好地提升了变化监测的性能。
+// 如果组件的更新只依赖输入属性的值，那么在该组件上使用OnPush策略是一个很好的选择。
+
 export class OneChild3Component implements OnInit {
   froms: FormGroup;
   worker;
   source;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
+
+  // ngOnChanges()	在ngOnInit之前调用，或者当组件输入数据（通过@Input装饰器显式指定的那些变量）变化时调用,
+  // 可以实现同时监视多个输入属性值的变化。
+  // ngOnInit()	第一次ngOnChanges之后调用。建议此时获取数据，不要在构造函数中获取。
+  // ngAfterViewInit()	创建了组件的视图及其子视图之后被调用（只适用组件）。
+  // ngAfterContentInit()	使用<ng-content>将外部内容嵌入到组件视图后被调用，第一次ngDoCheck之后调用且只执行一次（只适用组件）。
   ngOnInit() {
     this.froms = this.fb.group({
       one1: ['', Validators.compose([Validators.required, this.oneValid])],
       two1: ['', Validators.compose([Validators.required, this.oneValid])],
-      three: {
-        child1: 'lichild1',
-        child2: 'lichild2'
-      }
+      three: [
+        {
+          child1: 'lichild1',
+          child2: 'lichild2'
+        }
+      ]
     })
     // this.otherFun();
-    this.otherFun2()
   }
   isSubmit(froms, ev: Event) {
     ev.preventDefault()
@@ -59,8 +72,8 @@ export class OneChild3Component implements OnInit {
       validData: '验证不通过'
     }
   }
-  childValid(e) { // 子表单验证的结果
-    console.log(e)
+  childValid() { // 子表单验证的结果
+    console.log(this.froms)
   }
   otherFun() {
     console.log(navigator.onLine) // 判断设备是否可以上网
@@ -102,8 +115,4 @@ export class OneChild3Component implements OnInit {
   closeSSE() {  // 关闭 SSE 连接。
     this.source.close()
   }
-  otherFun2() {
-
-  }
-
 }

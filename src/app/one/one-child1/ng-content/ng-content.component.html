@@ -1,0 +1,16 @@
+<div>
+  ng-content.component
+</div>
+<ng-content></ng-content>
+<div>
+  <p>在 host 元素标签中被称为 Content Children
+    <br> 在父组件的 ngAfterContentInit 生命周期钩子中才能成功获取通过 @ContentChild() 查询元素
+    <br> 在组件的模板中定义的内容，它是组件的一部分，被称为 View Children
+    <br> 在父组件的 ngAfterViewInit 生命周期钩子中才能成功获取通过 @ViewChild() 查询的元素
+  </p>
+
+  <p>ViewChild 装饰器用于获取模板视图中的元素，它支持 Type 类型或 string 类型的选择器，
+    <br> 同时支持设置 read 查询条件，以获取不同类型的实例。
+    <br> 而 ViewChildren 装饰器是用来从模板视 图中获取匹配的多个元素，返回的结果是一个 QueryList 集合。
+  </p>
+</div>
