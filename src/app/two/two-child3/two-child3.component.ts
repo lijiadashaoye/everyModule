@@ -160,7 +160,8 @@ export class TwoChild3Component implements OnInit {
   }
   merges() {
     // merge 创建一个输出 Observable ，发出每个给定的输入 Observable 中的所有值。
-    // 只是 将所有输入 Observables 的所有值不进行任何转换发送到输出 Observable 
+    // 只是 将所有输入 Observables 的所有值不进行任何转换发送到输出,但每个Observable输
+    // 出的值不与其他Observable合并，相独立的
     let merges1 = this.el.nativeElement.querySelector('.merges1');
     let merges2 = this.el.nativeElement.querySelector('.merges2');
     let merges1$ = Observable.fromEvent(merges1, 'keyup')
