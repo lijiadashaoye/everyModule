@@ -31,12 +31,12 @@ export class Cild4Component implements OnInit {
     })
     this.dat = this.datas.reduce((a, b) => a + b, 10)
   }
-  ngAfterViewInit() {  // 获取表格的另一种方法
+  ngAfterViewInit() {  // 获取表格的另一种方法，angular中尽量不要用原生 DOM 操作方法
     let trs = document.getElementsByTagName('table')[0];
-    console.log(trs.rows)
-    console.log(trs.rows[0].cells)
+    // console.log(trs.rows)
+    // console.log(trs.rows[0].cells)
   }
-  whe(e){
+  whe(e) {
     console.log(e)
   }
   mouseDown(e) {
