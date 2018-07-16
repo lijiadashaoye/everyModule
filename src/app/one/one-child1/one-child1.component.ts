@@ -21,6 +21,7 @@ import { AdService, AdItem } from './ad.service';
   styleUrls: ['./one-child1.component.css']
 })
 export class OneChild1Component implements OnInit {
+  today = new Date();
   color: string;
   resolveDatas;
   heroes = [

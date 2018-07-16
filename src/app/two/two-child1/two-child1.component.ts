@@ -71,7 +71,7 @@ export class TwoChild1Component implements OnInit {
     }
     // 动态表单
     this.user = this.fb.group({   //  表单的
-      name: ['1', [Validators.required, Validators.minLength(2), this.nameMatcher]], // 对单个表单进行验证
+      name: ['', [Validators.required, Validators.minLength(2), this.nameMatcher]], // 对单个表单进行验证
       account: this.fb.group({
         email: ['', Validators.required],
         confirm: ['', Validators.required]

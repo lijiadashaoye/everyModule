@@ -10,17 +10,18 @@ export class HighlightDirective {
     ) { }
     @Input('appHighlight') highlightColor: string;
     @HostListener('mouseenter') onMouseEnter() {
-        this.highlight('red');
-        this.author ? console.log(this.author):''
+        this.author ? console.log(this.author) : '';
+        this.highlight('red', 'mouseenter');
     }
     @HostListener('mouseleave') onMouseLeave() {
-        this.highlight(this.highlightColor);
+        this.highlight(this.highlightColor, 'mouseleave');
     }
     // 方法也可以添加private 或者 public
-    private highlight(color: string) {
+    private highlight(color: string, type) {
         // this.el.nativeElement.style.backgroundColor = color;
         let elem = this.el.nativeElement;
         this.rd.setAttribute(elem, 'style', `background:${color};`)
+        console.log(type)
     }
 
 }

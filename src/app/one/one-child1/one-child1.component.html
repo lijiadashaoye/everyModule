@@ -1,7 +1,7 @@
 <div class="waper">
   <div>
     <h2 appHighlight> 属性指令</h2>
-    <p [appHighlight]="color" author="semlinker">
+    <p [appHighlight]="color" author="attribute author">
       为元素添加自定义属性并使用@Attribute()读取属性
       <br> 使用输入型的属性指令
     </p>
@@ -9,9 +9,9 @@
   <div>
     <h2>ng-template</h2>
     <div [ngTemplateOutlet]="tpl"></div>
-      <ng-template #tpl>
-        ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构 
-      </ng-template>
+    <ng-template #tpl>
+      ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构
+    </ng-template>
   </div>
 
   <div>
@@ -25,19 +25,66 @@
       <app-ng-content-child></app-ng-content-child>
     </app-ng-content>
   </div>
+</div>
 
+<div class="waper">
   <div>
-    <h2>resolve</h2>
-    {{resolveDatas}}
-  </div>
-  <div>
-    <h2>管道</h2>
+    <h2>自定义管道</h2>
     <div *ngIf="isChage">
       <div *ngFor="let hero of (heroes | flyingHeroes)">
         {{hero.id}}
       </div>
     </div>
     <button (click)="toggles()">toggles</button>
+  </div>
+  <div>
+    <h2>angular内建管道</h2>
+    <div>
+      <p ngNonBindable>1.大写转换：{{ 'Angular' | uppercase }}</p>
+      <p>{{ 'Angular' | uppercase }}</p>
+    </div>
+    <div>
+      <p ngNonBindable>2.小写转换：{{ 'Angular' | lowercase }}</p>
+      <p>{{ 'Angular' | lowercase }}</p>
+    </div>
+    <div>
+      <p ngNonBindable>3.数值格式化：{{ 3.14159265 | number: '1.4-4' }}</p>
+      <p>{{ 3.14159265 | number: '1.4-4' }}</p>
+    </div>
+    <div>
+      <p ngNonBindable>4.日期格式化：{{ today | date: 'shortTime' }}</p>
+      <p>{{ today | date: 'shortTime' }}</p>
+    </div>
+    <div>
+      <p ngNonBindable>5.JavaScript 对象序列化：{{ { name: 'semlinker' } | json }}</p>
+      <p>{{ { name: 'semlinker' } | json }}</p>
+    </div>
+    <div>
+      <p ngNonBindable>6.首字母转换：{{ 'angular' | titlecase }}</p>
+      <p>{{ 'angular' | titlecase }}</p>
+    </div>
+    <div>
+      <p>
+        <strong>管道参数</strong>
+        <br> 管道可以接收任意数量的参数，使用方式是在管道名称后面添加“ : ”和参数值。
+        <br> 如 number: '1.4-4' ，若需要传递多个参数则参数之间用冒号隔开，具体示例如下：
+      </p>
+      <p ngNonBindable>{{ 'semlinker' | slice:0:3 }}</p>
+      <p>{{ 'semlinker' | slice:0:3 }}</p>
+    </div>
+    <div>
+      <p>
+        <strong>管道链</strong>
+        <br> 我们可以将多个管道连接在一起，组成管道链对数据进行处理。
+      </p>
+      <p ngNonBindable>{{ 'semlinker' | slice:0:3 | uppercase }}</p>
+      <p>{{ 'semlinker' | slice:0:3 | uppercase }}</p>
+      <!-- Output: SEM -->
+    </div>
+  </div>
+  <div>
+    <h2>resolve</h2>
+    {{resolveDatas}}
   </div>
   <div>
     <h2>动态生成组件</h2>

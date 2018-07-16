@@ -3,7 +3,7 @@
     <h2>form表单</h2>
     <div class="form-group">
       <label>名字</label>
-      <input type="text" readonly class="form-control" name="name" [(ngModel)]="users.name">
+      <input type="text" readonly class="form-control"placeholder="readonly" name="name" [(ngModel)]="users.name">
     </div>
     <div class="form-group">
       <label>年龄</label>
@@ -69,7 +69,7 @@
   </form>
   <form (ngSubmit)="onSubmit(user)" [formGroup]="user">
     <h2>模板表单的验证</h2>
-    <h5>*ngIf name required</h5>
+    <h5 style="margin:3px 0;">*ngIf name required</h5>
     <label>
       <span style="color:rgb(27, 49, 240);font-size:22px;">Observable name</span>
       <input type="text" placeholder="Your full name" formControlName="name">
@@ -154,27 +154,32 @@
     </div>
   </div>
 </div>
-<!-- <div>
-  目前 Angular 支持的内建 validators 如下： 
-  required - 设置表单控件值是非空的。 
-  email - 设置表单控件值的格式是 email。 
-  minlength - 设置表单控件值的最小长度。 
-  maxlength - 设置表单控件值的最大长度。
-  pattern - 设置表单控件的值需匹配 pattern 对应的模式。 
-  示例： 
-  this.signupForm = this.fb.group({
-    userName: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+_]+@[a-z0-9.-]+')]]
-  });
-</div> -->
-<div>
-  <form [formGroup]="funValid">
-    <h2>使用带参数验证函数</h2>
-    <input type="text" placeholder="ages" formControlName="ages">
-    <br>
-    <input type="text" placeholder="go" formControlName="go">
-  </form>
-  <p>
-    funValid.errors：{{ funValid.errors | json}}
-  </p>
+<div class="waper">
+  <div>
+    <form [formGroup]="funValid">
+      <h2>使用带参数验证函数</h2>
+      <input type="text" placeholder="ages" formControlName="ages">
+      <br>
+      <input type="text" placeholder="go" formControlName="go">
+    </form>
+    <p>
+      funValid.errors：{{ funValid.errors | json}}
+    </p>
+  </div>
+  <div ngNonBindable>
+    <h2>使用 ngNonBindable</h2>
+    {{
+    <br> 目前 Angular 支持的内建 validators 如下：
+    <br> required - 设置表单控件值是非空的。
+    <br> email - 设置表单控件值的格式是 email。
+    <br> minlength - 设置表单控件值的最小长度。
+    <br> maxlength - 设置表单控件值的最大长度。
+    <br> pattern - 设置表单控件的值需匹配 pattern 对应的模式。
+    <br> 示例：
+    <br> this.signupForm = this.fb.group({
+    <br> userName: ['', [Validators.required, Validators.minLength(3)]],
+    <br> email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+_]+@[a-z0-9.-]+')]]
+    <br> });
+    <br> }}
+  </div>
 </div>
