@@ -67,7 +67,7 @@ export class OneChild1Component implements OnInit {
         this.heroes[i].id += 1
       }
     }
-    setTimeout(() => this.isChage = true, 200)
+    setTimeout(() => this.isChage = true, 0)
   }
 
   @ViewChild("adhost", { read: ViewContainerRef }) adHost: ViewContainerRef;

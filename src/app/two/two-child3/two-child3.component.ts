@@ -523,6 +523,14 @@ export class TwoChild3Component implements OnInit {
     //     (age: number, name: string, isDev: boolean) => ({ age, name, isDev }))
     //   .subscribe(x => console.log(x));
 
+    // 如果不加share()，会打印两次
+    let obs = Observable
+      .create(observer => observer.next(Date.now()))
+      .share();
+
+    obs.subscribe(v => console.log("1st subscriber: " + v));
+    obs.subscribe(v => console.log("2nd subscriber: " + v));
+
   }
 
   show() {
