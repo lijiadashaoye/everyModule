@@ -51,6 +51,7 @@ export class OneChild3Component implements OnInit {
       ]
     })
     // this.otherFun();
+    this.otherFunction()
   }
   isSubmit(froms, ev: Event) {
     ev.preventDefault()
@@ -114,5 +115,14 @@ export class OneChild3Component implements OnInit {
   // }
   closeSSE() {  // 关闭 SSE 连接。
     this.source.close()
+  }
+  otherFunction() {
+
+    // filter ,map ,forEach方法
+    let heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
+    let filterRe = /m/i;
+    let filterHeroes = heroes.filter(name => filterRe.test(name));
+    let prefixedHeroes = heroes.map(name => 'Super_' + name);
+    heroes.forEach(name => console.log(name));
   }
 }

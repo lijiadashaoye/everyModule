@@ -446,6 +446,9 @@ export class TwoChild3Component implements OnInit {
     // var result = clicks.takeWhile(ev => ev < 4);
     // result.subscribe(x => console.log(x));
 
+    // throttle 比较像是控制行为的最高频率，也就是说如果我们设定 1000 ms，那么该事件最大频率就是每秒触发一次而不会过快。
+    // debounce 则比较像是必须等待的时间，要等一定的时间过了才会收到元素。
+
     // 在debounceTime内，外部Observable不会有另外的值发出的话，才把外部Observable的值作为终值发出
     // 所以，此语句永远不会有值发出
     // var clicks = Observable.interval(610)
@@ -524,12 +527,12 @@ export class TwoChild3Component implements OnInit {
     //   .subscribe(x => console.log(x));
 
     // 如果不加share()，会打印两次
-    let obs = Observable
-      .create(observer => observer.next(Date.now()))
-      .share();
+    // let obs = Observable
+    //   .create(observer => observer.next(Date.now()))
+    //   .share();
 
-    obs.subscribe(v => console.log("1st subscriber: " + v));
-    obs.subscribe(v => console.log("2nd subscriber: " + v));
+    // obs.subscribe(v => console.log("1st subscriber: " + v));
+    // obs.subscribe(v => console.log("2nd subscriber: " + v));
 
   }
 
