@@ -9,7 +9,7 @@ import {
   Output,
   EventEmitter,
   ComponentFactoryResolver,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -49,6 +49,29 @@ export class OneChild1Component implements OnInit {
       .subscribe(gg => {
         this.resolveDatas = gg.resolveData;
       });
+
+    // ES7中代替indexOf方法，用于查找数组元素
+    let arr = ['react', 'angular', 'vue'];
+    console.log(arr.includes('react'));
+
+    // ES7中求幂运算
+    let bb = 2 ** 2;
+    console.log(Math.pow(2, 2) === bb);
+
+    // 你使用老方式for /in (ES5)也许用的非常好。但是他会迭代所有可以枚举属性（像原型中的带名字的）, 
+    // 不仅仅自己的属性，会意外的破坏那些 像prototype和tostring得到意想不到的值。
+    // Object.values返回对象自身可以迭代属性值（values）为数组类型。
+    // 我们最好使用Array.prototype.forEach迭代它，结合ES6的箭头函数隐形返回值：
+
+    let obj = { a: 1, b: 2, c: 3 }
+    Object.values(obj).forEach(value => console.log(value)) // 1, 2, 3
+
+    for (let value of Object.values(obj)) {  // 1, 2, 3
+      console.log(value)
+    }
+    // 将字符串通过使用第二个参数补齐成第一个参数规定的长度，
+    console.log('250.00'.padStart(10, '*')); // 在前边补
+    console.log('backbone'.padEnd(10, '*'))  // 在后边补
   }
   @ViewChild('tpl') tplRef: TemplateRef<any>;
   ngAfterViewInit() {  // 动态创建<ng-template>标签

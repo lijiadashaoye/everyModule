@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2, Attribute } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Renderer2, Attribute, HostBinding } from '@angular/core';
 
 @Directive({ selector: '[appHighlight]' })
 
@@ -23,5 +23,14 @@ export class HighlightDirective {
         this.rd.setAttribute(elem, 'style', `background:${color};`)
         console.log(type)
     }
+}
 
+@Directive({ selector: '[hostbindingd]' })
+export class HostBindTest {
+    @HostBinding('attr.role') role = 'button';
+    @HostBinding('class.pressed') isPressed: boolean = false;
+    @HostListener('click', ['$event'])
+    onclick(ev: Event) {
+        this.isPressed = !this.isPressed
+    }
 }

@@ -24,7 +24,7 @@ import {
 export class OneChild4Component implements OnInit {
 
   // @HostBinding('@queryAinm')  // 注意观察两个p元素，消失的先后顺序
-  @HostBinding('@square') squareStyle
+  @HostBinding('@square') squareStyle  // angular 动画要绑定方式
   buttonAnimts;
   interval;
   one;

@@ -171,9 +171,12 @@ export class TwoChild1Component implements OnInit {
     console.log(this.scrollDatas)
   }
 
+  // async(异步) 函数总是返回 Promises
+  // await（只允许在 async(异步) 函数内部使用）等待其操作对象 Promise 返回：
   async anss() {
     let dishes = [{ name: "fish", time: 3 }, { name: "fish1", time: 5 }, { name: "fish3", time: 3 }];
     this.asyncData = [];
+
     for (let d of dishes) {
       this.asyncData.push("开始做" + d.name)
       await (() => {
@@ -184,4 +187,5 @@ export class TwoChild1Component implements OnInit {
       this.asyncData.push(`做好了 ${d.name}，用时${d.time}秒`)
     }
   }
+
 }
