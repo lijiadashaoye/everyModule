@@ -7,6 +7,7 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS,
+  Validator
 } from '@angular/forms'
 
 @Component({
@@ -26,7 +27,7 @@ import {
     }
   ]
 })
-export class OneChild3ChildComponent implements OnInit, ControlValueAccessor {
+export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Validator {
   @Output() isvalid = new EventEmitter<boolean>();
   fromc: FormGroup;
   makeChild;
@@ -49,7 +50,6 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor {
   makeChild2() {
     this.makeChild = '两个input框实现change联动'
     this.isvalid.emit(true);
-    console.log(this.fromc)
   }
 
   validate(c: FormControl): { [key: string]: any } {  // 验证器只有出错时才返回值
@@ -73,6 +73,7 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor {
         'child1-valid': '表单验证不通过'
       }
     }
+
   }
   //ControlValueAccessor 必须有的三个函数
   public writeValue(obj: any): void {   // obj根据传进来的数据而定类型string?object?array?

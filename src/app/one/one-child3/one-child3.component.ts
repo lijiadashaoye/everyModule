@@ -55,8 +55,6 @@ export class OneChild3Component implements OnInit {
   }
   isSubmit(froms, ev: Event) {
     ev.preventDefault()
-    console.log(froms.value)
-    console.log(froms)
   }
   // 表单内单独添加验证函数
   oneValid(c: FormControl): {
@@ -70,7 +68,7 @@ export class OneChild3Component implements OnInit {
       return null
     }
     return {
-      validData: '验证不通过'
+      validData: '主表单里验证不通过'
     }
   }
   childValid() { // 子表单验证的结果
@@ -117,13 +115,12 @@ export class OneChild3Component implements OnInit {
   //   this.source.close()
   // }
   otherFunction() {
-
     // filter ,map ,forEach方法
     let heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
     let filterRe = /m/i;
     let filterHeroes = heroes.filter(name => filterRe.test(name));
     let prefixedHeroes = heroes.map(name => 'Super_' + name);
-    heroes.forEach(name => console.log(name));
+    // heroes.forEach(name => console.log(name));
   }
   websocket() {
     let myWebsocket = new WebSocket("ws://www.websocket.org");
@@ -140,4 +137,5 @@ export class OneChild3Component implements OnInit {
     myWebsocket.send("Hello WebSockets!");
     myWebsocket.close();
   }
+
 }

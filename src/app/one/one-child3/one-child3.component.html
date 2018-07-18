@@ -4,17 +4,23 @@
     <form [formGroup]="froms" (ngSubmit)="isSubmit(froms,$event)">
       <label>当前表单
         <input type="text" placeholder="第一个" formControlName="one1">
-      </label><br>
+      </label>
+      <br>
       <label>当前表单
         <input type="text" placeholder="第二个" formControlName="two1">
-      </label><br>
+      </label>
+      <br>
       <label>表单组件
         <app-one-child3-child formControlName="three" (isvalid)="childValid()"></app-one-child3-child>
       </label>
       <br>
-      <button type="submit">提交</button>{{froms.value|json}}
-      <br>froms.valid : {{froms.valid | json}}
-      <br>froms.controls['one1'].errors : {{froms.controls['one1'].errors | json}}
+      <div style="background:rgb(240, 243, 250);padding:10px;">
+        froms.valid : {{froms.valid | json}}
+        <br>froms.controls['one1'].errors : {{froms.controls['one1'].errors | json}}
+        <br>
+        <br> {{froms.value|json}}
+      </div>
+      <button type="submit">提交</button>
     </form>
   </div>
   <div>
@@ -28,7 +34,7 @@
     <button (click)="websocket()">Websocket</button>
   </div>
   <div>
-      
+
   </div>
 
 </div>
