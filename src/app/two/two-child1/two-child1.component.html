@@ -165,6 +165,14 @@
     <p>
       funValid.errors：{{ funValid.errors | json}}
     </p>
+    <div>
+      <button (click)="testFormData()">testFormData</button>
+    </div>
+    <div>
+      <h2>用formData操作文件上传</h2>
+      <input type="file" placeholder="files" multiple #files>
+      <button (click)="upFile(files)">upFile</button>
+    </div>
   </div>
   <div ngNonBindable>
     <h2>使用 ngNonBindable</h2>
@@ -182,5 +190,4 @@
     <br> });
     <br> }}
   </div>
- 
 </div>

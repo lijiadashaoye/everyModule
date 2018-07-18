@@ -41,6 +41,7 @@ export class TwoChild1Component implements OnInit {
   private heroes;
   private scrollDatas;
   private asyncData;
+
   constructor(
     private fb: FormBuilder,
     private rd: Renderer2
@@ -80,8 +81,9 @@ export class TwoChild1Component implements OnInit {
 
     this.funValid = this.fb.group({
       ages: ['', this.ageRange(20, 120)],
-      go: ['']
+      go: [''],
     }, { validator: this.formMatcher })  // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
+
   }
 
   nameMatcher(c: FormControl) {  // 自定义验证函数,此处是对整表单中的单个control进行验证
@@ -188,4 +190,41 @@ export class TwoChild1Component implements OnInit {
     }
   }
 
+  testFormData() {
+
+    // 直接选取form表单的形式进行上传
+    // let formdata = new FormData(this.funValid.value);
+    // this.upLoad(formdata);
+
+    // 逐个向formData里添加数据的形式进行上传
+    let formdata = new FormData();
+    let ages = this.funValid.get('ages').value;
+    let go = this.funValid.get('go').value;
+
+    formdata.append('ages', ages);
+    formdata.append('go', go);
+    // this.upLoad(formdata);
+  }
+
+  // upLoad(data) {
+  //   let xhr = new XMLHttpRequest();
+  //   xhr.open("post", "login");
+  //   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  //   xhr.send(data);
+  //   let load = xhr.upload;
+  //   load.onprogress = function (ev) {
+  //     console.log('发送量:' + ev.loaded + '发送总量' + ev.total)
+  //   }
+  // this.funValid.reset() 重置表单
+  // }
+
+  upFile(item) {
+    let formdata = new FormData();
+    let num = item.files.length;
+    for (let i = 0; i < num; i++) {
+      formdata.append(`name${i}`, item.files[i])
+    }
+    console.log(formdata.get('name0'))
+    console.log(formdata.get('name1'))
+  }
 }
