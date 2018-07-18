@@ -193,6 +193,7 @@ export class TwoChild1Component implements OnInit {
   testFormData() {
 
     // 直接选取form表单的形式进行上传
+    // 这与提交网页表单的效果，完全一样。
     // let formdata = new FormData(this.funValid.value);
     // this.upLoad(formdata);
 
@@ -206,25 +207,31 @@ export class TwoChild1Component implements OnInit {
     // this.upLoad(formdata);
   }
 
-  // upLoad(data) {
-  //   let xhr = new XMLHttpRequest();
-  //   xhr.open("post", "login");
-  //   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  //   xhr.send(data);
-  //   let load = xhr.upload;
-  //   load.onprogress = function (ev) {
-  //     console.log('发送量:' + ev.loaded + '发送总量' + ev.total)
-  //   }
-  // this.funValid.reset() 重置表单
-  // }
+  upLoad(data) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://other.server/and/path/to/script');
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(data);
+    xhr.onprogress = function (ev) {
+      console.log('下载量:' + ev.loaded + '下载总量' + ev.total)
+    }
+    xhr.upload.onprogress = function (ev) {
+      console.log('发送量:' + ev.loaded + '发送总量' + ev.total)
+    }
+    // 重置表单
+    this.funValid.reset()
+  }
 
   upFile(item) {
     let formdata = new FormData();
     let num = item.files.length;
     for (let i = 0; i < num; i++) {
-      formdata.append(`name${i}`, item.files[i])
+      formdata.append(item.files[i].name, item.files[i])
     }
-    console.log(formdata.get('name0'))
-    console.log(formdata.get('name1'))
+    // this.upLoad(formdata)
+
+    let blobdata = new Blob([item.files[0]], { type: 'image/png' });  // 新建二进制Blob对象
+    // var blob = new Blob([xhr.response], {type: 'image/png'});   // 下载时，读取xhr.response
+
   }
 }

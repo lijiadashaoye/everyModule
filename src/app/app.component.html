@@ -11,8 +11,10 @@
   <li routerLink="one" routerLinkActive="active">one</li>
   <li routerLink="two" routerLinkActive="active">two</li>
   <li routerLink="three" routerLinkActive="active">three</li>
+</ul>
+<ul>
   <li (click)="toTwo()">twoChild4</li>
-  <li [routerLink]="['/two', 'twoChild4']">/two/:id</li>
+  <li [routerLink]="['/two', 'twoChild4']">/two/:id(['/two', 'twoChild4'])</li>
   <button [routerLink]="[{ outlets: { popup1: ['compose1'] } }]" routerLinkActive="act">compose1</button>
   <button [routerLink]="[{ outlets: { popup2: ['compose2'] } }]" routerLinkActive="act">compose2</button>
   <button [routerLink]="[{ outlets: { popup3: ['compose3'] } }]" routerLinkActive="act">compose3</button>

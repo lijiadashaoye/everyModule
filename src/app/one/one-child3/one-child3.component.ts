@@ -113,9 +113,9 @@ export class OneChild3Component implements OnInit {
   //     document.getElementById("result").innerHTML = "抱歉，您的浏览器不支持 server-sent 事件 ...";
   //   }
   // }
-  closeSSE() {  // 关闭 SSE 连接。
-    this.source.close()
-  }
+  // closeSSE() {  // 关闭 SSE 连接。
+  //   this.source.close()
+  // }
   otherFunction() {
 
     // filter ,map ,forEach方法
@@ -124,5 +124,20 @@ export class OneChild3Component implements OnInit {
     let filterHeroes = heroes.filter(name => filterRe.test(name));
     let prefixedHeroes = heroes.map(name => 'Super_' + name);
     heroes.forEach(name => console.log(name));
+  }
+  websocket() {
+    let myWebsocket = new WebSocket("ws://www.websocket.org");
+    myWebsocket.onopen = function (evt) {
+      alert("Connection open ...");
+    };
+    myWebsocket.onmessage = function (evt) {
+      alert("Received Message: " + evt.data);
+    };
+    myWebsocket.onclose = function (evt) {
+      alert("Connection closed.");
+    };
+
+    myWebsocket.send("Hello WebSockets!");
+    myWebsocket.close();
   }
 }

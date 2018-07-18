@@ -288,8 +288,14 @@ export class TwoChild3Component implements OnInit {
     //   .distinctUntilChanged()
     //   .subscribe(x => console.log(x));
 
+    //  Subject 在使用中存在一个问题，就是如果某个 observer (观察者) 在执行的时候出现异常，
+    //  却没有进行异常处理，那么就会影响到其它的观察者。
+    //  解决该问题，最简单的方式就是为所有的观察者添加异常处理。
     this.newSubject = new Subject();
-    this.newSubject.subscribe(x => console.log(x));
+    this.newSubject.subscribe(
+      x => console.log(x),
+      error => console.log(error)
+    );
 
     // var source1 = Observable.range(1, 6)
     //   .bufferCount(2);
