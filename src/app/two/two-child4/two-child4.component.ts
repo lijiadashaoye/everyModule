@@ -23,10 +23,9 @@ export class TwoChild4Component implements OnInit {
     this.rout.paramMap.subscribe(
       (paramsMap: ParamMap) => {
         this.paramsData = paramsMap;
-        this.paramsData2 = this.paramsData.get('id')
+        this.paramsData2 = paramsMap.get('id')
       }
     );
-
   }
   goBack(): void {
     this.location.back();
