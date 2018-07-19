@@ -89,5 +89,7 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Va
   public registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
-  public registerOnTouched(fn: any): void { }
+  public registerOnTouched(fn: any): void {
+  }
+  
 }

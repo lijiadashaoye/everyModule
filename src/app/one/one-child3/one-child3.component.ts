@@ -136,6 +136,5 @@ export class OneChild3Component implements OnInit {
   }
   dasdf() {
     console.log(this.froms)
-
   }
 }

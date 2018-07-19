@@ -1,4 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-rd2',
@@ -7,9 +8,14 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class Rd2Component implements OnInit {
   @Input() inData;
-  constructor() { }
+  toEmitData: Observable<string>
+
+  constructor() { 
+    this.toEmitData = Observable.of('Rd2Component')
+  }
 
   ngOnInit() {
+    
   }
 
 }

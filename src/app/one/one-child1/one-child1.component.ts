@@ -10,6 +10,7 @@ import {
   EventEmitter,
   ComponentFactoryResolver,
   ViewContainerRef,
+  ComponentRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -24,6 +25,7 @@ export class OneChild1Component implements OnInit {
   today = new Date();
   color: string;
   resolveDatas;
+  someHTML;
   heroes = [
     { id: 14 },
     { id: 21 },
@@ -34,6 +36,7 @@ export class OneChild1Component implements OnInit {
   ads: AdItem[];
   currentAdIndex = -1;
   interval: any;
+  componentRef;
 
   constructor(
     private el: ElementRef,
@@ -45,6 +48,7 @@ export class OneChild1Component implements OnInit {
   ) { }
   ngOnInit() {
     this.color = 'yellow';
+    this.someHTML = `<h1>innerHTML</h1>`
     this.route.data   // 获取resolve数据
       .subscribe(gg => {
         this.resolveDatas = gg.resolveData;
@@ -77,6 +81,7 @@ export class OneChild1Component implements OnInit {
   ngAfterViewInit() {  // 动态创建<ng-template>标签
     this.vcRef.createEmbeddedView(this.tplRef)
   }
+
   ngOnDestroy() {
     clearInterval(this.interval);
   }
@@ -101,8 +106,10 @@ export class OneChild1Component implements OnInit {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(adItem.component);
     this.adHost.clear();
 
-    let componentRef = this.adHost.createComponent(componentFactory);
-    componentRef.instance.inData = adItem.data;
+    this.componentRef = this.adHost.createComponent(componentFactory);
+    this.componentRef.instance.inData = adItem.data;
+    this.componentRef.instance.toEmitData   //  this.componentRef.instance 代表组件实例
+      .subscribe(val => console.log(val));  
   }
 
   getAds() {
@@ -115,8 +122,9 @@ export class OneChild1Component implements OnInit {
     this.loadComponent();
     this.getAds();
   }
-  getEmitData(e){
-    console.log(e)
+  closeRD() {  // 关闭自动生成组件功能
+    clearInterval(this.interval);
+    this.componentRef.destroy();
   }
 }
 

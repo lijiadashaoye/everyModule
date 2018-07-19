@@ -21,7 +21,6 @@ export class HighlightDirective {
         // this.el.nativeElement.style.backgroundColor = color;
         let elem = this.el.nativeElement;
         this.rd.setAttribute(elem, 'style', `background:${color};`)
-        console.log(type)
     }
 }
 

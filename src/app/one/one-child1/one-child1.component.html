@@ -16,6 +16,10 @@
     <ng-template #tpl>
       ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构
     </ng-template>
+    <h2>ng-container</h2>
+    <ng-container *ngIf="true">
+      <p> ngIf with an ng-container.</p>
+    </ng-container>
   </div>
 
   <div>
@@ -40,6 +44,9 @@
       </div>
     </div>
     <button (click)="toggles()">toggles</button>
+    <div>
+      <div [innerHTML]="someHTML"></div>
+    </div>
   </div>
   <div>
     <h2>angular内建管道</h2>
@@ -67,6 +74,8 @@
       <p ngNonBindable>6.首字母转换：{{ 'angular' | titlecase }}</p>
       <p>{{ 'angular' | titlecase }}</p>
     </div>
+  </div>
+  <div>
     <div>
       <p>
         <strong>管道参数</strong>
@@ -83,7 +92,6 @@
       </p>
       <p ngNonBindable>{{ 'semlinker' | slice:0:3 | uppercase }}</p>
       <p>{{ 'semlinker' | slice:0:3 | uppercase }}</p>
-      <!-- Output: SEM -->
     </div>
   </div>
   <div>
@@ -93,8 +101,7 @@
   <div>
     <h2>动态生成组件</h2>
     <button (click)="startAd()">startAd</button>
+    <button (click)="closeRD()">closeRD</button>
     <ng-template #adhost></ng-template>
-     <!-- (toEmitData)="getEmitData($event)" -->
-     
   </div>
 </div>

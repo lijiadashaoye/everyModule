@@ -6,7 +6,9 @@ import {
   FormBuilder,
   FormGroup
 } from '@angular/forms';
-import { OneComponent } from '../one.component'
+import { OneComponent } from '../one.component';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-one-child2',
   templateUrl: './one-child2.component.html',

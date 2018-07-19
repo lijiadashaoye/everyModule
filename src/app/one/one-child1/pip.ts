@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+// 普通管道，数据过滤
 @Pipe({ name: 'flyingHeroes' })
 export class FlyingHeroes implements PipeTransform {
     transform(data) {  // 必须用 transform命名函数,参数依据传递的值而定数量
