@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-rd2',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rd2.component.css']
 })
 export class Rd2Component implements OnInit {
-
+  @Input() inData;
   constructor() { }
 
   ngOnInit() {
