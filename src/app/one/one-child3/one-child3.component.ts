@@ -48,6 +48,10 @@ export class OneChild3Component implements OnInit {
         }
       ]
     })
+    // 设置表单值
+    this.froms.patchValue({
+      one1: 'patchValue'
+    })
     // this.otherFun();
     this.otherFunction()
   }
@@ -132,5 +136,6 @@ export class OneChild3Component implements OnInit {
   }
   dasdf() {
     console.log(this.froms)
+
   }
 }

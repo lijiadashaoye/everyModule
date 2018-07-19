@@ -115,5 +115,8 @@ export class OneChild1Component implements OnInit {
     this.loadComponent();
     this.getAds();
   }
+  getEmitData(e){
+    console.log(e)
+  }
 }
 
