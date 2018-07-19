@@ -10,8 +10,12 @@
         <input type="text" placeholder="第二个" formControlName="two1">
       </label>
       <br>
+      <label>当前表单
+        <input type="checkbox" formControlName="check">formControlName="check"
+      </label>
+      <br>
       <label>表单组件
-        <app-one-child3-child formControlName="three" (isvalid)="childValid()"></app-one-child3-child>
+        <app-one-child3-child formControlName="three"></app-one-child3-child>
       </label>
       <br>
       <div style="background:rgb(240, 243, 250);padding:10px;">
@@ -21,6 +25,7 @@
         <br> {{froms.value|json}}
       </div>
       <button type="submit">提交</button>
+      <button type="button"(click)="dasdf()">test</button>
     </form>
   </div>
   <div>

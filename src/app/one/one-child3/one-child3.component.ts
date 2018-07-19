@@ -13,8 +13,6 @@ import {
 import {
   Observable
 } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-
 
 @Component({
   selector: 'app-one-child3',
@@ -33,7 +31,6 @@ export class OneChild3Component implements OnInit {
   source;
   constructor(private fb: FormBuilder) { }
 
-
   // ngOnChanges()	在ngOnInit之前调用，或者当组件输入数据（通过@Input装饰器显式指定的那些变量）变化时调用,
   // 可以实现同时监视多个输入属性值的变化。
   // ngOnInit()	第一次ngOnChanges之后调用。建议此时获取数据，不要在构造函数中获取。
@@ -43,6 +40,7 @@ export class OneChild3Component implements OnInit {
     this.froms = this.fb.group({
       one1: ['', Validators.compose([Validators.required, this.oneValid])],
       two1: ['', Validators.compose([Validators.required, this.oneValid])],
+      check: true,
       three: [
         {
           child1: 'lichild1',
@@ -57,9 +55,7 @@ export class OneChild3Component implements OnInit {
     ev.preventDefault()
   }
   // 表单内单独添加验证函数
-  oneValid(c: FormControl): {
-    [key: string]: any
-  } { // 验证器只有出错时才返回值,
+  oneValid(c: FormControl): { [key: string]: any } { // 验证器只有出错时才返回值,
     if (!c.value) {
       return null
     }
@@ -70,9 +66,6 @@ export class OneChild3Component implements OnInit {
     return {
       validData: '主表单里验证不通过'
     }
-  }
-  childValid() { // 子表单验证的结果
-    console.log(this.froms)
   }
   otherFun() {
     console.log(navigator.onLine) // 判断设备是否可以上网
@@ -137,5 +130,7 @@ export class OneChild3Component implements OnInit {
     myWebsocket.send("Hello WebSockets!");
     myWebsocket.close();
   }
-
+  dasdf() {
+    console.log(this.froms)
+  }
 }

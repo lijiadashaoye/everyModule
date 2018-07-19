@@ -67,7 +67,7 @@ export class OneChild2Component implements OnInit {
     this.intervals = setInterval(() => {
       this.oneComponent.childInterval++;
     }, 1000);
-    this.imgData = 'https://upload-images.jianshu.io/upload_images/311249-f67fda8e02d91fd6?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240'
+    this.imgData = 'http://img18.3lian.com/d/file/201712/30/1a8380b9c21b50b370d9bf1ada4e8679.png'
   }
 
   start() {

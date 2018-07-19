@@ -7,8 +7,17 @@ import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS,
-  Validator
-} from '@angular/forms'
+  Validator,
+  ValidatorFn,
+  ValidationErrors
+} from '@angular/forms';
+
+
+export const validateCounterRange: ValidatorFn = (control: FormControl):
+  ValidationErrors => {
+  console.log(control.value)
+  return null
+};
 
 @Component({
   selector: 'app-one-child3-child',
@@ -21,14 +30,14 @@ import {
       multi: true
     },
     {
-      provide: NG_VALIDATORS,  //  下边需要写以 validate 为名字的验证函数
-      useExisting: forwardRef(() => OneChild3ChildComponent),
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => OneChild3ChildComponent), //  第一种写法：下边需要写以 validate 为名字的验证函数
+      // useValue: validateCounterRange,    // 第二种写法
       multi: true
     }
   ]
 })
 export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Validator {
-  @Output() isvalid = new EventEmitter<boolean>();
   fromc: FormGroup;
   makeChild;
   private propagateChange = (_: any) => { };// 用来承接向上传递数据的函数
@@ -43,13 +52,8 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Va
       this.propagateChange(val);
     })
   }
-  isSubmit(froms, ev: Event) {
-    ev.preventDefault();
-    this.propagateChange(froms.value);
-  }
   makeChild2() {
     this.makeChild = '两个input框实现change联动'
-    this.isvalid.emit(true);
   }
 
   validate(c: FormControl): { [key: string]: any } {  // 验证器只有出错时才返回值
@@ -58,6 +62,7 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Va
     if (!val) {
       return null
     }
+
     if (typeof val == 'object') {
       if (data.test(val.child1)) {
         return null
@@ -73,7 +78,6 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Va
         'child1-valid': '表单验证不通过'
       }
     }
-
   }
   //ControlValueAccessor 必须有的三个函数
   public writeValue(obj: any): void {   // obj根据传进来的数据而定类型string?object?array?
@@ -83,7 +87,7 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Va
     }
   }
   public registerOnChange(fn: any): void {
-    this.propagateChange = fn
+    this.propagateChange = fn;
   }
   public registerOnTouched(fn: any): void { }
 }
