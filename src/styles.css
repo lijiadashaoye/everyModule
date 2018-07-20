@@ -5,16 +5,18 @@
 
 .active {
     color: red;
-    border: 1px solid lawngreen;
+    border: 1px solid rgb(252, 164, 0);
+    padding: 3px 10px;
 }
 
 .activeChild {
     color: green;
     border: 1px dashed royalblue;
+    padding: 3px 10px;
 }
 
 button {
-    padding: 3px 5px;
+    padding: 3px 7px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
