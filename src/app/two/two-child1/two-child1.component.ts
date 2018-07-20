@@ -26,25 +26,26 @@ import { User } from './datas';
   styleUrls: ['./two-child1.component.css'],
 })
 export class TwoChild1Component implements OnInit {
-  private users;
-  private user: FormGroup;
-  private groups: FormGroup;
-  private funValid: FormGroup;
-  private genders;
-  private roles;
-  private themes;
-  private topics;
-  private hobbies;
-  private provinces;
-  private citieData;
-  private cities;
-  private heroes;
-  private scrollDatas;
-  private asyncData;
+  public users;
+  public user: FormGroup;
+  public groups: FormGroup;
+  public funValid: FormGroup;
+  public genders;
+  public roles;
+  public themes;
+  public topics;
+  public hobbies;
+  public provinces;
+  public citieData;
+  public cities;
+  public heroes;
+  public scrollDatas;
+  public asyncData;
+  public ismultiple=false;
 
   constructor(
-    private fb: FormBuilder,
-    private rd: Renderer2
+    public fb: FormBuilder,
+    public rd: Renderer2
   ) { }
 
   ngOnInit(): void {
@@ -161,7 +162,7 @@ export class TwoChild1Component implements OnInit {
     this.rd.setAttribute(this.isP.nativeElement, 'style', 'background:skyblue;')
   }
 
-  @ViewChild('isScroll') private fff: ElementRef;
+  @ViewChild('isScroll') public fff: ElementRef;
   @HostListener('window:scroll', ['$event'])
   onScrollEvent(e) {
     console.log(e)

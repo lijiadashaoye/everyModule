@@ -7,7 +7,6 @@ import {
   FormGroup
 } from '@angular/forms';
 import { OneComponent } from '../one.component';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-one-child2',
@@ -69,7 +68,7 @@ export class OneChild2Component implements OnInit {
     this.intervals = setInterval(() => {
       this.oneComponent.childInterval++;
     }, 1000);
-    this.imgData = 'http://img18.3lian.com/d/file/201712/30/1a8380b9c21b50b370d9bf1ada4e8679.png'
+    this.imgData = 'http://img18.3lian.com/d/file/201712/30/1a8380b9c21b50b370d9bf1ada4e8679.png';
   }
 
   start() {

@@ -17,6 +17,7 @@ import {
 })
 export class ThreeChild1Component implements OnInit {
   public opt: any;
+  id;
   constructor(private china: AddressDataChinaService) {
     this.opt = {
       jumps: this.china.getJumps(),

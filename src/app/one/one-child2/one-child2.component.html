@@ -21,7 +21,7 @@
   <div>
     <h2>formArray</h2>
     <form [formGroup]="myForm">
-      <div class="like" *ngFor="let like of likes.controls;index as i;let odd=odd">
+      <div class="like" *ngFor="let like of likes['controls'];index as i;let odd=odd">
         <label>
           <input type="checkbox" [formControl]="like"> {{likesArr[i]}} {{odd?' --偶数行':' --奇数行'}}
         </label>
