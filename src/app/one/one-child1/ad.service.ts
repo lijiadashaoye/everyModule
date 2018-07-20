@@ -19,7 +19,3 @@ export class AdService {  // 创建数据
         ];
     }
 }
-
-// 使用 InjectionToken 对字符串令牌包装，防止命名重复被覆盖
-import { InjectionToken } from '@angular/core';
-export const useInjectionToken = new InjectionToken<string>('');

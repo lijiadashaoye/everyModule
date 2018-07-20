@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AdService, AdItem, useInjectionToken } from './ad.service';
+import { AdService, AdItem } from './ad.service';
 
 @Component({
   selector: 'app-one-child1',
@@ -46,10 +46,8 @@ export class OneChild1Component implements OnInit {
     private router: Router,
     private componentFactoryResolver: ComponentFactoryResolver,
     private adService: AdService,
-    @Inject(useInjectionToken) private kkk
   ) { }
   ngOnInit() {
-    console.log(this.kkk)
     this.color = 'yellow';
     this.someHTML = `<h1>innerHTML</h1>`
     this.route.data   // 获取resolve数据

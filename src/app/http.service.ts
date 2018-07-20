@@ -6,6 +6,11 @@ import { UserData } from './two/two-child3/user-data.model';
 
 import { HttpHeaders } from '@angular/common/http';
 
+// 使用 InjectionToken 对字符串令牌进行包装，防止命名重复被覆盖
+import { InjectionToken } from '@angular/core';
+export const BASE_URL = new InjectionToken<string>('');
+export const urlText = 'http://localhost:3000/datas';
+
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
 // 设置header ，angular5+的方法
@@ -19,7 +24,7 @@ export const httpOptions = {
 @Injectable()
 export class HttpService {
     constructor(
-        @Inject('BASE_URL') private baseUrl,
+        @Inject(BASE_URL) private baseUrl,
         private http: Http
     ) { }
     toGet(id): Observable<UserData> {
