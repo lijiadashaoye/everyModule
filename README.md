@@ -1,6 +1,6 @@
 # Run
-Run `npm run start` to start the project;
-会同时运行`ng serve --o`和`json-server`
+Run `npm run start` to start the project; 
+会同时运行 `ng serve --o` 和 `json-server`及`proxy` 代理
 
 ## Build
 
