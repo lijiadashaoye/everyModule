@@ -12,9 +12,9 @@
   </div>
   <div>
     <h2>ng-template</h2>
-    <div [ngTemplateOutlet]="tpl"></div>
+    <div *ngTemplateOutlet="tpl"></div>
     <ng-template #tpl>
-      ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构
+      <span>ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构</span>
     </ng-template>
     <h2>ng-container</h2>
     <ng-container *ngIf="true">

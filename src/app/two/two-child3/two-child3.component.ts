@@ -111,15 +111,15 @@ export class TwoChild3Component implements OnInit {
     this.everyObservable3();
     this.everyObservable4();
 
-    let list = [
-      { name: '赵四' }, { name: '旺旺' }, { name: '二狗' }
-    ];
-    for (let i in list) {  // for..in迭代的是数组，i为索引值
-      console.log(i);
-    }
-    for (let i of list) {  // for..of则迭代数组,i为索引对应的值。
-      console.log(i);
-    }
+    // let list = [
+    //   { name: '赵四' }, { name: '旺旺' }, { name: '二狗' }
+    // ];
+    // for (let i in list) {  // for..in迭代的是数组，i为索引值
+    //   console.log(i);
+    // }
+    // for (let i of list) {  // for..of则迭代数组,i为索引对应的值。
+    //   console.log(i);
+    // }
   }
   seeOf() {
     Observable.of({
@@ -138,8 +138,10 @@ export class TwoChild3Component implements OnInit {
       })
   }
   useJsonServer(id) {
-    this.http.toGet(id).subscribe(val => this.useJsonServers = val)
+    this.http.toGet(id).subscribe(val => this.useJsonServers = val);
   }
+
+
   seeScan() {
     // scan()会将执行过程中的每一个值进行输出
     let inter$ = Observable.interval(600)

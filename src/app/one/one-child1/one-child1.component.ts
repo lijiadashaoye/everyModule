@@ -47,6 +47,7 @@ export class OneChild1Component implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,
     private adService: AdService,
   ) { }
+  @ViewChild('tpl') tplRef: TemplateRef<any>;
   ngOnInit() {
     this.color = 'yellow';
     this.someHTML = `<h1>innerHTML</h1>`
@@ -77,10 +78,7 @@ export class OneChild1Component implements OnInit {
     // 将字符串通过使用第二个参数补齐成第一个参数规定的长度，
     // console.log('250.00'.padStart(10, '*')); // 在前边补
     // console.log('backbone'.padEnd(10, '*'))  // 在后边补
-  }
-  @ViewChild('tpl') tplRef: TemplateRef<any>;
-  ngAfterViewInit() {  // 动态创建<ng-template>标签
-    this.vcRef.createEmbeddedView(this.tplRef)
+    // this.vcRef.createEmbeddedView(this.tplRef) // 动态创建<ng-template>标签
   }
 
   ngOnDestroy() {

@@ -111,8 +111,8 @@
 
   <div>
     <h2>trackBy</h2>
-    <p *ngFor="let hero of heroes; trackBy: trackByHeroes">{{hero.id}}{{hero.name}}</p>
-    <button (click)="makeChage()">makeChage</button>
+    <p *ngFor="let hero of heroesData; trackBy: trackByHeroes">{{hero.name}}</p>
+    <button (click)="makeChage()">trackBy</button>
   </div>
   <div>
     <h2>ngSwitch ngClass</h2>
@@ -123,16 +123,6 @@
       <div *ngSwitchDefault>Var is else</div>
     </div>
     <button (click)="makeChage2()">makeChage2</button>
-  </div>
-  <div>
-    <h2>ngIf ... else</h2>
-    <ng-template #hidden>
-      <p>ng-template</p>
-    </ng-template>
-    <p *ngIf="shown; else hidden">
-      is true
-    </p>
-    <button (click)="makeChage3()">makeChage3</button>
   </div>
   <div>
     <h2 #isH2>@ViewChild 和 window:scroll </h2>
@@ -189,5 +179,18 @@
     <br> email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+_]+@[a-z0-9.-]+')]]
     <br> });
     <br> }}
+  </div>
+  <div>
+    <div>
+      <h2>ngIf ... else</h2>
+      <p *ngIf="shown | async as datas; else hidden">
+        {{datas}}
+      </p>
+      <ng-template #hidden>
+        <p>*ngIf="shown | async as datas; else hidden"</p>
+      </ng-template>
+
+      <button (click)="makeChage3()">makeChage3</button>
+    </div>
   </div>
 </div>

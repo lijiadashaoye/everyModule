@@ -6,7 +6,7 @@ import {
   Renderer2,
   ViewContainerRef,
   HostListener,
-  forwardRef
+
 } from '@angular/core';
 import {
   FormBuilder,
@@ -19,6 +19,10 @@ import {
 import { datas } from './datas';
 import { Hero } from './datas';
 import { User } from './datas';
+
+import { Observable } from 'rxjs';
+import 'rxjs/add/observable/of'
+import 'rxjs/add/operator/delay'
 
 @Component({
   selector: 'app-two-child1',
@@ -41,7 +45,7 @@ export class TwoChild1Component implements OnInit {
   public heroes;
   public scrollDatas;
   public asyncData;
-  public ismultiple=false;
+  public ismultiple = false;
 
   constructor(
     public fb: FormBuilder,
@@ -130,13 +134,21 @@ export class TwoChild1Component implements OnInit {
     this.cities = this.citieData.filter((city) => city.pk == pk);
     this.users.city = this.cities[0].ck;
   }
-  trackByHeroes(index: number, hero: Hero): number {
-    return hero.id;
-  }
+  heroesData = [];
+  num = 0;
   makeChage() {
-    let num = Math.floor(Number(Math.random() * this.heroes.length));
-    this.heroes[num]['name'] = Math.floor(Number(this.heroes[num]['name']) / 5).toString();
+    if (this.num < this.heroes.length) {
+      this.heroesData.push(this.heroes[this.num]);
+      this.num++;
+    } else {
+      this.num = 0;
+      this.makeChage()
+    }
   }
+  trackByHeroes(index: number, hero: Hero): number {
+    return index;
+  }
+
   save() {
     console.log(this.users);
   }
@@ -151,7 +163,10 @@ export class TwoChild1Component implements OnInit {
   }
   shown;
   makeChage3() {
-    this.shown ? this.shown = false : this.shown = true
+    let message = '3s later return Hello World!';
+    this.shown = new Promise(resolve => {
+      setTimeout(() => resolve(message), 3000);
+    });
   }
   // angular的dom操作方法
   @ViewChild('isP') isP: ElementRef;

@@ -33,12 +33,12 @@ export const datas = {
         { pk: 16, ck: 1315, cv: '厦门市' }, { pk: 16, ck: 1332, cv: '泉州市' }
     ],
     heroes: [
-        { id: 0, name: '00000' },
-        { id: 1, name: '111110' },
-        { id: 2, name: '222222' },
-        { id: 3, name: '333330' },
-        { id: 4, name: '444440' },
-        { id: 5, name: '555550' },
+        { name: '旺旺' },
+        { name: '张飞' },
+        { name: '普京' },
+        { name: '路飞' },
+        { name: '一护' },
+        { name: '康熙' },
     ]
 }
 export interface User {

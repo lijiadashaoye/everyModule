@@ -10,7 +10,7 @@ export class AppComponent {
     child: string = '';
     constructor(private appService: AppService, private route: Router) {
         this.appService.childService.subscribe((value: string) => {
-            if (value.length > 0) {
+            if (value) {
                 this.child = '通过服务中的 emit跳过来的：' + value;
             } else {
                 this.child = null

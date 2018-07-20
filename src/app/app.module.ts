@@ -29,7 +29,7 @@ import { PopupComponent } from './popup/popup.component';
     HttpService,
     { provide: BASE_URL, useValue: urlText },
     { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true }, // 拦截器
-    { provide: LOCALE_ID, useValue: 'zh-Hans' }   // 规定国际化为中文简体
+    // { provide: LOCALE_ID, useValue: 'zh-Hans' }   // 规定国际化为中文简体
   ],
   bootstrap: [AppComponent]
 })
