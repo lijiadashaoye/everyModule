@@ -81,3 +81,4 @@ export class ResolveGuard implements Resolve<resolveService> {
         return this.resol.getData()
     }
 }
+

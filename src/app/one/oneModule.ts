@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlyingHeroes } from './one-child1/pip';
 import { Rd1Component } from './one-child1/rd1/rd1.component';
 import { Rd2Component } from './one-child1/rd2/rd2.component';
-import { AdService } from './one-child1/ad.service';
+import { AdService,useInjectionToken } from './one-child1/ad.service';
 
 import { NgContentComponent } from './one-child1/ng-content/ng-content.component';
 import { NgContentChildComponent } from './one-child1/ng-content-child/ng-content-child.component'
@@ -49,6 +49,9 @@ import { NgViewComponent } from './one-child1/ng-view/ng-view.component';
         Rd1Component,  // 动态生成的组件，需要同时写到这里
         Rd2Component
     ],
-    providers: [AdService]
+    providers: [
+        AdService,
+        { provide: useInjectionToken, useValue: 'useValue:useInjectionToken' }
+    ]
 })
 export class OneModule { }
