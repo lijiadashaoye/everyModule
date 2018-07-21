@@ -12,6 +12,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NoopInterceptor } from './lanjieqi';
 import { PopupComponent } from './popup/popup.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import { PopupComponent } from './popup/popup.component';
     BrowserModule,
     OneModule,
     MainRoute,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     AppService,

@@ -96,13 +96,15 @@ export class TwoChild3Component implements OnInit {
   ) {
     this.f = (phrase) => {
       return class {
-        sayHi() { console.log(phrase) }
+        sayHi() {
+          console.log(phrase)
+        }
       }
     }
   }
   extendsFun() {
     // 对于高级编程模式，当我们使用的类是根据许多条件使用函数来生成时，这就很有用。
-    class User extends this.f("Hello") { }
+    class User extends this.f("Hello") {}
     new User().sayHi(); // Hello
   }
   ngOnInit() {
@@ -123,9 +125,9 @@ export class TwoChild3Component implements OnInit {
   }
   seeOf() {
     Observable.of({
-      n: 'ff',
-      age: 1
-    }, {
+        n: 'ff',
+        age: 1
+      }, {
         n: 'dd',
         age: 2
       }, {
@@ -138,7 +140,16 @@ export class TwoChild3Component implements OnInit {
       })
   }
   useJsonServer(id) {
-    this.http.toGet(id).subscribe(val => this.useJsonServers = val);
+    this.http.toGet(id).subscribe(
+      val => this.useJsonServers = val,
+      error => console.log(error)
+    );
+  }
+  widthHttpInterceptor(id){
+    this.http.toGet2(id).subscribe(
+      val => this.useJsonServers = val,
+      error => console.log(error)
+    );
   }
 
 
@@ -233,9 +244,9 @@ export class TwoChild3Component implements OnInit {
       .subscribe((val) => {
         let data = val;
         this.datas = data++
-        if (this.datas >= 15) {
-          sub.unsubscribe()
-        }
+          if (this.datas >= 15) {
+            sub.unsubscribe()
+          }
       })
 
     // 类似于 map，但仅用于选择每个发出对象的某个嵌套属性。

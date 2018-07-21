@@ -6,7 +6,6 @@ import {
   Renderer2,
   ViewContainerRef,
   HostListener,
-
 } from '@angular/core';
 import {
   FormBuilder,
@@ -16,13 +15,27 @@ import {
   FormControl
 } from '@angular/forms';
 
-import { datas } from './datas';
-import { Hero } from './datas';
-import { User } from './datas';
+import {
+  datas
+} from './datas';
+import {
+  Hero
+} from './datas';
+import {
+  User
+} from './datas';
 
-import { Observable } from 'rxjs';
+import {
+  Observable
+} from 'rxjs';
 import 'rxjs/add/observable/of'
-import 'rxjs/add/operator/delay'
+import 'rxjs/add/operator/delay';
+
+import {
+  HttpEventType,
+  HttpClient,
+  HttpRequest
+} from '@angular/common/http';
 
 @Component({
   selector: 'app-two-child1',
@@ -49,8 +62,9 @@ export class TwoChild1Component implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    public rd: Renderer2
-  ) { }
+    public rd: Renderer2,
+    public http: HttpClient
+  ) {}
 
   ngOnInit(): void {
     // console.log(document.documentElement.clientHeight)
@@ -64,19 +78,21 @@ export class TwoChild1Component implements OnInit {
     this.citieData = datas.citieData;
     this.cities = this.citieData.filter(city => city.pk)
     // 模版表单
-    this.users = {   // 新增用户
+    this.users = { // 新增用户
       name: '',
       gender: this.genders[0].value,
       role: this.roles[1].value,
       theme: this.themes[0],
       isActive: false,
-      hobbies: { 'music': true },
+      hobbies: {
+        'music': true
+      },
       topics: [this.topics[1].value],
       province: 16, // 福建省
       city: 1315 // 厦门市
     }
     // 动态表单
-    this.user = this.fb.group({   //  表单的
+    this.user = this.fb.group({ //  表单的
       name: ['', [Validators.required, Validators.minLength(2), this.nameMatcher]], // 对单个表单进行验证
       account: this.fb.group({
         email: ['', Validators.required],
@@ -87,13 +103,17 @@ export class TwoChild1Component implements OnInit {
     this.funValid = this.fb.group({
       ages: ['', this.ageRange(20, 120)],
       go: [''],
-    }, { validator: this.formMatcher })  // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
+    }, {
+      validator: this.formMatcher
+    }) // 对整个表单进行验证，注意验证函数写的位置：this.fb.group({},{})
 
   }
 
-  nameMatcher(c: FormControl) {  // 自定义验证函数,此处是对整表单中的单个control进行验证
+  nameMatcher(c: FormControl) { // 自定义验证函数,此处是对整表单中的单个control进行验证
     if (c.value > 10) {
-      return { 'from': '单个表单进行验证' }
+      return {
+        'from': '单个表单进行验证'
+      }
     } else {
       return null
     }
@@ -104,16 +124,24 @@ export class TwoChild1Component implements OnInit {
     if (ages && go) {
       return null
     } else {
-      return { 'from': '对整个表单进行验证' }
+      return {
+        'from': '对整个表单进行验证'
+      }
     }
   }
 
   // 可传参数的验证函数
   ageRange(min: number, max: number): ValidatorFn {
-    return (c: FormControl): { [key: string]: any } | null => {
+    return (c: FormControl): {
+      [key: string]: any
+    } | null => {
       let age = c.value;
       if (age && (isNaN(age) || age < min || age > max)) {
-        return { 'range': true, min: min, max: max };
+        return {
+          'range': true,
+          min: min,
+          max: max
+        };
       }
       return null;
     }
@@ -152,7 +180,13 @@ export class TwoChild1Component implements OnInit {
   save() {
     console.log(this.users);
   }
-  onSubmit({ value, valid }: { value: User, valid: boolean }) {
+  onSubmit({
+    value,
+    valid
+  }: {
+    value: User,
+    valid: boolean
+  }) {
     console.log(value, valid);
   }
   myVar;
@@ -170,7 +204,9 @@ export class TwoChild1Component implements OnInit {
   }
   // angular的dom操作方法
   @ViewChild('isP') isP: ElementRef;
-  @ViewChild('isH2', { read: ViewContainerRef }) isH2: ViewContainerRef;
+  @ViewChild('isH2', {
+    read: ViewContainerRef
+  }) isH2: ViewContainerRef;
   makeChage4() {
     console.log(this.isH2)
     console.log('#isP的id：' + this.isP.nativeElement.id)
@@ -192,7 +228,16 @@ export class TwoChild1Component implements OnInit {
   // async(异步) 函数总是返回 Promises
   // await（只允许在 async(异步) 函数内部使用）等待其操作对象 Promise 返回：
   async anss() {
-    let dishes = [{ name: "fish", time: 3 }, { name: "fish1", time: 5 }, { name: "fish3", time: 3 }];
+    let dishes = [{
+      name: "fish",
+      time: 3
+    }, {
+      name: "fish1",
+      time: 5
+    }, {
+      name: "fish3",
+      time: 3
+    }];
     this.asyncData = [];
 
     for (let d of dishes) {
@@ -246,8 +291,19 @@ export class TwoChild1Component implements OnInit {
     }
     // this.upLoad(formdata)
 
-    let blobdata = new Blob([item.files[0]], { type: 'image/png' });  // 新建二进制Blob对象
+    let blobdata = new Blob([item.files[0]], {
+      type: 'image/png'
+    }); // 新建二进制Blob对象
     // var blob = new Blob([xhr.response], {type: 'image/png'});   // 下载时，读取xhr.response
-
+    // this.http.request(new HttpRequest('POST', 'URL', 'body', {
+    //     reportProgress: true
+    //   }))
+    //   .subscribe(event => {
+    //     if (event.type === HttpEventType.DownloadProgress) {}
+    //     if (event.type === HttpEventType.UploadProgress) {}
+    //     if (event.type === HttpEventType.Response) {
+    //       console.log(event.body);
+    //     }
+    //   })
   }
 }
