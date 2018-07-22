@@ -1,6 +1,15 @@
-import { Component } from '@angular/core';
-import { AppService } from './serviceEmit.service';
-import { Router } from '@angular/router'
+import {
+    Component
+} from '@angular/core';
+import {
+    AppService
+} from './serviceEmit.service';
+import {
+    Router
+} from '@angular/router';
+import {
+    Observable
+} from 'rxjs'
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -40,9 +49,16 @@ export class AppComponent {
     }
     toTwo() {
         let routeChildData = 'twoChild4'
-        this.route.navigate(['two', routeChildData, { id: 'heroId', foo: 'foo' }])
+        this.route.navigate(['two', routeChildData, {
+            id: 'heroId',
+            foo: 'foo'
+        }])
     }
     compose3() {
-        this.route.navigate([{ outlets: { popup3: ['compose3'] } }])
+        this.route.navigate([{
+            outlets: {
+                popup3: ['compose3']
+            }
+        }])
     }
 }

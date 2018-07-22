@@ -16,13 +16,14 @@
         <button (click)="close()">关闭2</button>
       </div>
     </ng-template>
-    <ng-template #temp2>
-      <div>
-        <p>
-          {{path ? path:'path没值'|json}}
-        </p>
-        <button (click)="close()">关闭3</button>
-      </div>
-    </ng-template>
+   
   </div>
 </div>
+<ng-template #temp2>
+  <div>
+    <p>
+      {{path ? path:'path没值'|json}}
+    </p>
+    <button (click)="close()">关闭3</button>
+  </div>
+</ng-template>

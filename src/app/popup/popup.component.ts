@@ -6,6 +6,9 @@ import {
   Router,
   ActivatedRoute
 } from '@angular/router';
+import {
+  Observable
+} from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-popup',
@@ -48,5 +51,6 @@ export class PopupComponent implements OnInit {
           }]);
       }
     }
+
   }
 }
