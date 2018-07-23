@@ -112,6 +112,7 @@ export class OneChild1Component implements OnInit {
     this.componentRef.instance.inData = adItem.data;
     this.componentRef.instance.toEmitData   //  this.componentRef.instance 代表组件实例
       .subscribe(val => console.log(val));
+      console.log(this.componentRef.instance)
   }
 
   getAds() {
