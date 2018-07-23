@@ -1,5 +1,5 @@
 <div class="waper">
-  <div>
+  <div style="width:20%;">
     <h2> 属性指令</h2>
     <strong appHighlight>使用HostListener为元素添加事件</strong>
     <p [appHighlight]="color" author="attribute author">
@@ -11,7 +11,7 @@
     <br>
     <button hostbindingd>HostBinding</button>
   </div>
-  <div>
+  <div style="width:25%;">
     <h2>ng-template</h2>
     <div *ngTemplateOutlet="tpl"></div>
     <ng-template #tpl>
@@ -32,14 +32,14 @@
 
   </div>
 
-  <div>
+  <div style="width:25%;">
     <h2>ViewChildren</h2>
     <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置
     </p>
     <app-ng-view></app-ng-view>
   </div>
 
-  <div>
+  <div style="width:30%;">
     <h2>ContentChildren</h2>
     <p>将组件A、B一起放到最终位置，但A标签内放入B标签，同时在A组件的html内，用 ng-content表明B组件应该显示的位置
     </p>
