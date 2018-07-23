@@ -1,1 +1,17 @@
 
+.headerButton{
+    background:rgb(211, 193, 230);
+}
+.headerButton button{
+    border:0;
+    outline: none;
+    cursor: pointer;
+    font-size:14px;
+    padding:3px 0;
+    box-sizing: border-box;
+    width:100px;
+}
+.headerButton button:hover{
+    color:rgb(247, 35, 229);
+    font-weight: bold;
+}

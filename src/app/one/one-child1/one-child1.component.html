@@ -7,28 +7,42 @@
       <br> 使用输入型的属性指令
     </p>
     <br>
-    <strong>使用HostBinding为元素添加属性</strong>
+    <strong>使用HostBinding为元素添加属性，点击按钮</strong>
+    <br>
     <button hostbindingd>HostBinding</button>
   </div>
   <div>
     <h2>ng-template</h2>
     <div *ngTemplateOutlet="tpl"></div>
     <ng-template #tpl>
-      <span>ng-template属于后加载的，作为行元素放在当前组件，不与先加载的一起构成DOM结构</span>
+      <p>ng-template属于后加载的，作为行元素放在当前组件，不与先加载 的一起构成DOM结构，若不指定 ngTemplateOutlet，是不会显示出来的。
+        <br>若是用createEmbeddedView() 动态创建的，会作为当前整个页面的子元素append进去
+      </p>
     </ng-template>
+    <div>
+      <h2>
+        <h4>用createEmbeddedView() 动态创建ng-template，点击按钮看页面最底下</h4>
+      </h2>
+      <button (click)="createEmbeddedViews()">createEmbeddedViews</button>
+    </div>
     <h2>ng-container</h2>
     <ng-container *ngIf="true">
       <p> ngIf with an ng-container.</p>
     </ng-container>
+
   </div>
 
   <div>
     <h2>ViewChildren</h2>
+    <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置
+    </p>
     <app-ng-view></app-ng-view>
   </div>
 
   <div>
     <h2>ContentChildren</h2>
+    <p>将组件A、B一起放到最终位置，但A标签内放入B标签，同时在A组件的html内，用 ng-content表明B组件应该显示的位置
+    </p>
     <app-ng-content>
       <app-ng-content-child></app-ng-content-child>
     </app-ng-content>

@@ -78,7 +78,10 @@ export class OneChild1Component implements OnInit {
     // 将字符串通过使用第二个参数补齐成第一个参数规定的长度，
     // console.log('250.00'.padStart(10, '*')); // 在前边补
     // console.log('backbone'.padEnd(10, '*'))  // 在后边补
-    // this.vcRef.createEmbeddedView(this.tplRef) // 动态创建<ng-template>标签
+
+  }
+  createEmbeddedViews() { // 动态创建<ng-template>标签
+    this.vcRef.createEmbeddedView(this.tplRef) 
   }
 
   ngOnDestroy() {

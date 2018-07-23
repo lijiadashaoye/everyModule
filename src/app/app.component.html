@@ -1,4 +1,5 @@
-<div>
+<div class="headerButton">
+  <h2>路由守卫相关（但代码中已关闭）</h2>
   <button (click)="login()">login</button>
   <button (click)="loginOut()">loginOut</button>
   <button (click)="canGo()">canGo</button>
@@ -7,20 +8,25 @@
   <button (click)="canNotLeave()">canNotLeave</button>
   <span>先按ctrl + k，在按ctrl + 0，可以实现vscode代码折叠</span>
 </div>
-<ul>
+<ul style="padding:5px;background: rgb(196, 228, 228)">
   <li routerLink="one" routerLinkActive="active">one</li>
   <li routerLink="two" routerLinkActive="active">two</li>
   <li routerLink="three" routerLinkActive="active">three</li>
+  <h2>各个实例模块</h2>
 </ul>
-<ul>
+<ul style="padding:5px;background: rgb(226, 228, 196)">
   <li (click)="toTwo()">twoChild4</li>
   <li [routerLink]="['/two', 'twoChild4']">/two/:id(['/two', 'twoChild4'])</li>
   <button [routerLink]="[{ outlets: { popup1: ['compose1'] } }]" routerLinkActive="act">compose1</button>
   <button [routerLink]="[{ outlets: { popup2: ['compose2'] } }]" routerLinkActive="act">compose2</button>
   <button [routerLink]="[{ outlets: { popup3: ['compose3'] } }]" routerLinkActive="act">compose3</button>
   <button (click)="compose3()">compose3函数</button>
+  <h2>其他非主流路由</h2>
 </ul>
-<p>{{child}}</p>
+<div style="padding:5px;background: rgb(196, 199, 228)">
+  <h2>全局数据传递服务</h2>
+  <p>{{child}}</p>
+</div>
 <router-outlet></router-outlet>
 <router-outlet name="popup1"></router-outlet>
 <router-outlet name="popup2"></router-outlet>

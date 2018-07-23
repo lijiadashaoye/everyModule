@@ -2,7 +2,10 @@
 // URL 是相对于你正在导入的 CSS 文件的。
  @import '../node_modules/bootstrap/dist/css/bootstrap.css';
   */
-
+body,html,div,ul,li,p,h1,h2,h3,h4{
+    padding:0;
+    margin:0;
+}
 .active {
     color: red;
     border: 1px solid rgb(252, 164, 0);
@@ -46,13 +49,13 @@ p {
 
 .waper {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
-
-.waper>div {
+.waper>div{
+    width:100%;
     padding: 10px;
+    border:1px dashed rebeccapurple;
 }
-
 /* //////////////////////////// */
 
 /*!

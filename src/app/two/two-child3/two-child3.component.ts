@@ -139,13 +139,13 @@ export class TwoChild3Component implements OnInit {
         this.seeOfs += obj.age
       })
   }
-  useJsonServer(id) {
+  useJsonServer(id) {  // 未使用了angular6 的拦截器
     this.http.toGet(id).subscribe(
       val => this.useJsonServers = val,
       error => console.log(error)
     );
   }
-  widthHttpInterceptor(id){
+  widthHttpInterceptor(id){   // 使用了angular6 的拦截器
     this.http.toGet2(id).subscribe(
       val => this.useJsonServers = val,
       error => console.log(error)

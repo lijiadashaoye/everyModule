@@ -122,6 +122,7 @@ export class OneChild2Component implements OnInit {
     }
   }
   ngOnDestroy(): void {
-    clearInterval(this.intervals)
+    clearInterval(this.intervals);
+    this.oneComponent.childInterval=0;
   }
 }
