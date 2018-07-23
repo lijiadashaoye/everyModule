@@ -1,14 +1,16 @@
 <div style="background:  rgb(187, 186, 186);margin: 4px;">
-  <p>
+  <p style="font-size:14px;">
     这是子组件的内容
+    <br>ngOnChanges1：{{data3}}
+    <br>ngOnChanges2：{{data4}}
   </p>
-  <div style="border: 1px solid red;margin: 5px;">
+  <div style="border: 1px solid red;margin: 5px;font-size:14px">
     <ng-content select=".header"></ng-content>
   </div>
-  <div style="border: 1px solid green;margin: 5px;">
+  <div style="border: 1px solid green;margin: 5px;font-size:14px">
     <ng-content select=".content"></ng-content>
   </div>
-  <div style="border: 1px solid blue;margin: 5px;">
+  <div style="border: 1px solid blue;margin: 5px;font-size:14px">
     <ng-content select=".footer"></ng-content>
   </div>
 </div>
