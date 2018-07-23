@@ -1,5 +1,5 @@
 <div class="waper">
-  <div>
+  <div style="width:35%;font-size:14px;">
     <p>自定义表单组件</p>
     <form [formGroup]="froms" (ngSubmit)="isSubmit(froms,$event)">
       <label>当前表单
@@ -18,28 +18,42 @@
         <app-one-child3-child formControlName="three"></app-one-child3-child>
       </label>
       <br>
-      <div style="background:rgb(240, 243, 250);padding:10px;">
+      <div style="background:rgb(240, 243, 250);padding:10px;font-size:14px;">
         froms.valid : {{froms.valid | json}}
-        <br>froms.controls['one1'].errors : {{froms.controls['one1'].errors | json}}
+        <br>froms.controls['one1'].errors :
+        <br>{{froms.controls['one1'].errors | json}}
         <br>
         <br> {{froms.value|json}}
       </div>
       <button type="submit">提交</button>
-      <button type="button"(click)="dasdf()">test</button>
+      <button type="button" (click)="dasdf()">console forms</button>
     </form>
   </div>
-  <div>
+  <div style="width:10%;">
     <h3>webWorker</h3>
     <p>计数:
       <output id="result"></output>
     </p>
     <button (click)="startWorker()">开始 Worker</button>
-    <button (click)="stopWorker()">方法一的停止 Worker</button>
+    <button (click)="stopWorker()">停止 Worker</button>
     <h3>Websocket</h3>
     <button (click)="websocket()">Websocket</button>
   </div>
-  <div>
+  <div style="padding:0 10px;font-size: 16px;width:30%;">
+    <p>1.先按ctrl(mac是command键) + k，再按ctrl(mac是command键) + 0，可以实现vscode代码折叠</p>
+    <p>2.按ctrl(mac是command键) + 数学减号'-'，可实现vscode字体变小，数学加号'+'，可实现vscode字体变大</p>
+    <p>3.每5分钟自动保存一次："files.autoSaveDelay": 30000,</p>
+    <p>4.控制编辑器是否应在键入后自动设置行格式化："editor.formatOnType": false,Alt+Shift+F实现手动格式化代码</p>
+    <p>5.调整编辑区域的缩放级别："window.zoomLevel": 0.5,</p>
+    <p>6.同步 Git 存储库前进行确认（左下角）："git.confirmSync": false,</p>
+    <p>7.编辑区域字体大小设置："editor.fontSize": 16,</p>
+    <p>8.重命名或移动文件时自动更新 import 语句的路径："typescript.updateImportsOnFileMove.enabled": "always",</p>
+    <p>9.控制是否显示工作台底部状态栏中的 Twitter 反馈 (笑脸图标)："workbench.statusBar.feedback.visible": false,</p>
+    <p>10.限制小地图的宽度："editor.minimap.maxColumn": 30,</p>
+    <p>11.限制小地图的位置"editor.minimap.side": "left",</p>
+    <p>12.按ctrl(mac是command键) + 数学减号'-'，可实现vscode字体变小，数学加号'+'，可实现vscode字体变大</p>
+  </div>
+  <div style="width:25%;">
 
   </div>
-
 </div>

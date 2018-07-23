@@ -1,6 +1,8 @@
 
 .headerButton{
     background:rgb(211, 193, 230);
+    display: flex;
+    justify-content: space-between;
 }
 .headerButton button{
     border:0;
