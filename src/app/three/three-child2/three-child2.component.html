@@ -1,8 +1,6 @@
-<p>
-  three-child2 works!
-</p>
+<h2>富文本组件第二种</h2>
 <div>
-  <c-editor [(ngModel)]="text" [placeholder]="'请输入...'"  [style]="{'min-height':'320px','padding-bottom':'20px','background':'rgba(0,0,0,.1)'}"></c-editor>
+  <c-editor [(ngModel)]="text" [placeholder]="'请输入...'" [style]="{'min-height':'120px','padding-bottom':'20px','background':'rgba(0,0,0,.1)'}"></c-editor>
 </div>
 <div>
   <button (click)="save()">存储数据</button>
@@ -10,25 +8,8 @@
   <button (click)="clear()">清空页面</button>
   <button (click)="move()">清空数据</button>
 </div>
-
-<quill-editor>
-  <div quill-editor-toolbar>
-    <span class="ql-formats">
-      <button class="ql-bold" [title]="'Bold'"></button>
-    </span>
-    <span class="ql-formats">
-      <select class="ql-align" [title]="'Aligment'">
-        <option selected></option>
-        <option value="center"></option>
-        <option value="right"></option>
-        <option value="justify"></option>
-      </select>
-      <select class="ql-align" [title]="'Aligment2'">
-        <option selected></option>
-        <option value="center"></option>
-        <option value="right"></option>
-        <option value="justify"></option>
-      </select>
-    </span>
-  </div>
-</quill-editor>
+<h2>富文本组件第一种</h2>
+<quill-editor [(ngModel)]="quillCom" [style]="{'min-height':'120px'}" (onEditorCreated)="setFocus($event)"></quill-editor>
+<div>
+  <button (click)="save2()">存储数据</button>
+</div>

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThreeChild2Component implements OnInit {
   text: string = '';
+  quillCom='';
   constructor() { }
   ngOnInit() {
   }
@@ -26,5 +27,12 @@ export class ThreeChild2Component implements OnInit {
   }
   ngOnDestroy(): void {
     this.clear()
+  }
+  setFocus($event) {
+    $event.focus();
+  }
+
+  save2() {
+    console.log(this.quillCom)
   }
 }
