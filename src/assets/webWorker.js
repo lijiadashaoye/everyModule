@@ -1,13 +1,4 @@
-// 方法一：手动执行函数
-// let i = 0;
-// function timedCount() {
-//     i = i + 1;
-//     postMessage(i);
-//     setTimeout("timedCount()", 500);
-// }
-// timedCount();
-
-// 方法二：使用onmessage，自动执行
+// 使用onmessage，自动执行
 onmessage = function (event) {
     console.log(event)
     let result = 0,

@@ -1,0 +1,8 @@
+:host{
+    background:paleturquoise;
+    padding:10px;
+    margin:2px;
+    display:block;
+    width:100%;
+    box-sizing: border-box;
+}

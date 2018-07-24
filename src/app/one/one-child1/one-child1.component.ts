@@ -33,10 +33,6 @@ export class OneChild1Component implements OnInit {
     { id: 22 },
     { id: 31 },
   ]
-  //  动态加载组件
-  ads: AdItem[];
-  currentAdIndex = -1;
-  interval: any;
   componentRef;
 
   constructor(
@@ -81,11 +77,12 @@ export class OneChild1Component implements OnInit {
 
   }
   createEmbeddedViews() { // 动态创建<ng-template>标签
-    this.vcRef.createEmbeddedView(this.tplRef) 
+    this.vcRef.createEmbeddedView(this.tplRef)
   }
 
   ngOnDestroy() {
     clearInterval(this.interval);
+    clearInterval(this.interva2);
   }
   isChage: boolean = true;
   toggles() {  // 管道
@@ -113,11 +110,20 @@ export class OneChild1Component implements OnInit {
     this.componentRef.instance.toEmitData   //  this.componentRef.instance 代表组件实例
       .subscribe(val => console.log(val));
   }
-
+  //  动态加载组件
+  ads: AdItem[];
+  currentAdIndex = -1;
+  time: number = 1;
+  interval: any;
+  interva2;
   getAds() {
+    this.interva2 = setInterval(() => {
+      this.time++;
+    }, 1000);
     this.interval = setInterval(() => {
       this.loadComponent();
-    }, 4000);
+      this.time = 1;
+    }, 3000);
   }
   startAd() {
     this.ads = this.adService.getAds();
@@ -126,6 +132,8 @@ export class OneChild1Component implements OnInit {
   }
   closeRD() {  // 关闭自动生成组件功能
     clearInterval(this.interval);
+    clearInterval(this.interva2);
+    this.time = 1;
     this.componentRef.destroy();
   }
 }

@@ -1,6 +1,18 @@
-<div>动画及属性指令</div>
-<p [@clicks]="buttonAnimts" (mouseenter)="addBorder($event)"(mouseleave)="moveBorder()" (click)="hasclidk($event)">
-</p>
-<p [@clicks]="buttonAnimts"   (click)="hasclidk($event)"id="dd">
-</p> 
-<span [ngClass]="{'one1':one,'two1':two,'three1':three}">sf</span>
+<h2>动画及属性指令</h2>
+<div class="waper">
+    <div class="waper" style="width:510px;">
+        <p (click)="hasclidk($event)" [@clicks]="buttonAnimts" id="dd">
+            <span>鼠标点击</span>
+        </p>
+        <p class="nose" (mouseenter)="addBorder($event)" (mouseleave)="moveBorder($event)">
+            <span>鼠标hover</span>
+            H
+        </p>
+        <div class="changeClass">
+            <span [ngClass]="{'one1':one,'two1':two,'three1':three}">自动执行的ngClass样式切换</span>
+        </div>
+    </div>
+    <div style="width:100%;" style="background: rgb(223, 220, 220)" [@staggerAnim]='datas'>
+        <anim-test [data]="data" *ngFor="let data of datas"></anim-test>
+    </div>
+</div>

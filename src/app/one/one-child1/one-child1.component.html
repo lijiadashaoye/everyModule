@@ -1,5 +1,5 @@
 <div class="waper">
-  <div style="width:20%;">
+  <div style="width:15%;">
     <h2> 属性指令</h2>
     <strong appHighlight>使用HostListener为元素添加事件</strong>
     <p [appHighlight]="color" author="attribute author">
@@ -32,7 +32,7 @@
 
   </div>
 
-  <div style="width:25%;">
+  <div style="width:30%;">
     <h2>ViewChildren</h2>
     <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置
     </p>
@@ -50,7 +50,7 @@
 </div>
 
 <div class="waper">
-  <div>
+  <div style="width:15%;">
     <h2>自定义管道</h2>
     <div *ngIf="isChage">
       <div *ngFor="let hero of (heroes | flyingHeroes)">
@@ -62,7 +62,7 @@
       <div [innerHTML]="someHTML"></div>
     </div>
   </div>
-  <div>
+  <div style="width:30%;">
     <h2>angular内建管道</h2>
     <div>
       <p ngNonBindable>1.大写转换：{{ 'Angular' | uppercase }}</p>
@@ -89,7 +89,7 @@
       <p>{{ 'angular' | titlecase }}</p>
     </div>
   </div>
-  <div>
+  <div style="width:25%;">
     <div>
       <p>
         <strong>管道参数</strong>
@@ -108,12 +108,13 @@
       <p>{{ 'semlinker' | slice:0:3 | uppercase }}</p>
     </div>
   </div>
-  <div>
+  <div style="width:10%;">
     <h2>resolve</h2>
+    <p>resolve要放到最终要获得数据的组件的路由配置上，无论是正常加载还是懒加载，都起作用</p>
     {{resolveDatas}}
   </div>
-  <div>
-    <h2>动态生成组件</h2>
+  <div style="width:20%;">
+    <h2>动态生成组件，3秒一换{{time}}</h2>
     <button (click)="startAd()">startAd</button>
     <button (click)="closeRD()">closeRD</button>
     <ng-template #adhost></ng-template>

@@ -19,6 +19,7 @@ import { NgContentComponent } from './one-child1/ng-content/ng-content.component
 import { NgContentChildComponent } from './one-child1/ng-content-child/ng-content-child.component'
 import { NgViewChildComponent } from './one-child1/ng-view-child/ng-view-child.component';
 import { NgViewComponent } from './one-child1/ng-view/ng-view.component';
+import { AnimTestComponent } from './one-child4/anim-test/anim-test.component';
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import { NgViewComponent } from './one-child1/ng-view/ng-view.component';
         NgContentComponent,
         NgContentChildComponent,
         NgViewChildComponent,
-        NgViewComponent
+        NgViewComponent,
+        AnimTestComponent
     ],
     entryComponents: [
         Rd1Component,  // 动态生成的组件，需要同时写到这里
