@@ -30,7 +30,8 @@ import {
 // 所有的路由守卫的判定，可以通过立即返回一个true或false，
 // 也可以 Observable<boolean> 或 Promise<boolean>，
 // 并且路由器会等待这个可观察对象被解析为 true 或 false。
-const one: Routes = [{
+const one: Routes = [
+    {
     path: 'one',
     component: OneComponent,
     // canActivate: [OneGuard],

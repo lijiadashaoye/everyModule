@@ -4,22 +4,23 @@
 <h4>
   用了两个app-ng-view-child
 </h4>
-<app-ng-view-child>
+<button (click)="adfhdaf()">test ngOnChanges1</button>
+<button (click)="gsdg()">test ngOnChanges2</button>
+<p style="color:red;font-size:16px">
+  组件内无论有多少@Input(),任何一个发生变化，都会执行ngOnChanges()函数
+</p>
+<app-ng-view-child [data3]="data1" [data4]="data2">
   <div class="header">
     <p> 这是在父组件中，子组件通过select=".header"选择的内容</p>
   </div>
-
   <div class="content"> select=".content"</div>
-
   <div class="footer"> select=".footer"</div>
 </app-ng-view-child>
 
-<app-ng-view-child>
+<app-ng-view-child [data3]="data1" [data4]="data2">
   <div class="header">
     <p> 这是在父组件中，子组件通过select=".header"选择的内容</p>
   </div>
-
   <div class="content"> select=".content"</div>
-
   <div class="footer"> select=".footer"</div>
 </app-ng-view-child>

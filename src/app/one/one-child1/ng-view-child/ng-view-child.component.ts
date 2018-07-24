@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input
+} from '@angular/core';
 
 @Component({
   selector: 'app-ng-view-child',
@@ -6,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ng-view-child.component.css']
 })
 export class NgViewChildComponent implements OnInit {
+  @Input() data3;
+  @Input() data4;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit() {}
+  ngOnChanges() {
+    console.log('ngOnChanges work')
   }
-
 }
