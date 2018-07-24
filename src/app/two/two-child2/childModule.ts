@@ -15,14 +15,11 @@ import { Cild5Component } from './cild5/cild5.component';
 // 在 .angular-cli.json/apps/script:[ "./node_modules/echarts/dist/echarts.min.js"]
 // 在styles中添加样式文件： "./node_modules/quill/dist/quill.snow.css"
 import { NgxEchartsModule } from 'ngx-echarts';
+import { NgxEchartsService } from 'ngx-echarts';
 
 // 1:cnpm install angularx-qrcode@1.0.3 --save
 // 2:module文件中inports：import { QRCodeModule } from 'angularx-qrcode';
 import { QRCodeModule } from 'angularx-qrcode';
-
-import { AccordionModule } from 'ngx-bootstrap/accordion';
-import { NgxEchartsService } from 'ngx-echarts';
-
 
 @NgModule({
     imports: [
@@ -31,7 +28,6 @@ import { NgxEchartsService } from 'ngx-echarts';
         NgxEchartsModule,
         QRCodeModule,
         FormsModule,
-        AccordionModule.forRoot()
     ],
     declarations: [
         TwoChild2Component,
@@ -40,9 +36,13 @@ import { NgxEchartsService } from 'ngx-echarts';
         Cild3Component,
         Cild4Component,
         Cild5Component,
+
     ],
-    providers:[
+    providers: [
         NgxEchartsService
+    ],
+    entryComponents: [
+
     ]
 })
 export class ChildModule { }

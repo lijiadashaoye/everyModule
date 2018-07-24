@@ -8,19 +8,23 @@ import { Component, OnInit } from '@angular/core';
 export class ThreeChild2Component implements OnInit {
   text: string = '';
   constructor() { }
-  ngOnInit() { 
+  ngOnInit() {
   }
-  save() {  
+  save() {
+    console.log(this.text)
     sessionStorage.setItem('data', this.text);
   }
   geted() {
     this.text = sessionStorage.getItem('data');
   }
-  move(){
-    this.text='';
+  move() {
+    this.text = '';
     sessionStorage.removeItem('data');
   }
-  clear(){
-    this.text=''
+  clear() {
+    this.text = ''
+  }
+  ngOnDestroy(): void {
+    this.clear()
   }
 }

@@ -20,6 +20,7 @@ export class Cild4Component implements OnInit {
   offTop;
   offw;
   offh;
+
   constructor(
     private elem: ElementRef,
     private rend: Renderer2
@@ -37,7 +38,7 @@ export class Cild4Component implements OnInit {
     // console.log(trs.rows[0].cells)
   }
   whe(e) {
-    console.log(e)
+    console.log('鼠标wheel事件' + e)
   }
   mouseDown(e) {
     e.returnValue = false;  // 去掉其他部分被选中时一闪一闪的效果

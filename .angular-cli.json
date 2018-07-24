@@ -1,4 +1,3 @@
-
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
@@ -17,7 +16,7 @@
     "test": "test.ts",
     "tsconfig": "tsconfig.app.json",
     "testTsconfig": "tsconfig.spec.json",
-    "prefix": "",  
+    "prefix": "",
     "styles": [
       "styles.css",
       "../node_modules/quill/dist/quill.snow.css"

@@ -54,7 +54,7 @@ export class OneChild4Component implements OnInit {
       "age": "20",
       "job": "学生"
     }
-    setTimeout(_ => this.datas = [obj, obj], 3000)
+    setTimeout(_ => this.datas = [obj, obj], 1000)
   }
   ngOnInit() {
     // 查询元素的尺寸数据

@@ -26,7 +26,7 @@ export class ThreeChild1Component implements OnInit {
   }
 
   ngOnInit() {
-    this.reg()
+    // this.reg()
   }
   reg() {
     let str = 'asdjf 3iA4 234LAKS DJAL SKDJkl 2234sfa';
