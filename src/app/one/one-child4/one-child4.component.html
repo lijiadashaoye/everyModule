@@ -12,7 +12,11 @@
             <span [ngClass]="{'one1':one,'two1':two,'three1':three}">自动执行的ngClass样式切换</span>
         </div>
     </div>
-    <div style="width:100%;" style="background: rgb(223, 220, 220)" [@staggerAnim]='datas'>
+    <div class="itemList" [@queryAinm]='datas'>
+        <div>
+            点击按钮查看query动画效果，点击三次数据会清零一次
+            <button (click)="addData()">addData</button>
+        </div>
         <anim-test [data]="data" *ngFor="let data of datas"></anim-test>
     </div>
 </div>

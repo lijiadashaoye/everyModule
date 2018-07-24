@@ -11,15 +11,14 @@ import {
 import {
   animates,
   buttonAnimt,
-  queryAnimat,
-  staggerAnims
+  queryAnimat
 } from './animat';
 
 @Component({
   selector: 'app-one-child4',
   templateUrl: './one-child4.component.html',
   styleUrls: ['./one-child4.component.css'],
-  animations: [animates, buttonAnimt, staggerAnims, queryAnimat],
+  animations: [animates, buttonAnimt, queryAnimat],
   changeDetection: ChangeDetectionStrategy.OnPush // 组件有变化时才进行检查，性能优化
 })
 export class OneChild4Component implements OnInit {
@@ -30,10 +29,7 @@ export class OneChild4Component implements OnInit {
   two = false;
   three = false;
 
-  // 注意观察两个p元素(绑定了buttonAnimts)，消失的先后顺序
-  @HostBinding('@queryAinm')
-  AAA// 这个变量没有实际用处，但必须有
-  // 用HostBinding，将动画帮定到<app-one-child4></app-one-child4>上
+  // 用HostBinding，将动画帮定到<app-one-child4></app-one-child4>路由状态上
   @HostBinding('@routeAnim') state;
 
   // clicks动画，用于决定执行动画里的哪个状态
@@ -45,17 +41,22 @@ export class OneChild4Component implements OnInit {
   ) { }
   datas = [];
   addData() {
-    this.datas.push('fffff')
-  }
-  ngAfterViewInit() {
     let obj = {
       "id": "1",
       "name": "旺旺",
       "age": "20",
       "job": "学生"
     }
-    setTimeout(_ => this.datas = [obj, obj], 1000)
+    let arr = [obj, obj, obj, obj, obj]
+    if (this.datas.length > 10) {
+      this.datas = [];
+      this.datas = this.datas.concat(arr);
+    } else {
+      this.datas = this.datas.concat(arr);
+    }
+
   }
+
   ngOnInit() {
     // 查询元素的尺寸数据
     // let kk = this.el.nativeElement.querySelector('#dd').getBoundingClientRect();

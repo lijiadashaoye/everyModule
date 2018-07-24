@@ -8,25 +8,10 @@ import { Cild1Component } from './cild1/cild1.Component';
 import { Cild2Component } from './cild2/cild2.Component';
 import { Cild3Component } from './cild3/cild3.component';
 import { Cild4Component } from './cild4/cild4.component';
-import { Cild5Component } from './cild5/cild5.component';
-
-// cnpm install echarts --save
-// cnpm install ngx-echarts --save
-// 在 .angular-cli.json/apps/script:[ "./node_modules/echarts/dist/echarts.min.js"]
-// 在styles中添加样式文件： "./node_modules/quill/dist/quill.snow.css"
-import { NgxEchartsModule } from 'ngx-echarts';
-import { NgxEchartsService } from 'ngx-echarts';
-
-// 1:cnpm install angularx-qrcode@1.0.3 --save
-// 2:module文件中inports：import { QRCodeModule } from 'angularx-qrcode';
-import { QRCodeModule } from 'angularx-qrcode';
-
 @NgModule({
     imports: [
         CommonModule,
         ChildRoute,
-        NgxEchartsModule,
-        QRCodeModule,
         FormsModule,
     ],
     declarations: [
@@ -35,11 +20,9 @@ import { QRCodeModule } from 'angularx-qrcode';
         Cild2Component,
         Cild3Component,
         Cild4Component,
-        Cild5Component,
-
     ],
     providers: [
-        NgxEchartsService
+       
     ],
     entryComponents: [
 

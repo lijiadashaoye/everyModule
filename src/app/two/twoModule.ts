@@ -24,6 +24,7 @@ import {
 import {
     TwoChild4Component
 } from './two-child4/two-child4.component';
+import { Cild5Component } from './two-child3/cild5/cild5.component';
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import {
         TwoComponent,
         TwoChild1Component,
         TwoChild3Component,
-        TwoChild4Component
+        TwoChild4Component,
+        Cild5Component
     ],
     providers: []
 })

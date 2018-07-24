@@ -1,0 +1,27 @@
+<div class="waper">
+  <div class="div1" *ngFor="let item of arr;let i=index" id="{{'ID'+item.id}}" [ngStyle]="{order:i,'font-size':'14px'}">
+    id：{{item.id}}
+    <br>order：{{i}}
+    <br>data：{{item.num}}
+  </div>
+</div>
+<div style="display:flex;justify-content: flex-start;">
+  <label style="display:block;">
+    设置order：
+    <input type="number" max="4" min='0' [(ngModel)]="orderVals">
+  </label>
+  <label style="display:block;">
+    选取元素id：
+    <input type="number" max="4" min='0' [(ngModel)]="targetDiv">
+  </label>
+  <button (click)="orders()">orders</button>
+</div>
+<h2>将canvas 转成base64，并作为img的src</h2>
+<div style="display:flex;justify-content: space-around;">
+  <div>canvas</div>
+  <div>img</div>
+</div>
+<div class="waper">
+  <canvas id="cav"></canvas>
+  <img src="imgs" id="img">
+</div>

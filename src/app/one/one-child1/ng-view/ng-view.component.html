@@ -1,9 +1,10 @@
-<p>
-  这是父组件的其他html内容
-</p>
-<h4>
-  用了两个app-ng-view-child
-</h4>
+<div style="background: sandybrown">
+  这是父组件A的其他html内容
+  <h4>
+    用了两个app-ng-view-child
+  </h4>
+</div>
+
 <app-ng-view-child [data3]="data1" [data4]="data2">
   <div class="header">
     <p> 这是在父组件中，子组件通过select=".header"选择的内容</p>

@@ -1,9 +1,6 @@
 import { NgModule, Component, ElementRef, AfterViewInit, Input, Output, EventEmitter, ContentChild, OnChanges, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-import { CommonModule }       from '@angular/common';
-import { FormsModule }        from '@angular/forms';
-
 declare var Quill: any;
 
 export const EDITOR_VALUE_ACCESSOR: any = {

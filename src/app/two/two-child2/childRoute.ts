@@ -21,16 +21,12 @@ import {
 import {
     Cild4Component
 } from './cild4/cild4.component';
-import {
-    Cild5Component
-} from './cild5/cild5.component';
-
 
 const child: Routes = [
     // 路由到twoChild2就直接加载Child2组件（子路由）,只有懒加载才可以这么用,而且必须放前边
     {
         path: '',
-        redirectTo: 'Child2'
+        redirectTo: 'Child1'
     },
     {
         path: '',
@@ -50,10 +46,6 @@ const child: Routes = [
             {
                 path: 'Child4',
                 component: Cild4Component
-            },
-            {
-                path: 'Child5',
-                component: Cild5Component
             }
         ]
     }

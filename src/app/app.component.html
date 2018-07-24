@@ -15,15 +15,14 @@
   <li routerLink="two" routerLinkActive="active">two</li>
   <li routerLink="three" routerLinkActive="active">three</li>
   <h2>各个实例模块</h2>
-  <div style="padding:5px;background: rgb(172, 241, 181)">
+  <div style="padding:5px;background: rgb(0, 10, 2);font-size: 18px;color:white;">
     <p>全局数据传递服务
       <span>{{child}}</span>
     </p>
   </div>
 </ul>
 <ul style="padding:0 5px;background: rgb(226, 228, 196)">
-  <li (click)="toTwo()">twoChild4</li>
-  <li [routerLink]="['/two', 'twoChild4']">/two/:id(['/two', 'twoChild4'])</li>
+  <li style="background: rgb(210, 56, 224)" (click)="toTwo()">two/:id形式路由</li>
   <button [routerLink]="[{ outlets: { popup1: ['compose1'] } }]" routerLinkActive="act">compose1</button>
   <button [routerLink]="[{ outlets: { popup2: ['compose2'] } }]" routerLinkActive="act">compose2</button>
   <button [routerLink]="[{ outlets: { popup3: ['compose3'] } }]" routerLinkActive="act">compose3</button>

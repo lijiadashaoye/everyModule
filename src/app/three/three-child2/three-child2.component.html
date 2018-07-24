@@ -1,4 +1,9 @@
-<h2>富文本组件第二种</h2>
+<h2>富文本组件第一种：ngx-quill</h2>
+<quill-editor [(ngModel)]="quillCom" [style]="{'min-height':'120px'}" (onEditorCreated)="setFocus($event)"></quill-editor>
+<div>
+  <button (click)="save2()">存储数据</button>
+</div>
+<h2>富文本组件第二种：quill</h2>
 <div>
   <c-editor [(ngModel)]="text" [placeholder]="'请输入...'" [style]="{'min-height':'120px','padding-bottom':'20px','background':'rgba(0,0,0,.1)'}"></c-editor>
 </div>
@@ -7,9 +12,4 @@
   <button (click)="geted()">读取数据</button>
   <button (click)="clear()">清空页面</button>
   <button (click)="move()">清空数据</button>
-</div>
-<h2>富文本组件第一种</h2>
-<quill-editor [(ngModel)]="quillCom" [style]="{'min-height':'120px'}" (onEditorCreated)="setFocus($event)"></quill-editor>
-<div>
-  <button (click)="save2()">存储数据</button>
 </div>

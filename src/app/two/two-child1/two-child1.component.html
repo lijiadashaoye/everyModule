@@ -17,7 +17,8 @@
         </label>
       </div>
       <div class="form-group">
-        <label>角色</label>        <select name="role" class="form-control" [(ngModel)]="users.role">
+        <label>角色</label>
+        <select name="role" class="form-control" [(ngModel)]="users.role">
           <option *ngFor="let role of roles" [value]="role.value">
             {{role.display}}</option>
         </select>
@@ -161,12 +162,22 @@
       funValid.errors：{{ funValid.errors | json}}
     </p>
     <div>
-      <button (click)="testFormData()">testFormData</button>
+      <button (click)="test_FormData()">test_FormData</button>
     </div>
     <div>
       <h2>用formData操作文件上传</h2>
       <input type="file" placeholder="files" multiple #files>
       <button (click)="upFile(files)">upFile</button>
+    </div>
+    <div>
+      <h2>ngIf ... else,2秒后变</h2>
+      <p *ngIf="shown | async as datas; else hidden">
+        {{datas}}
+      </p>
+      <ng-template #hidden>
+        <p style="background: aqua">*ngIf="shown | async as datas; else hidden"</p>
+      </ng-template>
+      <button (click)="makeChage3()">clickHere</button>
     </div>
   </div>
   <div ngNonBindable>
@@ -186,16 +197,33 @@
     <br> }}
   </div>
   <div>
-    <div>
-      <h2>ngIf ... else</h2>
-      <p *ngIf="shown | async as datas; else hidden">
-        {{datas}}
-      </p>
-      <ng-template #hidden>
-        <p>*ngIf="shown | async as datas; else hidden"</p>
-      </ng-template>
-
-      <button (click)="makeChage3()">makeChage3</button>
+    <h2>array sort</h2>
+    <p>{{datas|json}}</p>
+    <button (click)="toSort(true)">从小到大</button>
+    <button (click)="toSort(false)">从大到小</button>
+    <h2>array reduce</h2>
+    {{dat}}
+    <br>
+    <h2>监听当前div元素的wheel事件</h2>
+    <p (wheel)="whe($event)" style="whidth:100%;height:100px;background:peru;">在此元素内滚动鼠标滚轮</p>
+    {{wheelData}}
+  </div>
+  <div>
+    <p>图片剪裁框，我自己写的</p>
+    <p>vertical-align是相对line-height而定的，向上为正，向下为负</p>
+    <div id="box">
+      <img id="img1" src="assets/1.jpg">
+      <img id="img2" src="assets/1.jpg">
+      <div id="main" (mousedown)="mouseDown($event)">
+        <div id="dian1" (mousedown)="mouseDown($event)"></div>
+        <div id="dian2" (mousedown)="mouseDown($event)"></div>
+        <div id="dian3" (mousedown)="mouseDown($event)"></div>
+        <div id="dian4" (mousedown)="mouseDown($event)"></div>
+        <div id="dian5" (mousedown)="mouseDown($event)"></div>
+        <div id="dian6" (mousedown)="mouseDown($event)"></div>
+        <div id="dian7" (mousedown)="mouseDown($event)"></div>
+        <div id="dian8" (mousedown)="mouseDown($event)"></div>
+      </div>
     </div>
   </div>
 </div>
