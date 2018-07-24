@@ -8,4 +8,4 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ##Install
 
-最好用`cnpm i`
+最好用`cnpm i`安包
