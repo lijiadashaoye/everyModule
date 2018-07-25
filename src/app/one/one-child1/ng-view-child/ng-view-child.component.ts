@@ -16,6 +16,6 @@ export class NgViewChildComponent implements OnInit {
 
   ngOnInit() {}
   ngOnChanges() {
-    console.log('ngOnChanges work')
+    // console.log('ngOnChanges work')
   }
 }
