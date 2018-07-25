@@ -213,7 +213,7 @@ export class OneChild1Component implements OnInit {
     console.log(union)
     console.log(intersect)
     console.log(difference)
-
+    /**********************************************************************/
     // 使用proxy 对对象进行读取拦截
     let lll = {
       // 参数target是目标对象，参数prop是属性名。返回值如果含有该属性，返回true，否则返回false
@@ -235,6 +235,20 @@ export class OneChild1Component implements OnInit {
     console.log(proxy['time']) // 35
     proxy['time'] = 99;
     console.log(proxy['time'])
+    /**********************************************************************/
+    // 使用proxy 对函数进行执行拦截
+    let target = function () { return 'I am the target'; };
+    let handler = {
+      apply: function () {
+        return 'I am the proxy';
+      }
+    };
+    let p = new Proxy(target, handler);
+    console.log(p())
+    /**********************************************************************/
+
+
+    
   }
 
   findDoms; // 用来保存查找到的元素
