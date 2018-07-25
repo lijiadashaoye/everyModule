@@ -16,7 +16,8 @@ import { OneComponent } from '../one.component';
 export class OneChild2Component implements OnInit {
 
   imgData;
-  imgData2 = 'assets/1.jpg';
+  imgData2 = 'assets/4.jpg';
+  imgData3 = 'assets/3.jpg';
 
   time;
   ff = false; // 判断是否点击全选
@@ -123,6 +124,6 @@ export class OneChild2Component implements OnInit {
   }
   ngOnDestroy(): void {
     clearInterval(this.intervals);
-    this.oneComponent.childInterval=0;
+    this.oneComponent.childInterval = 0;
   }
 }
