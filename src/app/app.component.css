@@ -2,7 +2,7 @@
 .headerButton{
     background:rgb(211, 193, 230);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .headerButton button{
     border:0;
