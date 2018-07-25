@@ -11,16 +11,22 @@
 }
 
 .wapperDiv {
-    height: 100px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     background: rgb(199, 231, 158);
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .wapperDiv div {
-    height: 300px;
-    width: 60px;
+    height: 400px;
+    width: 100px;
     background: rgb(216, 158, 231);
+    border-right:3px  dashed;
+}
+.wapperDiv div p{
+    padding:5px;
+    margin:0;
+    font-size: 14px
 }
 
 .scrollData {

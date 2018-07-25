@@ -216,13 +216,13 @@ export class TwoChild1Component implements OnInit {
   makeChage4() {
     console.log(this.isH2)
     console.log('#isP的id：' + this.isP.nativeElement.id)
-    this.rd.setAttribute(this.isP.nativeElement, 'style', 'background:skyblue;')
+    this.rd.setAttribute(this.isP.nativeElement, 'style', 'background:skyblue;padding:10px;')
   }
 
   @ViewChild('isScroll') public fff: ElementRef;
   @HostListener('window:scroll', ['$event'])
   onScrollEvent(e) {
-    this.fff.nativeElement.innerHTML = 'window:scroll'
+    this.fff.nativeElement.innerHTML = 'has window:scroll'
   }
   onscroll(e) {
     this.scrollDatas = '';

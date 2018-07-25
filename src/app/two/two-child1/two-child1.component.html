@@ -131,10 +131,11 @@
     <button (click)="makeChage2()">makeChage2</button>
   </div>
   <div>
-    <h2 #isH2>@ViewChild 和 window:scroll </h2>
+    <h2 #isH2>@ViewChild</h2>
     <p #isP id="isP">isPisPisPisP</p>
-    <p #isScroll style="background:red;font-size:20px;"></p>
-    <button (click)="makeChage4()">makeChage4</button>
+    <button (click)="makeChage4()">click</button>
+    <h2>window:scroll </h2>
+    <p #isScroll style="background:red;font-size:20px;padding:10px;"></p>
   </div>
   <div>
     <h2>async 同步执行for循环</h2>
@@ -142,11 +143,13 @@
     <p *ngFor="let asyncdata of asyncData">{{asyncdata}}</p>
     <button (click)="anss()">anss</button>
   </div>
-  <div class="wapperDivs">
+  <div>
     <h2> 监听滚动条的位置scrollTop值 </h2>
     <span>{{scrollDatas}}</span>
     <div class="wapperDiv" (scroll)="onscroll($event)" (click)="onscroll($event)">
-      <div></div>
+      <div>
+        <p *ngFor="let i of [1,2,3,4,5,6,7,8]">{{i}}：这个div可以滚动</p>
+      </div>
     </div>
   </div>
 </div>
