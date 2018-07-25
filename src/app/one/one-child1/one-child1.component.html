@@ -30,7 +30,8 @@
       <button (click)="createEmbeddedViews()">createEmbeddedViews</button>
     </div>
     <h2>ng-container</h2>
-    <ng-container *ngIf="true">
+    <button (click)="ngIfs=!ngIfs">clickHere</button>
+    <ng-container *ngIf="ngIfs">
       <p> ngIf with an ng-container.</p>
     </ng-container>
 
@@ -58,19 +59,36 @@
 </div>
 
 <div class="waper">
-  <div style="width:15%;">
+  <div style="width:20%;">
     <h2>自定义管道</h2>
-    <div *ngIf="isChage">
+    <div>
       <div *ngFor="let hero of (heroes | flyingHeroes)">
         {{hero.id}}
       </div>
     </div>
     <button (click)="toggles()">toggles</button>
     <div>
+        <h2>使用innerHTML</h2>
       <div [innerHTML]="someHTML"></div>
     </div>
+
+    <div>
+      <h2>使用Array.from查找元素</h2>
+      <button (click)="arrayFrom(1)">id="ticked1"</button>
+      <button (click)="arrayFrom(2)">id="ticked2"</button>
+      <button (click)="arrayFrom(3)">id="ticked3"</button>
+      <p>
+        常见的类似数组的对象是 DOM 操作返回的 NodeList 集合，
+        <br> 如果不用Array.from()，转一下，是没把法用filter进行过滤查找的
+      </p>
+      <h3 id="ticked1">h3 DOM1</h3>
+      <h3 id="ticked2">h3 DOM2</h3>
+      <h3 id="ticked3">h3 DOM3</h3>
+    </div>
+
+
   </div>
-  <div style="width:30%;">
+  <div style="width:28%;">
     <h2>angular内建管道</h2>
     <div>
       <p ngNonBindable>1.大写转换：{{ 'Angular' | uppercase }}</p>
@@ -97,7 +115,7 @@
       <p>{{ 'angular' | titlecase }}</p>
     </div>
   </div>
-  <div style="width:25%;">
+  <div style="width:22%;">
     <div>
       <p>
         <strong>管道参数</strong>
@@ -116,13 +134,14 @@
       <p>{{ 'semlinker' | slice:0:3 | uppercase }}</p>
     </div>
   </div>
-  <div style="width:10%;">
+  <div style="width:15%;">
     <h2>resolve</h2>
     <p>resolve要放到最终要获得数据的组件的路由配置上，无论是正常加载还是懒加载，都起作用</p>
-    {{resolveDatas}}
+    <span style="padding:10px;color:tomato;"> {{resolveDatas}}</span>
   </div>
-  <div style="width:20%;">
-    <h2>动态生成组件，3秒一换{{time}}</h2>
+  <div style="width:15%;">
+    <h2>动态生成组件
+      <br>3秒一换 {{time}}</h2>
     <button (click)="startAd()">startAd</button>
     <button (click)="closeRD()">closeRD</button>
     <ng-template #adhost></ng-template>

@@ -312,20 +312,23 @@ export class TwoChild1Component implements OnInit {
     //   })
   }
 
-  datas = [5, 12, 23, 16];
+  datas = [12, 23, 16, 21, 45, 3];
   dat;
+  arr = [];
   toSort(type) {
+    this.arr = [...this.datas]; // 使用...拓展符号，克隆数组
+
     if (type) {
-      this.datas = this.datas.sort(function (a, b) {
+      this.arr = this.arr.sort(function (a, b) {
         return a - b
       })
     } else {
-      this.datas = this.datas.sort(function (a, b) {
+      this.arr = this.arr.sort(function (a, b) {
         return b - a
       })
     }
 
-    this.dat = this.datas.reduce((a, b) => a + b, 10)
+    this.dat = this.arr.reduce((a, b) => a + b, 10)
   }
   otherTableFun() {  // 获取表格的另一种方法，angular中尽量不要用原生 DOM 操作方法
     let trs = document.getElementsByTagName('table')[0];

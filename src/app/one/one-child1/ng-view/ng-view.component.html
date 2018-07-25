@@ -9,7 +9,6 @@
   <div class="header">
     <p> 这是在父组件中，子组件通过select=".header"选择的内容</p>
   </div>
-  <div class="content"> select=".content"</div>
   <div class="footer"> select=".footer"</div>
 </app-ng-view-child>
 
@@ -17,7 +16,6 @@
   <div class="header">
     <p> 这是在父组件中，子组件通过select=".header"选择的内容</p>
   </div>
-  <div class="content"> select=".content"</div>
   <div class="footer">
     select=".footer",点击按钮可以动态添加投影内容
     <button (click)="isAdd=!isAdd">clickHere</button>
@@ -33,3 +31,5 @@
 <p style="color:red;font-size:16px">
   组件内无论有多少@Input(),任何一个发生变化，都会执行ngOnChanges()函数
 </p>
+
+

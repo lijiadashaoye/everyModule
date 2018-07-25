@@ -11,7 +11,8 @@ import {
   ComponentFactoryResolver,
   ViewContainerRef,
   ComponentRef,
-  Inject
+  Inject,
+  Renderer2
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -42,11 +43,12 @@ export class OneChild1Component implements OnInit {
     private router: Router,
     private componentFactoryResolver: ComponentFactoryResolver,
     private adService: AdService,
+    private rd: Renderer2
   ) { }
   @ViewChild('tpl') tplRef: TemplateRef<any>;
   ngOnInit() {
     this.color = 'yellow';
-    this.someHTML = `<h1>innerHTML</h1>`
+    this.someHTML = `<p style="padding:5px;background:rgb(231, 105, 231);">使用 innerHTML 添加标签</p>`
     this.route.data   // 获取resolve数据
       .subscribe(gg => {
         this.resolveDatas = gg.resolveData;
@@ -177,6 +179,17 @@ export class OneChild1Component implements OnInit {
     // Math.trunc方法用于去除一个数的小数部分，返回整数部分。
     let one = Math.trunc(4.231);
     console.log(one)
+  }
+
+  findDoms; // 用来保存查找到的元素
+  tickDom; // 用来保存要查找的元素
+  arrayFrom(id) {
+    this.findDoms = this.el.nativeElement.querySelectorAll('h3');
+    let kk = Array.from(this.findDoms);
+
+    kk.map(dom => this.rd.removeStyle(dom, 'background'));
+    this.tickDom = kk.filter(dom => dom['id'] === `ticked${id}`);
+    this.rd.setStyle(this.tickDom[0], 'background', 'red')
   }
 }
 
