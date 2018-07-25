@@ -109,7 +109,7 @@ export class OneChild1Component implements OnInit {
     this.componentRef.instance.inData = adItem.data;
     this.componentRef.instance.toEmitData   //  this.componentRef.instance 代表组件实例
       .subscribe(val => console.log(val));
-      console.log(this.componentRef.instance)
+    console.log(this.componentRef.instance)
   }
   //  动态加载组件
   ads: AdItem[];
@@ -136,6 +136,40 @@ export class OneChild1Component implements OnInit {
     clearInterval(this.interva2);
     this.time = 1;
     this.componentRef.destroy();
+  }
+  reg() {
+    let str = 'asdjf 3iA4 234LAKS DJAL SKDJkl 2234sfa';
+    let str2 = 'https://www.bjhjyd.gov.cn/';
+
+    let reg1 = /\d{2,4}/; // 匹配2-4个连续的数字,一次
+    let reg2 = /\d{2,4}/g; // 匹配2-4个连续的数字，全局多次
+
+
+    let toRge1 = str.replace(reg2, '****'); // 替换匹配到的
+    let toRge2 = str.search(reg1); // 查找，返回匹配到的字符的索引
+    let toRge3 = str.match(reg2); // 查找,返回匹配到的字符组成的数组
+
+    let toRge5 = reg2.test(str);  // 查找字符串里是否有正则要匹配的内容
+    let toRge6 = reg1.test(str);
+
+    // let pattern = /Java/g;
+    // let text = 'JavaScript is more fun than Java!';
+    // let result;
+    // while ((result = pattern.exec(text)) != null) {
+    //   console.log(result)
+    //   console.log(result[0], result.index, pattern.lastIndex)
+    // }
+
+    // let httpStr = /(\w+):\/\/([\w.]+)\/(\S*)/;  // 提取网址
+    // let toRge4 = str2.match(httpStr)
+    // console.log(toRge4);
+
+    // console.log(toRge1);
+    // console.log(toRge2);
+    // console.log(toRge3);
+
+    // console.log(toRge5);
+    // console.log(toRge6);
   }
 }
 
