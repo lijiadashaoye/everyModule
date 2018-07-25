@@ -6,6 +6,6 @@ Run `npm run start` to start the project;
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. 
 
-##Install
+## Install
 
 最好用`cnpm i`安包
