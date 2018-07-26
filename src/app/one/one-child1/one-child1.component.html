@@ -92,38 +92,46 @@
     <h2>angular内建管道</h2>
     <div>
       <p ngNonBindable>1.大写转换：{{ 'Angular' | uppercase }}</p>
-      <p>{{ 'Angular' | uppercase }}</p>
+      <p class="outPut">{{ 'Angular' | uppercase }}</p>
     </div>
     <div>
       <p ngNonBindable>2.小写转换：{{ 'Angular' | lowercase }}</p>
-      <p>{{ 'Angular' | lowercase }}</p>
+      <p class="outPut">{{ 'Angular' | lowercase }}</p>
     </div>
     <div>
       <p ngNonBindable>3.数值格式化：{{ 3.14159265 | number: '1.0-3' }}</p>
-      <p>{{ 3.14159265 | number: '1.0-3' }}</p>
+      <p class="outPut">{{ 3.14159265 | number: '1.0-3' }}</p>
     </div>
     <div>
       <p ngNonBindable>4.日期格式化：{{ today | date: 'mediumTime' }}</p>
-      <p>{{ today | date: 'mediumTime' }}</p>
+      <p class="outPut">{{ today | date: 'mediumTime' }}</p>
     </div>
     <div>
       <p ngNonBindable>5.日期格式化：{{ today | date: 'fullDate' }}</p>
-      <p>{{ today | date: 'fullDate' }}</p>
+      <p class="outPut">{{ today | date: 'fullDate' }}</p>
     </div>
     <div>
       <p ngNonBindable>6.日期格式化：{{today | date:'yyyy-MM-dd HH:mm aa'}}</p>
-      <p> {{today | date:'yyyy-MM-dd HH:mm aa'}}</p>
+      <p class="outPut"> {{today | date:'yyyy-MM-dd HH:mm aa'}}</p>
     </div>
-
-
-
     <div>
       <p ngNonBindable>7.JavaScript 对象序列化：{{ { name: 'joy' } | json }}</p>
-      <p>{{ { name: 'joy' } | json }}</p>
+      <p class="outPut">{{ { name: 'joy' } | json }}</p>
     </div>
     <div>
       <p ngNonBindable>8.首字母转换：{{ 'angular' | titlecase }}</p>
-      <p>{{ 'angular' | titlecase }}</p>
+      <p class="outPut">{{ 'angular' | titlecase }}</p>
+    </div>
+    <div>
+      <p ngNonBindable>9.货币转换：{{1.3495 | currency:'¥':true:'1.0-2'}}</p>
+      <p class="outPut">{{1.3495 | currency:'¥':true:'1.0-2'}}</p>
+      <p>
+        参考网址： https://en.wikipedia.org/wiki/ISO_4217
+      </p>
+    </div>
+    <div>
+      <p ngNonBindable>10.小数百分化显示：{{0.2365844 | percent:'1.0-5'}}</p>
+      <p class="outPut">{{0.2365844 | percent:'1.0-5'}}</p>
     </div>
   </div>
   <div style="width:22%;">
