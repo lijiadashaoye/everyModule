@@ -68,7 +68,7 @@
     </div>
     <button (click)="toggles()">toggles</button>
     <div>
-        <h2>使用innerHTML</h2>
+      <h2>使用innerHTML</h2>
       <div [innerHTML]="someHTML"></div>
     </div>
 
@@ -99,19 +99,30 @@
       <p>{{ 'Angular' | lowercase }}</p>
     </div>
     <div>
-      <p ngNonBindable>3.数值格式化：{{ 3.14159265 | number: '1.4-4' }}</p>
-      <p>{{ 3.14159265 | number: '1.4-4' }}</p>
+      <p ngNonBindable>3.数值格式化：{{ 3.14159265 | number: '1.0-3' }}</p>
+      <p>{{ 3.14159265 | number: '1.0-3' }}</p>
     </div>
     <div>
-      <p ngNonBindable>4.日期格式化：{{ today | date: 'shortTime' }}</p>
-      <p>{{ today | date: 'shortTime' }}</p>
+      <p ngNonBindable>4.日期格式化：{{ today | date: 'mediumTime' }}</p>
+      <p>{{ today | date: 'mediumTime' }}</p>
     </div>
     <div>
-      <p ngNonBindable>5.JavaScript 对象序列化：{{ { name: 'semlinker' } | json }}</p>
-      <p>{{ { name: 'semlinker' } | json }}</p>
+      <p ngNonBindable>5.日期格式化：{{ today | date: 'fullDate' }}</p>
+      <p>{{ today | date: 'fullDate' }}</p>
     </div>
     <div>
-      <p ngNonBindable>6.首字母转换：{{ 'angular' | titlecase }}</p>
+      <p ngNonBindable>6.日期格式化：{{today | date:'yyyy-MM-dd HH:mm aa'}}</p>
+      <p> {{today | date:'yyyy-MM-dd HH:mm aa'}}</p>
+    </div>
+
+
+
+    <div>
+      <p ngNonBindable>7.JavaScript 对象序列化：{{ { name: 'joy' } | json }}</p>
+      <p>{{ { name: 'joy' } | json }}</p>
+    </div>
+    <div>
+      <p ngNonBindable>8.首字母转换：{{ 'angular' | titlecase }}</p>
       <p>{{ 'angular' | titlecase }}</p>
     </div>
   </div>
