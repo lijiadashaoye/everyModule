@@ -76,7 +76,7 @@ export class Cild1Component {
       classMethod1() {
         return 'hello';
       }
-     static classMethod2() {
+      static classMethod2() {
         return 'hello';
       }
     }
@@ -85,18 +85,29 @@ export class Cild1Component {
     console.log(foo.classMethod1())
     // console.log(foo.classMethod2())  // 无法实现，会报错
   }
-  testExtends(){
+  testExtends() {
     class A {
-      p() {
-        return 2;
+      x;
+      constructor() {
+        this.x = 1;
+      }
+      print() {
+        console.log(this.x);
       }
     }
     class B extends A {
       constructor() {
+        // 作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错。
         super();
-        console.log(super.p()); // 2
+        // 在子类普通方法中通过super调用父类的方法时，方法内部的this指向当前的子类实例。
+        this.x = 2;
+      }
+      m() {
+        //  super作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类。当于A.prototype.p()
+        super.print();
       }
     }
     let b = new B();
+    b.m();  // 2
   }
 }
