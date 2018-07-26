@@ -20,7 +20,7 @@ export class PopupComponent implements OnInit {
   constructor(
     private router: Router,
     private act: ActivatedRoute
-  ) {}
+  ) { }
   ngOnInit() {
     this.act.data.subscribe(val => this.path = val.data)
   }
@@ -51,6 +51,5 @@ export class PopupComponent implements OnInit {
           }]);
       }
     }
-
   }
 }

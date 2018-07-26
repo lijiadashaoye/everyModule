@@ -4,11 +4,12 @@ import {
 import {
     AppService
 } from './serviceEmit.service';
+import { ComfirmService } from './comfirm.service'
 import {
     Router
 } from '@angular/router';
 import {
-    Observable
+    Observable, Subject
 } from 'rxjs'
 @Component({
     selector: 'app-root',
@@ -17,7 +18,11 @@ import {
 })
 export class AppComponent {
     child: string = '';
-    constructor(private appService: AppService, private route: Router) {
+    constructor(
+        private appService: AppService,
+        private route: Router,
+        public toConfirm: ComfirmService
+    ) {
         this.appService.childService.subscribe((value: string) => {
             if (value) {
                 this.child = '通过服务中的 emit跳过来的：' + value;
@@ -54,11 +59,32 @@ export class AppComponent {
             foo: 'foo'
         }])
     }
-    compose3() {
+    async compose3() {
+
+
         this.route.navigate([{
             outlets: {
                 popup3: ['compose3']
             }
         }])
+
+        // let kk = await (() => {
+        //     return new Promise(res => {
+        //         this.route.navigate([{
+        //             outlets: {
+        //                 popup3: ['compose3']
+        //             }
+        //         }])
+        //         let confirmResult = new Subject();
+        //         confirmResult.subscribe(val => {
+        //             console.log(val)
+        //         })
+        //         res('9')
+        //     })
+        // })();
+        // console.log(kk)
+    }
+    getpopupResult(data) {
+        console.log(data)
     }
 }

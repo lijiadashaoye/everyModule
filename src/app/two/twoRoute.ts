@@ -28,21 +28,21 @@ const two: Routes = [
         path: '',
         component: TwoComponent,
         children: [{
-                path: 'twoChild1',
-                component: TwoChild1Component
-            },
-            {
-                path: 'twoChild2',
-                loadChildren: 'app/two/two-child2/childModule#ChildModule'
-            },
-            {
-                path: 'twoChild3',
-                component: TwoChild3Component
-            },
-            {
-                path: 'twoChild4',
-                component: TwoChild4Component
-            },
+            path: 'twoChild1',
+            component: TwoChild1Component
+        },
+        {
+            path: 'twoChild2',
+            loadChildren: 'app/two/two-child2/childModule#ChildModule'
+        },
+        {
+            path: 'twoChild3',
+            component: TwoChild3Component
+        },
+        {
+            path: 'twoChild4',
+            component: TwoChild4Component
+        },
         ]
     }
 ]
@@ -54,4 +54,4 @@ const two: Routes = [
         RouterModule
     ]
 })
-export class TwoRoute {}
+export class TwoRoute { }

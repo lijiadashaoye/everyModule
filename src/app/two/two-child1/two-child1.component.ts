@@ -231,7 +231,7 @@ export class TwoChild1Component implements OnInit {
   }
 
   // async(异步) 函数总是返回 Promises
-  // await（只允许在 async(异步) 函数内部使用）等待其操作对象 Promise 返回：
+  // await（只允许在 async(异步) 函数内部使用）等待其操作对象 Promise 返回：
   async anss() {
     let dishes = [{
       name: "fish",
