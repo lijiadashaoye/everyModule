@@ -246,9 +246,6 @@ export class OneChild1Component implements OnInit {
     let p = new Proxy(target, handler);
     console.log(p())
     /**********************************************************************/
-
-
-
   }
 
   findDoms; // 用来保存查找到的元素
