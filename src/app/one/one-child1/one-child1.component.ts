@@ -53,8 +53,6 @@ export class OneChild1Component implements OnInit {
       .subscribe(gg => {
         this.resolveDatas = gg.resolveData;
       });
-
-      
   }
   createEmbeddedViews() { // 动态创建<ng-template>标签
     this.vcRef.createEmbeddedView(this.tplRef)
