@@ -134,7 +134,7 @@ export class OneChild3Component implements OnInit {
     myWebsocket.send("Hello WebSockets!");
     myWebsocket.close();
   }
-  consoleForms() {
+  dasdf() {
     console.log(this.froms)
   }
 }

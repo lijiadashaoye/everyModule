@@ -94,17 +94,17 @@ export class TwoChild3Component implements OnInit {
     private el: ElementRef,
     private http: HttpService,
   ) {
-    this.f = (phrase) => {
+    this.f = (data) => {
       return class {
         sayHi() {
-          console.log(phrase)
+          console.log(data)
         }
       }
     }
   }
   extendsFun() {
-    // 对于高级编程模式，当我们使用的类是根据许多条件使用函数来生成时，这就很有用。
-    class User extends this.f("Hello") {}
+    // 对于高级编程模式，当我们使用的类是根据许多条件使用函数来生成的时，这就很有用。
+    class User extends this.f("Hello") { }
     new User().sayHi(); // Hello
   }
   ngOnInit() {
@@ -119,15 +119,17 @@ export class TwoChild3Component implements OnInit {
     // for (let i in list) {  // for..in迭代的是数组，i为索引值
     //   console.log(i);
     // }
+    // for...of循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象
+    // （比如arguments对象、DOM NodeList 对象）、 Generator 对象，以及字符串
     // for (let i of list) {  // for..of则迭代数组,i为索引对应的值。
     //   console.log(i);
     // }
   }
   seeOf() {
     Observable.of({
-        n: 'ff',
-        age: 1
-      }, {
+      n: 'ff',
+      age: 1
+    }, {
         n: 'dd',
         age: 2
       }, {
@@ -145,7 +147,7 @@ export class TwoChild3Component implements OnInit {
       error => console.log(error)
     );
   }
-  widthHttpInterceptor(id){   // 使用了angular6 的拦截器
+  widthHttpInterceptor(id) {   // 使用了angular6 的拦截器
     this.http.toGet2(id).subscribe(
       val => this.useJsonServers = val,
       error => console.log(error)
@@ -244,9 +246,9 @@ export class TwoChild3Component implements OnInit {
       .subscribe((val) => {
         let data = val;
         this.datas = data++
-          if (this.datas >= 15) {
-            sub.unsubscribe()
-          }
+        if (this.datas >= 15) {
+          sub.unsubscribe()
+        }
       })
 
     // 类似于 map，但仅用于选择每个发出对象的某个嵌套属性。
