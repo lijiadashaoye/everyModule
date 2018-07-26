@@ -1,16 +1,17 @@
 <div class="headerButton">
   <div>
-    <h2>路由守卫相关（但代码中已关闭）</h2>
+    <h2>路由守卫相关（但代码中已关闭），本套代码使用了路由预加载测略</h2>
     <button (click)="login()">login</button>
     <button (click)="loginOut()">loginOut</button>
     <button (click)="canGo()">canGo</button>
     <button (click)="canNotGo()">canNotGo</button>
     <button (click)="canLeave()">canLeave</button>
     <button (click)="canNotLeave()">canNotLeave</button>
+    <span style="padding:5px;display:inline-block;color:white;">
+      注意查看index.html文件对于窗口图标的更改
+    </span>
   </div>
-  <div style="padding:5px;">
-    注意查看index.html文件对于窗口图标的更改
-  </div>
+
 </div>
 
 <ul style="padding:0 5px;background: rgb(196, 228, 228)">
@@ -18,7 +19,7 @@
   <li routerLink="two" routerLinkActive="active">two</li>
   <li routerLink="three" routerLinkActive="active">three</li>
   <h2>各个实例模块</h2>
-  <div style="padding:5px;background: rgb(0, 10, 2);font-size: 18px;color:white;">
+  <div style="padding:5px;background: rgb(0, 10, 2);font-size: 16px;color:white;">
     <p>全局数据传递服务
       <span>{{child}}</span>
     </p>
