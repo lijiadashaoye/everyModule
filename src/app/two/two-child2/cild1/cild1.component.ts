@@ -85,4 +85,18 @@ export class Cild1Component {
     console.log(foo.classMethod1())
     // console.log(foo.classMethod2())  // 无法实现，会报错
   }
+  testExtends(){
+    class A {
+      p() {
+        return 2;
+      }
+    }
+    class B extends A {
+      constructor() {
+        super();
+        console.log(super.p()); // 2
+      }
+    }
+    let b = new B();
+  }
 }
