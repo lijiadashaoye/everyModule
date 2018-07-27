@@ -12,7 +12,6 @@ import {
   ValidationErrors
 } from '@angular/forms';
 
-
 export const validateCounterRange: ValidatorFn = (control: FormControl):
   ValidationErrors => {
   console.log(control.value)
@@ -91,5 +90,5 @@ export class OneChild3ChildComponent implements OnInit, ControlValueAccessor, Va
   }
   public registerOnTouched(fn: any): void {
   }
-  
+
 }
