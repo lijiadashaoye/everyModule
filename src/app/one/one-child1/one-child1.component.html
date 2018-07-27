@@ -17,7 +17,7 @@
   </div>
   <div style="width:25%;">
     <h2>ng-template</h2>
-    <div *ngTemplateOutlet="tpl"></div>
+    <ng-container *ngTemplateOutlet="tpl"></ng-container>
     <ng-template #tpl>
       <p>ng-template属于后加载的，作为行元素放在当前组件，不与先加载 的一起构成DOM结构，若不指定 ngTemplateOutlet，是不会显示出来的。
         <br>若是用createEmbeddedView() 动态创建的，会作为当前整个页面的子元素append进去

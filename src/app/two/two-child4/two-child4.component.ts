@@ -9,11 +9,11 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 })
 export class TwoChild4Component implements OnInit {
   paramsData;
-  paramsData2
+  paramsData2;
+  path;
   constructor(
     private location: Location,
-    private rout: ActivatedRoute,
-    private rou: Router
+    private rout: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -26,6 +26,7 @@ export class TwoChild4Component implements OnInit {
         this.paramsData2 = paramsMap.get('id')
       }
     );
+    this.path = this.location.path();
   }
   goBack(): void {
     this.location.back();

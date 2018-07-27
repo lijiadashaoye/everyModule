@@ -34,8 +34,6 @@ export class OneChild1Component implements OnInit {
     { id: 22 },
     { id: 31 },
   ]
-  componentRef;
-
   constructor(
     private el: ElementRef,
     private vcRef: ViewContainerRef,
@@ -76,6 +74,7 @@ export class OneChild1Component implements OnInit {
   }
 
   @ViewChild("adhost", { read: ViewContainerRef }) adHost: ViewContainerRef;
+  componentRef;
   loadComponent() {  // 动态生成组件
     this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
     let adItem = this.ads[this.currentAdIndex];
@@ -87,7 +86,6 @@ export class OneChild1Component implements OnInit {
     this.componentRef.instance.inData = adItem.data;
     this.componentRef.instance.toEmitData   //  this.componentRef.instance 代表组件实例
       .subscribe(val => console.log(val));
-    console.log(this.componentRef.instance)
   }
   //  动态加载组件
   ads: AdItem[];
