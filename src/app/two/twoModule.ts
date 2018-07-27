@@ -25,6 +25,7 @@ import {
     TwoChild4Component
 } from './two-child4/two-child4.component';
 import { Cild5Component } from './two-child3/cild5/cild5.component';
+import { MediaLearnComponent } from './two-child3/media-learn/media-learn.component';
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import { Cild5Component } from './two-child3/cild5/cild5.component';
         TwoChild1Component,
         TwoChild3Component,
         TwoChild4Component,
-        Cild5Component
+        Cild5Component,
+        MediaLearnComponent
     ],
     providers: []
 })

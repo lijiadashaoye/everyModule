@@ -1,0 +1,44 @@
+<div class="waper">
+  <div>
+    <div>
+      <button (click)="Play(videos)">播放</button>
+      <button (click)="Pause(videos)">暂停</button>
+      <button (click)="Load(videos)">重载</button>
+      <button (click)="Stop(videos)">停止</button>
+      <button (click)="Muted(videos)">静音</button>
+      <button (click)="Before(videos)">上一个</button>
+      <button (click)="Next(videos)">下一个</button>
+      <button (click)="UpVol(videos)">+</button>
+      <button (click)="DownVol(videos)">-</button>
+    </div>
+    <div>
+      <video #videos width="420" [muted]="isMuted">
+        <source *ngIf="canShowVideo" [src]="videoSrc" [type]="videoType">
+      </video>
+      <div>
+        {{videoTime}}
+      </div>
+    </div>
+  </div>
+  <div>
+    <div>
+      <button (click)="Play(audios)">播放</button>
+      <button (click)="Pause(audios)">暂停</button>
+      <button (click)="Load(audios)">重载</button>
+      <button (click)="Stop(audios)">停止</button>
+      <button (click)="Muted(audios)">静音</button>
+      <button (click)="Before(audios)">上一个</button>
+      <button (click)="Next(audios)">下一个</button>
+      <button (click)="UpVol(audios)">+</button>
+      <button (click)="DownVol(audios)">-</button>
+    </div>
+    <div>
+      <audio #audios>
+        <source *ngIf="canShowAudio" [src]="audioSrc" [type]="audioType">
+      </audio>
+      <div>
+        {{audioTime}}
+      </div>
+    </div>
+  </div>
+</div>
