@@ -4,7 +4,6 @@ import {
 import {
     AppService
 } from './serviceEmit.service';
-import { ComfirmService } from './comfirm.service'
 import {
     Router
 } from '@angular/router';
@@ -19,9 +18,8 @@ import {
 export class AppComponent {
     child: string = '';
     constructor(
-        private appService: AppService,
-        private route: Router,
-        public toConfirm: ComfirmService
+        public appService: AppService,
+        private route: Router
     ) {
         this.appService.childService.subscribe((value: string) => {
             if (value) {
@@ -59,32 +57,8 @@ export class AppComponent {
             foo: 'foo'
         }])
     }
-    async compose3() {
-
-
-        this.route.navigate([{
-            outlets: {
-                popup3: ['compose3']
-            }
-        }])
-
-        // let kk = await (() => {
-        //     return new Promise(res => {
-        //         this.route.navigate([{
-        //             outlets: {
-        //                 popup3: ['compose3']
-        //             }
-        //         }])
-        //         let confirmResult = new Subject();
-        //         confirmResult.subscribe(val => {
-        //             console.log(val)
-        //         })
-        //         res('9')
-        //     })
-        // })();
-        // console.log(kk)
-    }
-    getpopupResult(data) {
-        console.log(data)
+    comfirmModal() {
+        this.appService.comfirmModal()
+            .subscribe(val => console.log(val))
     }
 }

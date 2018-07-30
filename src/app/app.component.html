@@ -26,16 +26,16 @@
   </div>
   <span style="padding:5px">箭头函数可以让setTimeout里面的this，绑定定义时所在的作用域，而不是指向运行时所在的作用域</span>
 </ul>
-<ul style="padding:0 5px;background: rgb(226, 228, 196)">
-  <li style="background: rgb(210, 56, 224)" (click)="toTwo()">two/:id形式路由</li>
-  <button [routerLink]="[{ outlets: { popup1: ['compose1'] } }]" routerLinkActive="act">compose1</button>
-  <button [routerLink]="[{ outlets: { popup2: ['compose2'] } }]" routerLinkActive="act">compose2</button>
-  <button [routerLink]="[{ outlets: { popup3: ['compose3'] } }]" routerLinkActive="act">compose3</button>
-  <button (click)="compose3()">compose3函数</button>
-  <h2>其他非主流路由</h2>
-</ul>
+<div class="popupRoute">
+  <button style="background: rgb(210, 56, 224);" (click)="toTwo()">two/:id形式路由</button>
+  <div style="background: rgb(56, 224, 98);padding:0 15px;"class="waper">
+    <h3 style="margin:0 10px;padding:0;">使用命名路由写出来的弹出框</h3>
+    <button [routerLink]="[{ outlets: { popup1: ['compose1'] } }]">信息提示</button>
+    <button (click)="comfirmModal()">comfirmModal</button>
+  </div>
+
+</div>
 
 <router-outlet></router-outlet>
 <router-outlet name="popup1"></router-outlet>
 <router-outlet name="popup2"></router-outlet>
-<router-outlet name="popup3"></router-outlet>

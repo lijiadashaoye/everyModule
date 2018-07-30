@@ -1,19 +1,32 @@
-
-.headerButton{
-    background:rgb(242, 141, 74);
+.headerButton {
+    background: rgb(242, 141, 74);
     display: flex;
     justify-content: flex-start;
 }
-.headerButton button{
-    border:0;
+
+.headerButton button {
+    border: 0;
     outline: none;
     cursor: pointer;
-    font-size:14px;
-    padding:3px 0;
+    font-size: 14px;
+    padding: 3px 0;
     box-sizing: border-box;
-    width:100px;
+    width: 100px;
 }
-.headerButton button:hover{
-    color:rgb(247, 35, 229);
+
+.headerButton button:hover {
+    color: rgb(247, 35, 229);
     font-weight: bold;
+}
+
+.popupRoute {
+    display: flex;
+    justify-content: flex-start;
+    align-items: middle;
+    padding: 2px 10px;
+    background: rgb(226, 228, 196)
+}
+
+.popupRoute button {
+    margin: 0 5px;
 }

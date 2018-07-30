@@ -92,12 +92,8 @@ const main: Routes = [{
     data: {
         data: '2'
     }
-},
-{ // 小广告弹出框2
-    path: 'compose3',
-    component: PopupComponent,
-    outlet: 'popup3',
 }
+
 ]
 
 // 路由预加载，步骤二

@@ -6,7 +6,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { OneModule } from './one/oneModule';
 import { MainRoute } from './mainRoute';
 import { AppService } from './serviceEmit.service';
-import { ComfirmService } from './comfirm.service';
 import { HttpModule } from '@angular/http';
 import { HttpService, BASE_URL, urlText } from './http.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,7 +30,6 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     AppService,
     HttpService,
-    ComfirmService,
     { provide: BASE_URL, useValue: urlText },
     { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true }, // 拦截器
     // { provide: LOCALE_ID, useValue: 'zh-Hans' }   // 规定国际化为中文简体

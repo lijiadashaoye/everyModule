@@ -61,7 +61,6 @@ export const cardAnim = trigger('card', [
     transition('hover=>out', animate('200ms')),
 ])
 
-
 // 使用query 对整个页面进行查询，只要有执行可以查询到的状态就会执行相应的动画
 // 一般只有绑定了动画的元素才有:enter和:leave
 // query 一般用在设置子组件内子多个元素出现时的动画

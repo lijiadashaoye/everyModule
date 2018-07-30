@@ -1,29 +1,22 @@
-<div class="waper" (click)="close('waper')">
-  <div class="showContent" (click)="close($event)">
-    <div *ngIf="path=='1';then temp;else temp2">
-      <div >
+<div>
+  <div *ngIf="path=='1';else temp" [@tips]="tipModal">
+    <div class="messageTip">
+      <p>
+        这个弹出框可以用来作为信息提示,3秒后自动消失，也可点击关闭按钮
+      </p>
+      <button (click)="close()">关闭1</button>
+    </div>
+  </div>
+
+  <ng-template #temp>
+    <div class="waper">
+      <div class="confirmDiv" [@comf]="confirms">
         <p>
-          {{path|json}}
+          这个弹出框可以用来作为confirm
         </p>
-        <button (click)="close()">关闭1</button>
+        <button (click)="comfirmClose('sure')">确定</button>
+        <button (click)="comfirmClose('no')">关闭</button>
       </div>
     </div>
-    <ng-template #temp>
-      <div>
-        <p>
-          {{path|json}}
-        </p>
-        <button (click)="close()">关闭2</button>
-      </div>
-    </ng-template>
-   
-  </div>
+  </ng-template>
 </div>
-<ng-template #temp2>
-  <div>
-    <p>
-      {{path ? path:'path没值'|json}}
-    </p>
-    <button (click)="close()">关闭3</button>
-  </div>
-</ng-template>
