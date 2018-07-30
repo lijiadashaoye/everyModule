@@ -14,9 +14,15 @@ import {
   Inject,
   Renderer2
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
 
-import { AdService, AdItem } from './ad.service';
+import {
+  AdService,
+  AdItem
+} from './ad.service';
 
 @Component({
   selector: 'app-one-child1',
@@ -28,12 +34,20 @@ export class OneChild1Component implements OnInit {
   color: string;
   resolveDatas;
   someHTML;
+  ngIfs = false;
   pipeSlice = ['aaaa', 'bbbb', 'cccc', 'dddd'];
-  heroes = [
-    { id: 14 },
-    { id: 21 },
-    { id: 22 },
-    { id: 31 },
+  heroes = [{
+      id: 14
+    },
+    {
+      id: 21
+    },
+    {
+      id: 22
+    },
+    {
+      id: 31
+    },
   ]
   constructor(
     private el: ElementRef,
@@ -43,12 +57,12 @@ export class OneChild1Component implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,
     private adService: AdService,
     private rd: Renderer2
-  ) { }
-  @ViewChild('tpl') tplRef: TemplateRef<any>;
+  ) {}
+  @ViewChild('tpl') tplRef: TemplateRef < any > ;
   ngOnInit() {
     this.color = 'yellow';
     this.someHTML = `<p style="padding:5px;background:rgb(231, 105, 231);">使用 innerHTML 添加标签</p>`
-    this.route.data   // 获取resolve数据
+    this.route.data // 获取resolve数据
       .subscribe(gg => {
         this.resolveDatas = gg.resolveData;
       });
@@ -57,7 +71,7 @@ export class OneChild1Component implements OnInit {
     this.vcRef.createEmbeddedView(this.tplRef)
   }
 
-  emDatas(e) {     // 通过Directive方式添加事件，可以将公共事件提取到单独的文件内
+  emDatas(e) { // 通过Directive方式添加事件，可以将公共事件提取到单独的文件内
     console.log(e)
   }
 
@@ -66,7 +80,7 @@ export class OneChild1Component implements OnInit {
     clearInterval(this.interva2);
   }
   isChage: boolean = true;
-  toggles() {  // 管道
+  toggles() { // 管道
     this.isChage = false;
     for (let i = 0; i < this.heroes.length; i++) {
       if (this.heroes[i].id % 2 == 0) {
@@ -78,9 +92,11 @@ export class OneChild1Component implements OnInit {
     setTimeout(() => this.isChage = true, 0)
   }
 
-  @ViewChild("adhost", { read: ViewContainerRef }) adHost: ViewContainerRef;
+  @ViewChild("adhost", {
+    read: ViewContainerRef
+  }) adHost: ViewContainerRef;
   componentRef;
-  loadComponent() {  // 动态生成组件
+  loadComponent() { // 动态生成组件
     this.currentAdIndex = (this.currentAdIndex + 1) % this.ads.length;
     let adItem = this.ads[this.currentAdIndex];
 
@@ -89,9 +105,9 @@ export class OneChild1Component implements OnInit {
 
     this.componentRef = this.adHost.createComponent(componentFactory);
     this.componentRef.instance.inData = adItem.data;
-    this.componentRef.instance.toEmitData   //  this.componentRef.instance 代表组件实例
+    this.componentRef.instance.toEmitData //  this.componentRef.instance 代表组件实例
       .subscribe(val => console.log(val));
-    this.componentRef.onDestroy(_ => console.log('333'));  // 动态组件销毁事件钩子
+    this.componentRef.onDestroy(_ => console.log('333')); // 动态组件销毁事件钩子
   }
   //  动态加载组件
   ads: AdItem[];
@@ -113,7 +129,7 @@ export class OneChild1Component implements OnInit {
     this.loadComponent();
     this.getAds();
   }
-  closeRD() {  // 关闭自动生成组件功能
+  closeRD() { // 关闭自动生成组件功能
     clearInterval(this.interval);
     clearInterval(this.interva2);
     this.time = 1;
@@ -131,7 +147,7 @@ export class OneChild1Component implements OnInit {
     let toRge2 = str.search(reg1); // 查找，返回匹配到的字符的索引
     let toRge3 = str.match(reg2); // 查找,返回匹配到的字符组成的数组
 
-    let toRge5 = reg2.test(str);  // 查找字符串里是否有正则要匹配的内容
+    let toRge5 = reg2.test(str); // 查找字符串里是否有正则要匹配的内容
     let toRge6 = reg1.test(str);
 
     // let pattern = /Java/g;
@@ -157,7 +173,7 @@ export class OneChild1Component implements OnInit {
   es6() {
     // ES7中代替indexOf方法，用于查找数组元素
     let arr = ['react', 'angular', 'vue'];
-    console.log(arr.includes('react'));     // true
+    console.log(arr.includes('react')); // true
     /**********************************************************************/
     // ES7中求幂运算
     let bb = 2 ** 2;
@@ -168,36 +184,40 @@ export class OneChild1Component implements OnInit {
     // Object.values返回对象自身可以迭代的属性的值，返回值组成的数组。
     // 我们最好使用Array.prototype.forEach迭代它，结合ES6的箭头函数隐形返回值：
 
-    let obj = { a: 1, b: 2, c: 3 }
+    let obj = {
+      a: 1,
+      b: 2,
+      c: 3
+    }
     Object.values(obj).forEach(value => console.log(value)) // 1, 2, 3
 
-    for (let value of Object.values(obj)) {  // 1, 2, 3
+    for (let value of Object.values(obj)) { // 1, 2, 3
       console.log(value)
     }
     // 将字符串通过使用第二个参数补齐成第一个参数规定的长度，
     let pad1 = '250.00'.padStart(10, '*')
     let pad2 = 'backbone'.padEnd(10, '*')
     console.log(pad1); // 在前边补
-    console.log(pad2)  // 在后边补
+    console.log(pad2) // 在后边补
     /**********************************************************************/
     // Math.trunc方法用于去除一个数的小数部分，返回整数部分。
     let one = Math.trunc(4.231);
     console.log(one)
     /**********************************************************************/
     let arr1 = [1, 2, 3, 4, 5, 6, 7];
-    console.log(arr1.filter(x => x > 3))  // 返回一个符合条件的数组
-    console.log(arr1.find(x => x > 3))  // 返回第一个符合条件的数组元素
+    console.log(arr1.filter(x => x > 3)) // 返回一个符合条件的数组
+    console.log(arr1.find(x => x > 3)) // 返回第一个符合条件的数组元素
     /**********************************************************************/
     // 比较任意两个值是否完全相等
-    console.log(Object.is('foo', 'foo'))  // true
-    console.log(Object.is(+0, -0))        // false
-    console.log(Object.is(NaN, NaN))      // true
+    console.log(Object.is('foo', 'foo')) // true
+    console.log(Object.is(+0, -0)) // false
+    console.log(Object.is(NaN, NaN)) // true
 
     // Object.keys()：返回对象自身的所有可枚举的属性的键名（不含继承的）。
     /**********************************************************************/
     // 用Set函数进行数组去重
     let arr2 = [1, 2, 2, 3, 4, 4];
-    let set = new Set(arr2);  // 新建Set函数，
+    let set = new Set(arr2); // 新建Set函数，
     set.add(10);
     console.log(set.size);
     console.log([...Array.from(set)]);
@@ -211,7 +231,7 @@ export class OneChild1Component implements OnInit {
     // 交集
     let intersect = new Set([...Array.from(a)].filter(x => b.has(x))); // set {2, 3}
     // 差集
-    let difference = new Set([...Array.from(a)].filter(x => !b.has(x)));  // Set {1}
+    let difference = new Set([...Array.from(a)].filter(x => !b.has(x))); // Set {1}
 
     console.log(union)
     console.log(intersect)
@@ -241,7 +261,9 @@ export class OneChild1Component implements OnInit {
     console.log(proxy['time'])
     /**********************************************************************/
     // 使用proxy 对函数进行执行拦截
-    let target = function () { return 'I am the target'; };
+    let target = function () {
+      return 'I am the target';
+    };
     let handler = {
       apply: function () {
         return 'I am the proxy';
@@ -265,33 +287,40 @@ export class OneChild1Component implements OnInit {
   type: string;
   Enter(ev: Event) {
     ev.stopPropagation();
-    ev.preventDefault(); this.type = 'enter'
+    ev.preventDefault();
+    this.type = 'enter'
   }
   Leave(ev) {
     ev.stopPropagation();
-    ev.preventDefault(); this.type = 'leave'
+    ev.preventDefault();
+    this.type = 'leave'
     this.moveNum = null
   }
   moveNum: number;
   Move(ev) {
     ev.stopPropagation();
-    ev.preventDefault(); this.moveNum += 1
+    ev.preventDefault();
+    this.moveNum += 1
   }
   Out(ev) {
     ev.stopPropagation();
-    ev.preventDefault(); this.type = 'out'
+    ev.preventDefault();
+    this.type = 'out'
     this.moveNum = null
   }
   Over(ev) {
     ev.stopPropagation();
-    ev.preventDefault(); this.type = 'over'
+    ev.preventDefault();
+    this.type = 'over'
   }
   Up(ev) {
     ev.stopPropagation();
-    ev.preventDefault(); this.type = 'up'
+    ev.preventDefault();
+    this.type = 'up'
   }
   Down(ev) {
     ev.stopPropagation();
-    ev.preventDefault(); this.type = 'down'
+    ev.preventDefault();
+    this.type = 'down'
   }
 }
