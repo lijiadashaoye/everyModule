@@ -22,14 +22,12 @@
   </div>
 
   <ng-container ngProjectAs=".footer" *ngIf="isAdd">
-    <div>动态添加投影内容</div>
+    <div  style="color:red;font-size:16px">动态添加投影内容</div>
   </ng-container>
 </app-ng-view-child>
-
+<h2>ngOnChanges</h2>
 <button (click)="adfhdaf()">test ngOnChanges1</button>
 <button (click)="gsdg()">test ngOnChanges2</button>
 <p style="color:red;font-size:16px">
   组件内无论有多少@Input(),任何一个发生变化，都会执行ngOnChanges()函数
 </p>
-
-

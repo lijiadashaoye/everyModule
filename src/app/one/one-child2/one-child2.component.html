@@ -50,9 +50,15 @@
   <h2>可部署的图片写入方式</h2>
   <div class="allImg">
     <div>
-      直接写入url字符串:
+      直接写入url字符串，用 [ ]:
       <br> [src]="'assets/1.jpg'"
       <img [src]="'assets/2.jpg'">
+
+    </div>
+    <div>
+      直接写入url字符串，不用 [ ]:
+      <br> src="assets/1.jpg"
+      <img src="assets/2.jpg">
     </div>
     <div>
       来自网络
