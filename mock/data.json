@@ -1,16 +1,38 @@
 {
-    "datas": [
-        {
-            "id": "0",
-            "name": "张三",
-            "age": "30",
-            "job": "律师"
-        },
-        {
-            "id": "1",
-            "name": "旺旺",
-            "age": "20",
-            "job": "学生"
-        }
-    ]
+  "datas": [
+    {
+      "id": "0",
+      "name": "张三",
+      "age": "30",
+      "job": "律师"
+    },
+    {
+      "id": "1",
+      "name": "旺旺",
+      "age": "20",
+      "job": "学生"
+    }
+  ],
+  "fromDirective": [
+    {
+      "id": "0",
+      "name": "张三"
+    },
+    {
+      "name": "directived",
+      "id": "T6A~naL"
+    },
+    {
+      "name": "directived",
+      "id": "VXei7EX"
+    },
+    {
+      "name": "directived",
+      "id": "yTQ5e1b"
+    },
+    {
+      "name": "directived",
+      "id": "V4yt1Bo"
+    }
+  ]
 }

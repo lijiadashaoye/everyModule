@@ -1,4 +1,14 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2, Attribute, HostBinding } from '@angular/core';
+import {
+    Directive,
+    ElementRef,
+    HostListener,
+    Input,
+    Renderer2,
+    Attribute,
+    HostBinding,
+    EventEmitter,
+    Output
+} from '@angular/core';
 
 @Directive({ selector: '[appHighlight]' })
 
@@ -31,5 +41,28 @@ export class HostBindTest {
     @HostListener('click', ['$event'])
     onclick(ev: Event) {
         this.isPressed = !this.isPressed
+    }
+}
+
+import { HttpService } from '../../http.service';
+@Directive({ selector: '[httplisten]' })
+export class HttpListen {
+    constructor(private http: HttpService) { }
+    @HostListener('click', ['$event'])
+    onclick(ev: Event) {
+        let obj = {
+            name: 'directived'
+        }
+        this.http.directiveHttp(obj)
+            .subscribe(val => console.log(val))
+    }
+}
+
+@Directive({ selector: '[hostlisten]' })
+export class HostListen {
+    @Output() emData = new EventEmitter()
+    @HostListener('click', ['$event'])
+    onclick(ev: Event) {
+      this.emData.emit('Directive 事件')
     }
 }

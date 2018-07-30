@@ -5,7 +5,7 @@ import { OneChild1Component } from './one-child1/one-child1.component';
 import { OneChild2Component } from './one-child2/one-child2.component';
 import { OneRoute } from './oneRoute';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HighlightDirective, HostBindTest } from './one-child1/directive';
+import { HighlightDirective, HostBindTest, HostListen, HttpListen } from './one-child1/directive';
 import { OneChild3Component } from './one-child3/one-child3.component';
 import { OneChild4Component } from './one-child4/one-child4.component';
 import { OneChild3ChildComponent } from './one-child3/one-child3-child/one-child3-child.component';
@@ -38,6 +38,8 @@ import { AnimTestComponent } from './one-child4/anim-test/anim-test.component';
         OneChild3ChildComponent,
         HighlightDirective,
         HostBindTest,
+        HostListen,
+        HttpListen,
         FlyingHeroes,
         Rd1Component,
         Rd2Component,

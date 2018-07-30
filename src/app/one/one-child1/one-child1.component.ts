@@ -57,6 +57,10 @@ export class OneChild1Component implements OnInit {
     this.vcRef.createEmbeddedView(this.tplRef)
   }
 
+  emDatas(e) {     // 通过Directive方式添加事件，可以将公共事件提取到单独的文件内
+    console.log(e)
+  }
+  
   ngOnDestroy() {
     clearInterval(this.interval);
     clearInterval(this.interva2);
