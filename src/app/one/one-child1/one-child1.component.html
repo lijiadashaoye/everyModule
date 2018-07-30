@@ -18,7 +18,7 @@
     <br>
     <button (click)="es6()">一些es6方法</button>
   </div>
-  <div style="width:25%;">
+  <div style="width:45%;">
     <h2>ng-template</h2>
     <ng-container *ngTemplateOutlet="tpl"></ng-container>
     <ng-template #tpl>
@@ -35,23 +35,68 @@
     <h2>ng-container</h2>
     <button (click)="ngIfs=!ngIfs">clickHere</button>
     <ng-container *ngIf="ngIfs">
-      <p> ngIf with an ng-container.</p>
+      <strong style="color:rgb(16, 236, 100);">ngIf with an ng-container. </strong>
     </ng-container>
-
+    <h2>鼠标事件区分</h2>
+    <div>
+      <strong style="color:rgb(236, 16, 71);">onmouseenter: </strong> 事件在鼠标指针移动到元素上时触发。
+      <br> 提示： 该事件通常与onmouseleave 事件一同使用, 在鼠标指针移出元素上时触发。
+      <br> 提示： onmouseenter 事件类似于onmouseover 事件。 唯一的区别是 onmouseenter 事件不支持冒泡 。
+      <br>
+      <strong style="color:rgb(236, 16, 71);">onmouseleave: </strong> 事件在鼠标移除元素时触发。
+      <br> 提示： 该事件通常与onmouseenter 事件一起使用，该事件在鼠标移动到元素上时触发。
+      <br> 提示: onmouseleave 事件类似于onmouseout 事件。 唯一的区别是 onmouseleave 事件不支持冒泡 。
+      <br>
+      <strong style="color:rgb(236, 16, 71);">onmousemove:</strong> 当用户移动鼠标时引发该鼠标移动事件。
+      <br>
+      <strong style="color:rgb(236, 16, 71);">onmouseout:</strong> 当鼠标离开元素时会引发鼠标移出事件（例如，当鼠标离开网页中的图像时，会为该图像元素引发鼠标移出事件）。
+      <br>
+      <strong style="color:rgb(236, 16, 71);">onmouseover:</strong> 当用户将鼠标移动到特定元素上时引发的鼠标悬停事件。
+      <br>
+      <strong style="color:rgb(236, 16, 71);">onmouseup:</strong> 当用户释放鼠标按钮时会引发mouseup事件。
+      <br>
+      <strong style="color:rgb(236, 16, 71);">onmousedown:</strong> 在当用户按下鼠标按钮时，将引发mousedown事件。
+      <p style="color:rgb(20, 16, 236);">
+        如果事件宿主 z-index 层级低，容易发生闪烁，左边的会闪，右边的不会。
+        <br>试试鼠标分别放在绿块的文字上和文字下边
+      </p>
+      <div class="mouseEvent">
+        <div>
+          <div (mousemove)="Move($event)" (mouseout)="Out($event)">
+            move
+            <div *ngIf="moveNum" class="innerDiv">{{moveNum}}</div>
+          </div>
+          <div (mouseout)="Out($event)" (mouseover)="Over($event)">
+            out，over
+            <div *ngIf="type=='over'" class="innerDiv">{{type}}</div>
+          </div>
+        </div>
+        <div>
+          <div (mouseenter)="Enter($event)" (mouseleave)="Leave($event)">
+            enter，leave
+            <div *ngIf="type=='enter'" class="innerDiv">{{type}}</div>
+          </div>
+          <div (mouseup)="Up($event)" (mousedown)="Down($event)">
+            <span [ngStyle]="{color:type=='up'?'red':''}">up</span> ，down
+            <div *ngIf="type=='down'" class="innerDiv">{{type}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div style="width:30%;">
+  <div style="width:20%;">
     <h2>ViewChildren</h2>
     <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置
     </p>
-    <div style="border:1px dashed teal;padding:10px;">
+    <div style="border:1px dashed rgb(236, 16, 71);padding:10px;">
       <p>这是组件组最终应该放的位置</p>
       <app-ng-view></app-ng-view>
     </div>
 
   </div>
 
-  <div style="width:30%;">
+  <div style="width:20%;">
     <h2>ContentChildren</h2>
     <p>将组件A、B一起放到最终位置，但A标签内放入B标签，同时在A组件的html内，用 ng-content表明B组件应该显示的位置
     </p>

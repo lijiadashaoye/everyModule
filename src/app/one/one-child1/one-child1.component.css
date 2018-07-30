@@ -2,8 +2,39 @@
     font-size: 20px;
     color: rgb(231, 105, 231);
 }
-.outPut{
-    padding:3px;
+
+.outPut {
+    padding: 3px;
     font-weight: bold;
-    color:rgb(134, 204, 4);
+    color: rgb(134, 204, 4);
+}
+
+.mouseEvent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mouseEvent>div {
+    width: 50%;
+}
+.mouseEvent>div>div{
+    width: 70%;
+    height: 60px;
+    background: rgb(205, 240, 136);
+    margin-top: 10px;
+    text-align: center;
+    line-height: 180%;
+    position: relative;
+    z-index: 10;
+} 
+.innerDiv {
+    background: firebrick;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
 }

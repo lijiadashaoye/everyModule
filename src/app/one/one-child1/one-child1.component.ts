@@ -60,7 +60,7 @@ export class OneChild1Component implements OnInit {
   emDatas(e) {     // 通过Directive方式添加事件，可以将公共事件提取到单独的文件内
     console.log(e)
   }
-  
+
   ngOnDestroy() {
     clearInterval(this.interval);
     clearInterval(this.interva2);
@@ -262,6 +262,36 @@ export class OneChild1Component implements OnInit {
     this.tickDom = kk.filter(dom => dom['id'] === `ticked${id}`);
     this.rd.setStyle(this.tickDom[0], 'background', 'red')
   }
-
+  type: string;
+  Enter(ev: Event) {
+    ev.stopPropagation();
+    ev.preventDefault(); this.type = 'enter'
+  }
+  Leave(ev) {
+    ev.stopPropagation();
+    ev.preventDefault(); this.type = 'leave'
+    this.moveNum = null
+  }
+  moveNum: number;
+  Move(ev) {
+    ev.stopPropagation();
+    ev.preventDefault(); this.moveNum += 1
+  }
+  Out(ev) {
+    ev.stopPropagation();
+    ev.preventDefault(); this.type = 'out'
+    this.moveNum = null
+  }
+  Over(ev) {
+    ev.stopPropagation();
+    ev.preventDefault(); this.type = 'over'
+  }
+  Up(ev) {
+    ev.stopPropagation();
+    ev.preventDefault(); this.type = 'up'
+  }
+  Down(ev) {
+    ev.stopPropagation();
+    ev.preventDefault(); this.type = 'down'
+  }
 }
-

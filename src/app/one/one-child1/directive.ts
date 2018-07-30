@@ -63,6 +63,7 @@ export class HostListen {
     @Output() emData = new EventEmitter()
     @HostListener('click', ['$event'])
     onclick(ev: Event) {
-      this.emData.emit('Directive 事件')
+        console.log(ev)
+        this.emData.emit('Directive 事件')
     }
 }
