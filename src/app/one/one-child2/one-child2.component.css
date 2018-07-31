@@ -1,12 +1,12 @@
 .allImg>div {
     width: 210px;
-
 }
 
 .allImg>div img {
     width: 100%;
 }
-.allImg{
-    display:flex;
+
+.allImg {
+    display: flex;
     justify-content: space-around;
 }
