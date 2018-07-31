@@ -31,13 +31,15 @@
   </div>
   <div>
     <h2>单独的，不需要form表单形式的</h2>
-    <label for={{item.id}}>
-      <label style="width:30px;background:pink;">
-        <input type="checkbox" name="item.id" id={{item.id}} value="{{item.id}}" #ite (change)="selectItem(item,ite)">
-      </label>
-      <br> data: {{seeItem |json}}
-      <br> checked: {{ite.checked}}
+    <label style="width:30px;background:pink;margin-right:10px;">
+      <input type="checkbox" name="item.id" id={{item.id}} value="{{item.id}}" #ite (change)="selectItem(item,ite)">
     </label>
+    <label style="width:30px;background:rgb(206, 192, 255);margin-right:10px;">
+      <input type="checkbox" [(ngModel)]="isCheckbox">
+    </label>
+    <span>{{isCheckbox}}</span>
+    <br> data: {{seeItem |json}}
+    <br> checked: {{ite.checked}}
   </div>
   <div>
     <h2>计时器</h2>
