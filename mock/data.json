@@ -1,6 +1,5 @@
 {
-  "datas": [
-    {
+  "datas": [{
       "id": "0",
       "name": "张三",
       "age": "30",
@@ -13,8 +12,7 @@
       "job": "学生"
     }
   ],
-  "fromDirective": [
-    {
+  "fromDirective": [{
       "id": "0",
       "name": "张三"
     },

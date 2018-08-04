@@ -1,44 +1,32 @@
-
-
 <div class="waper">
   <div>
     <ngx-address [(ngModel)]="id" [options]="opt"></ngx-address>
   </div>
   <div>
     <h2>angularx-qrcode二维码插件</h2>
-  <div  class="waper" >
-    <div style="border:0;">
-      <input type="text" #Input>
-      <button (click)="show(Input.value)">生成</button>
+    <div class="waper">
+      <div style="border:0;">
+        <input type="text" #Input>
+        <button (click)="show(Input.value)">生成</button>
+      </div>
+      <div *ngIf="qrdata" style="border:none;">
+        <qrcode *ngIf="qrdata" [qrdata]="qrdata" [size]="size" [level]="level" [colorlight]="colorlight" [colordark]="colordark"
+          [usesvg]="usesvg"></qrcode>
+      </div>
     </div>
-    <div *ngIf="qrdata" style="border:none;">
-      <qrcode 
-      *ngIf="qrdata" 
-      [qrdata]="qrdata" 
-      [size]="size" 
-      [level]="level" 
-      [colorlight]="colorlight" 
-      [colordark]="colordark"
-      [usesvg]="usesvg"></qrcode>
-    </div>
-  </div>
-    
+
   </div>
   <div>
     <h2>ngx-qrcode2二维码插件</h2>
-  <div  class="waper" >
-    <div style="border:0;">
-      <input type="text" #Input2>
-      <button (click)="show2(Input2.value)">生成</button>
+    <div class="waper">
+      <div style="border:0;">
+        <input type="text" #Input2>
+        <button (click)="show2(Input2.value)">生成</button>
+      </div>
+      <div *ngIf="value" style="border:none;">
+        <ngx-qrcode [qrc-value]="value" qrc-class="aclass" qrc-errorCorrectionLevel="levels">
+        </ngx-qrcode>
+      </div>
     </div>
-    <div *ngIf="value" style="border:none;">
-      <ngx-qrcode 
-      [qrc-value] = "value"
-      qrc-class = "aclass"
-      qrc-errorCorrectionLevel = "levels">
-      </ngx-qrcode>
-    </div>
-  </div>
-    
   </div>
 </div>
