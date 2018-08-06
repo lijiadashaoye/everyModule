@@ -1,6 +1,6 @@
 ## Install
 
-最好用`cnpm i`安包
+最好用`cnpm i`安包,或者`yarn`
 
 # Run
 Run `npm run start` to start the project; 
