@@ -6,9 +6,6 @@ import {
 } from '@angular/core';
 import * as $ from 'jquery'
 import {
-  calcBindingFlags
-} from '_@angular_core@5.2.11@@angular/core/src/view/util';
-import {
   Observable
 } from 'rxjs';
 @Component({
@@ -18,30 +15,30 @@ import {
 })
 export class Cild5Component implements OnInit {
   arr = [{
-    id: 0,
-    num: 3
-  },
-  {
-    id: 1,
-    num: 39
-  },
-  {
-    id: 2,
-    num: 23
-  },
-  {
-    id: 3,
-    num: 8
-  },
-  {
-    id: 4,
-    num: 13
-  }
+      id: 0,
+      num: 3
+    },
+    {
+      id: 1,
+      num: 39
+    },
+    {
+      id: 2,
+      num: 23
+    },
+    {
+      id: 3,
+      num: 8
+    },
+    {
+      id: 4,
+      num: 13
+    }
   ]
   constructor(
     private elem: ElementRef,
     private rd: Renderer2,
-  ) { }
+  ) {}
 
   ngOnInit() {
     let domOrders = this.elem.nativeElement.querySelectorAll('.div1');
