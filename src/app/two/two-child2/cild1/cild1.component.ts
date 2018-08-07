@@ -36,7 +36,7 @@ export class Cild1Component {
         console.log(err)
       })
 
-    Promise.all([promise1, promise1])
+    Promise.all([promise1, promise2])
       .then(val => console.log(val))
       .then(val => console.log(3));
   }
