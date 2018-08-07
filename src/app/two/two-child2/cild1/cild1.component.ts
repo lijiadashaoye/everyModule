@@ -59,7 +59,6 @@ export class Cild1Component {
         setTimeout(resolve, ms);
       });
     }
-
     async function asyncPrint(value, ms) {
       await timeout(ms);
       console.log(value);
