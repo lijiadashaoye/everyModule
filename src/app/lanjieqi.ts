@@ -18,7 +18,10 @@ import {
 } from 'rxjs';
 @Injectable()
 export class NoopInterceptor implements HttpInterceptor {
-    intercept(req: HttpRequest < any > , next: HttpHandler): Observable < HttpEvent < any >> { // 拦截请求前：在此处可以处理请求头；例如Content-type// 此处也可以加loading的监听// 我这里是有2个不同的服务器地址
+    // 拦截请求前：在此处可以处理请求头；例如Content-type
+    // 此处也可以加loading的监听
+    // 我这里是有2个不同的服务器地址
+    intercept(req: HttpRequest < any > , next: HttpHandler): Observable < HttpEvent < any >> { 
         let headerOptions;
         if (req.url.indexOf('upload/bytes') > -1) {
             headerOptions = {

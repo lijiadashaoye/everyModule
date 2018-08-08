@@ -29,7 +29,7 @@ import 'rxjs/add/operator/shareReplay';
 import {
     InjectionToken
 } from '@angular/core';
-export const BASE_URL = new InjectionToken < string > ('');
+export const BASE_URL = new InjectionToken<string>('');
 export const urlText = '/datas';
 
 const HEADER = {
@@ -54,16 +54,20 @@ export class HttpService {
         @Inject(BASE_URL) private baseUrl,
         private http: Http,
         private http2: HttpClient
-    ) {}
+    ) { }
     // 不使用拦截器的
-    toGet(id): Observable < UserData > {
+    toGet(id): Observable<UserData> {
         let url = this.baseUrl + `/${id}`; // 使用proxy代理重定向url
         // shareReplay用于避免发送重复请求
         return this.http.get(url)
             .map(res => res.json()).shareReplay()
     }
+
+    // Angular 会按照你提供它们的顺序应用这些拦截器。
+    //  如果你提供拦截器的顺序是先 A，再 B，再 C，那么请求阶段的执行顺序就是 A->B->C，
+    //  而响应阶段的执行顺序则是 C->B->A。
     // 使用了拦截器的
-    toGet2(id): Observable < any > {
+    toGet2(id): Observable<any> {
         let url = this.baseUrl + `/${id}`; // 使用proxy代理重定向url
         // shareReplay用于避免发送重复请求
         return this.http2.get(url,
