@@ -23,8 +23,13 @@
     </p>
     <br>
     <div [style.font-size.px]="fontSizePx?fontSizePx:12">Resizable Text</div>
+    <div>
+      <p>当 Angular 找不到依赖时，@Optional 装饰器会告诉 Angular 继续执行,Angular 把此注入参数设置为 null(而不用默认的抛出错误的行为)。</p>
+      <p>@Host 装饰器将把往上搜索的行为截止在宿主组件,宿主组件通常是申请这个依赖的组件。但当这个组件被投影(projected)进一个父组件后，这个父组件就变成了宿主</p>
+      <p>@SkipSelf一个构造函数参数装饰器，它告诉DI框架依赖解析应该从父注入器开始</p>
+    </div>
   </div>
-  <div style="width:40%;">
+  <div style="width:45%;">
     <h2>ng-template</h2>
     <ng-container *ngTemplateOutlet="tpl"></ng-container>
     <ng-template #tpl>
@@ -34,9 +39,9 @@
     </ng-template>
     <div>
       <h2>
-        <h4>用createEmbeddedView() 动态创建ng-template，点击按钮看页面最底下</h4>
+        <h4>用createEmbeddedView() 动态创建ng-template</h4>
       </h2>
-      <button (click)="createEmbeddedViews()">createEmbeddedViews</button>
+      <button (click)="createEmbeddedViews()">点击按钮看页面最底下</button>
     </div>
     <h2>ng-container</h2>
     <button (click)="ngIfs=!ngIfs">clickHere</button>
@@ -91,7 +96,7 @@
     </div>
   </div>
 
-  <div style="width:25%;">
+  <div style="width:22%;">
     <h2>ViewChildren</h2>
     <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置
     </p>
@@ -102,7 +107,7 @@
 
   </div>
 
-  <div style="width:20%;">
+  <div style="width:18%;">
     <h2>ContentChildren</h2>
     <p>将组件A、B一起放到最终位置，但A标签内放入B标签，同时在A组件的html内，用 ng-content表明B组件应该显示的位置
     </p>
