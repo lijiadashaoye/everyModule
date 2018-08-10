@@ -17,6 +17,12 @@
     <button (click)="reg()">正则表达式</button>
     <br>
     <button (click)="es6()">一些es6方法</button>
+    <h2> style样式绑定</h2>
+    <p>输入数字
+      <input type="number" [(ngModel)]="fontSizePx" min="12" placeholder="最小值12">
+    </p>
+    <br>
+    <div [style.font-size.px]="fontSizePx?fontSizePx:12">Resizable Text</div>
   </div>
   <div style="width:40%;">
     <h2>ng-template</h2>
