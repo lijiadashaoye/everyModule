@@ -63,7 +63,6 @@ export class Cild1Component {
       await timeout(ms);
       console.log(value);
     }
-
     asyncPrint('hello world', 2000);
   }
 

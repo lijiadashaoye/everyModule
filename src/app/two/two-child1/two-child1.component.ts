@@ -106,6 +106,7 @@ export class TwoChild1Component implements OnInit {
       })
     })
 
+    // 要想在单个的自定义验证器中同时验证两个控件，我们就得在它们共同的祖先控件（FormGroup）中进行验证
     this.funValid = this.fb.group({
       ages: ['', this.ageRange(20, 120)],
       go: [''],

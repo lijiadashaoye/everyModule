@@ -21,10 +21,12 @@
   <div>
     <h2>formArray</h2>
     <form [formGroup]="myForm">
-      <div class="like" *ngFor="let like of likes['controls'];index as i;odd as odds">
-        <label>
-          <input type="checkbox" [formControl]="like"> {{likesArr[i]}} {{odds?' --偶数行':' --奇数行'}}
-        </label>
+      <div formArrayName="likes">
+        <div class="like" *ngFor="let like of likes['controls'];index as i;odd as odds">
+          <label>
+            <input type="checkbox" [formControl]="like"> {{likesArr[i]}} {{odds?' --偶数行':' --奇数行'}}
+          </label>
+        </div>
       </div>
       <div *ngFor="let select of selects" class="youselect">{{select}}</div>
     </form>
