@@ -23,6 +23,12 @@ import {
   AdService,
   AdItem
 } from './ad.service';
+import {
+  NgContentChildComponent
+} from './ng-content-child/ng-content-child.component';
+import {
+  NgViewComponent
+} from './ng-view/ng-view.component'
 
 @Component({
   selector: 'app-one-child1',
@@ -49,6 +55,7 @@ export class OneChild1Component implements OnInit {
       id: 31
     },
   ]
+
   constructor(
     private el: ElementRef,
     private vcRef: ViewContainerRef,
@@ -58,6 +65,7 @@ export class OneChild1Component implements OnInit {
     private adService: AdService,
     private rd: Renderer2
   ) {}
+
   @ViewChild('tpl') tplRef: TemplateRef < any > ;
   ngOnInit() {
     this.color = 'yellow';
@@ -129,12 +137,22 @@ export class OneChild1Component implements OnInit {
     this.loadComponent();
     this.getAds();
   }
+  /**********************************************/
+  addComponent;
+  addComponentFn() { // 通过ngComponentOutlet实现添加组件
+    // 将NgContentChildComponent要写到模块的entryComponents里
+    this.addComponent = NgContentChildComponent;
+  }
   closeRD() { // 关闭自动生成组件功能
     clearInterval(this.interval);
     clearInterval(this.interva2);
     this.time = 1;
     this.componentRef.destroy();
   }
+  changeComponentFn() {
+    this.addComponent = NgViewComponent;
+  }
+  /**********************************************/
   reg() {
     let str = 'asdjf 3iA4 234LAKS DJAL SKDJkl 2234sfa';
     let str2 = 'https://www.bjhjyd.gov.cn/';
@@ -169,7 +187,7 @@ export class OneChild1Component implements OnInit {
     // console.log(toRge5);
     // console.log(toRge6);
   }
-
+  /**********************************************/
   es6() {
     // ES7中代替indexOf方法，用于查找数组元素
     let arr = ['react', 'angular', 'vue'];

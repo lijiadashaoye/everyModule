@@ -217,8 +217,15 @@
   <div style="width:15%;">
     <h2>动态生成组件
       <br>3秒一换 {{time}}</h2>
+    <p>通过componentFactoryResolver实现</p>
     <button (click)="startAd()">startAd</button>
     <button (click)="closeRD()">closeRD</button>
     <ng-template #adhost></ng-template>
+    <div>
+      <p>通过*ngComponentOutlet实现</p>
+      <div *ngComponentOutlet="addComponent"></div>
+      <button (click)="addComponentFn()">addComponent</button>
+      <button (click)="changeComponentFn()">changeComponent</button>
+    </div>
   </div>
 </div>
