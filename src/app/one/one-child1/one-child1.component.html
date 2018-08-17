@@ -1,7 +1,11 @@
 <div class="waper">
   <div style="width:15%;">
     <h2> 属性指令</h2>
-    <strong appHighlight>使用HostListener为元素添加事件</strong>
+    <strong appHighlight #inDirectiveFns="inDirectiveFn">使用HostListener为元素添加事件
+    </strong>
+    <p (mouseover)="inDirectiveFns.show()" (mouseout)="inDirectiveFns.hide()">
+      通过这个元素使用Directive控制另外的元素
+    </p>
     <p [appHighlight]="color" author="attribute author">
       为元素添加自定义属性并使用@Attribute()读取属性
       <br> 使用输入型的属性指令
