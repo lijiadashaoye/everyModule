@@ -52,6 +52,8 @@ import { AnimTestComponent } from './one-child4/anim-test/anim-test.component';
     entryComponents: [
         Rd1Component,  // 动态生成的组件，需要同时写到这里
         Rd2Component,
+        NgContentChildComponent,
+        NgViewComponent
     ],
     providers: [
         AdService,

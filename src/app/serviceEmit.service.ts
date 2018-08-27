@@ -10,7 +10,7 @@ import {
  */
 @Injectable()
 export class AppService {
-    childService = new EventEmitter<string>();
+    childService = new EventEmitter<string>(); // 用来控制退出按钮的显示
     compo = new Subject();
     constructor(private route: Router) { }
     comfirmModal() {

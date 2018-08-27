@@ -10,16 +10,19 @@ import {
     Output
 } from '@angular/core';
 
-@Directive({ selector: '[appHighlight]' })
+@Directive({
+    selector: '[appHighlight]',
+    exportAs: 'inDirectiveFn' // 使用exportAs 输出指令示例，从而在别的地方可以执行指令
+})
 
 export class HighlightDirective {
     constructor(
         private el: ElementRef,
         private rd: Renderer2,
         @Attribute('author') private author: string
-    ) { }
+    ) {}
     @Input('appHighlight') highlightColor: string;
-    @HostListener('mouseenter') onMouseEnter() {
+    @HostListener('mouseenter') onMouseEnter() { // 使用HostListener为元素添加指令
         this.author ? console.log(this.author) : '';
         this.highlight('red', 'mouseenter');
     }
@@ -32,9 +35,20 @@ export class HighlightDirective {
         let elem = this.el.nativeElement;
         this.rd.setAttribute(elem, 'style', `background:${color};`)
     }
+    hide() {
+        let elem = this.el.nativeElement;
+        elem.classList.remove('tooltip--active');
+    }
+
+    show() {
+        let elem = this.el.nativeElement;
+        elem.classList.add('tooltip--active');
+    }
 }
 
-@Directive({ selector: '[hostbindingd]' })
+@Directive({
+    selector: '[hostbindingd]'
+})
 export class HostBindTest {
     @HostBinding('attr.role') role = 'button';
     @HostBinding('class.pressed') isPressed: boolean = false;
@@ -44,10 +58,14 @@ export class HostBindTest {
     }
 }
 
-import { HttpService } from '../../http.service';
-@Directive({ selector: '[httplisten]' })
+import {
+    HttpService
+} from '../../http.service';
+@Directive({
+    selector: '[httplisten]'
+})
 export class HttpListen {
-    constructor(private http: HttpService) { }
+    constructor(private http: HttpService) {}
     @HostListener('click', ['$event'])
     onclick(ev: Event) {
         let obj = {
@@ -58,7 +76,9 @@ export class HttpListen {
     }
 }
 
-@Directive({ selector: '[hostlisten]' })
+@Directive({
+    selector: '[hostlisten]'
+})
 export class HostListen {
     @Output() emData = new EventEmitter()
     @HostListener('click', ['$event'])

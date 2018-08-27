@@ -38,3 +38,6 @@
     bottom: 0;
     z-index: 20;
 }
+.tooltip--active{
+    color:blue;
+}
