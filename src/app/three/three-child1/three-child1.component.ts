@@ -114,7 +114,8 @@ export class ThreeChild1Component implements OnInit {
     }
     asyncPrint("hello world", 2000).then(_ => {
       console.log("async 执行完的then");
-    });
+    })
+    .catch(e => console.log(e))
   }
 
   testClass() {
