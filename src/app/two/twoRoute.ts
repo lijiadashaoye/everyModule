@@ -38,7 +38,7 @@ const two: Routes = [
         {
             path: 'twoChild4',
             component: TwoChild4Component
-        },
+        }
         ]
     }
 ]

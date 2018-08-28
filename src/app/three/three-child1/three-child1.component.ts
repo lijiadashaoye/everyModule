@@ -98,6 +98,7 @@ export class ThreeChild1Component implements OnInit {
     console.log(kk);
     console.log(kkk);
   }
+  /*********************************************************************************************************/
   // async函数返回一个 Promise 对象，可以使用then方法添加回调函数。
   // 当函数执行的时候，一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。
   // await命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时等同于同步操作）。
@@ -110,14 +111,55 @@ export class ThreeChild1Component implements OnInit {
     }
     async function asyncPrint(value, ms) {
       await timeout(ms);
-      console.log(value);
+      return value;
     }
-    asyncPrint("hello world", 2000).then(_ => {
-      console.log("async 执行完的then");
-    })
-    .catch(e => console.log(e))
-  }
 
+    asyncPrint("hello world", 2000) // 不添加错误处理
+      .then(_ => {
+        console.log(_);
+      });
+  }
+  testasyncError1() {
+    function timeout(ms) {
+      return new Promise(resolve => {
+        setTimeout(resolve, ms);
+      });
+    }
+    // 将错误处理放到async里，一般用在async函数里有多个await但前边的有可能报错，不至于影响后边的await
+    async function asyncPrint(value, ms) {
+      try {
+        await timeout(ms);
+        throw Error("fadfadsfasdf");
+      } catch (err) {
+        console.log("这里是asycn函数里第一个await执行完的报错" + err);
+      }
+      await timeout(ms);
+      return "第二个await正常执行并返回值";
+    }
+
+    asyncPrint("hello world", 2000).then(_ => {
+      // then可以正常执行
+      console.log(_);
+    });
+  }
+  testasyncError2() {
+    function timeout(ms) {
+      return new Promise(resolve => {
+        setTimeout(resolve, ms);
+      });
+    }
+    // 一般用在对整个asyc函数统一进行错误处理，不会再执行then
+    async function asyncPrint(value, ms) {
+      await timeout(ms);
+      throw Error("jjjjj");
+    }
+    asyncPrint("hello world", 2000)
+      .then(_ => {
+        console.log(_);
+      })
+      .catch(err => console.log("ff", err));
+  }
+  /*********************************************************************************************************/
   testClass() {
     // 如果在一个方法前，加上static关键字，就表示该方法不会被实例继承(无法通过new 新建后继承方法),
     // 而是直接通过类来调用，这就称为“静态方法”。
