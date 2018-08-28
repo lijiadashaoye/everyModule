@@ -32,10 +32,6 @@ const two: Routes = [
             component: TwoChild1Component
         },
         {
-            path: 'twoChild2',
-            loadChildren: 'app/two/two-child2/childModule#ChildModule'
-        },
-        {
             path: 'twoChild3',
             component: TwoChild3Component
         },
