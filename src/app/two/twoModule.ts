@@ -33,7 +33,6 @@ import { MediaLearnComponent } from './two-child3/media-learn/media-learn.compon
         TwoRoute,
         FormsModule,
         ReactiveFormsModule,
-
     ],
     declarations: [
         TwoComponent,
