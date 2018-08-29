@@ -24,7 +24,6 @@ export const animates = trigger(  // 路由动画，整个组件
             style({   // 离场动画初始状态
                 transform: 'translateX(0)',
                 position: 'fixed',
-                top: 0,
                 'z-index': 20
             }),
             group([

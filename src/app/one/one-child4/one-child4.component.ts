@@ -104,4 +104,8 @@ export class OneChild4Component implements OnInit {
     this.rd.removeAttribute(elem, 'style');
     this.rd.setAttribute(elem, 'style', 'background:red')
   }
+  ngOnDestroy(): void {
+    let top = this.el.nativeElement.getBoundingClientRect().top;
+    this.el.nativeElement.style.top = top + 'px'
+  }
 }
