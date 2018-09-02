@@ -1,6 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { AddressDataChinaService } from "ngx-address/data/china";
-import { HttpService } from "../../http.service";
+import {
+  Component,
+  OnInit
+} from "@angular/core";
+import {
+  AddressDataChinaService
+} from "ngx-address/data/china";
+import {
+  HttpService
+} from "../../http.service";
 
 @Component({
   selector: "app-three-child1",
@@ -10,9 +17,11 @@ import { HttpService } from "../../http.service";
 export class ThreeChild1Component implements OnInit {
   public opt: any;
   id;
-
+  // 二维码
+  aclass = '';
   value: string = "";
   levels: string = "";
+  
   constructor(
     private china: AddressDataChinaService,
     public http: HttpService
@@ -23,10 +32,7 @@ export class ThreeChild1Component implements OnInit {
     };
   }
 
-  ngOnInit() {
-    
-  }
-
+  ngOnInit() {}
   show2(data) {
     this.value = data;
   }
