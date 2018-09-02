@@ -33,6 +33,7 @@ import { NgxEchartsService } from 'ngx-echarts';
 // 2:module文件中inports：import { QRCodeModule } from 'angularx-qrcode';
 import { QRCodeModule } from 'angularx-qrcode';
 
+// npm install ngx-qrcode2 --save
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
