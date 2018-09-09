@@ -21,7 +21,7 @@ export class ThreeChild1Component implements OnInit {
   aclass = '';
   value: string = "";
   levels: string = "";
-  
+
   constructor(
     private china: AddressDataChinaService,
     public http: HttpService
@@ -42,17 +42,8 @@ export class ThreeChild1Component implements OnInit {
   }
   testPromise() {
     let type = true;
-
     // Promise 新建后就会立即执行，但then可以依需求决定运行
     let promise1 = new Promise(resolve => {
-      // do something
-      if (type) {
-        return resolve("value");
-      } else {
-        throw new Error("test");
-      }
-    });
-    let promise2 = new Promise(resolve => {
       // do something
       if (type) {
         return resolve("value");
@@ -68,10 +59,29 @@ export class ThreeChild1Component implements OnInit {
       .catch(err => {
         console.log(err);
       });
-
-    Promise.all([promise1, promise2])
-      .then(val => console.log(val))
-      .then(val => console.log(3));
+  }
+  testPromiseAll() {
+    var p1 = new Promise(function (resolve, reject) {
+      setTimeout(resolve, 500, 'P1');
+    });
+    var p2 = new Promise(function (resolve, reject) {
+      setTimeout(resolve, 600, 'P2');
+    });
+    // 同时执行p1和p2，并在它们都完成后执行then:
+    Promise.all([p1, p2]).then(function (results) {
+      console.log(results); // 获得一个Array: ['P1', 'P2']
+    });
+  }
+  testPromiseRace() {
+    var p1 = new Promise(function (resolve, reject) {
+      setTimeout(resolve, 500, 'P1');
+    });
+    var p2 = new Promise(function (resolve, reject) {
+      setTimeout(resolve, 600, 'P2');
+    });
+    Promise.race([p1, p2]).then(function (result) {
+      console.log(result); // 'P1'
+    });
   }
 
   testGenerator() {
