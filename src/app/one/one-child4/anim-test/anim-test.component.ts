@@ -4,30 +4,29 @@ import {
   Input,
   HostBinding,
   HostListener
-} from '@angular/core';
-import {
-  cardAnim
-} from '../animat';
+} from "@angular/core";
+import { cardAnim } from "../animat";
 
 @Component({
-  selector: 'anim-test',
-  templateUrl: './anim-test.component.html',
-  styleUrls: ['./anim-test.component.css'],
+  selector: "anim-test",
+  templateUrl: "./anim-test.component.html",
+  styleUrls: ["./anim-test.component.css"],
   animations: [cardAnim]
 })
 export class AnimTestComponent implements OnInit {
-  @Input() data;
-  @HostBinding('@card') cardState = 'out';
-  constructor() { }
+  @Input()
+  data;
+  @HostBinding("@card")
+  cardState = "out";
+  constructor() {}
 
-  ngOnInit() {
-  }
-  @HostListener('mouseover')
+  ngOnInit() {}
+  @HostListener("mouseover")
   onmouseenter() {
-    this.cardState = 'hover'
+    this.cardState = "hover";
   }
-  @HostListener('mouseout')
+  @HostListener("mouseout")
   onmouseleave() {
-    this.cardState = 'out'
+    this.cardState = "out";
   }
 }

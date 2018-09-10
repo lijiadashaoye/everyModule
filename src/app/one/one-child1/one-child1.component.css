@@ -19,7 +19,8 @@
 .mouseEvent>div {
     width: 50%;
 }
-.mouseEvent>div>div{
+
+.mouseEvent>div>div {
     width: 70%;
     height: 60px;
     background: rgb(205, 240, 136);
@@ -28,7 +29,8 @@
     line-height: 180%;
     position: relative;
     z-index: 10;
-} 
+}
+
 .innerDiv {
     background: firebrick;
     position: absolute;
@@ -38,6 +40,7 @@
     bottom: 0;
     z-index: 20;
 }
-.tooltip--active{
-    color:blue;
+
+.tooltip--active {
+    color: blue;
 }

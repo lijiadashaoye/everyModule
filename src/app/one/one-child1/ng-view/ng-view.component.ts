@@ -1,12 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-ng-view',
-  templateUrl: './ng-view.component.html',
-  styleUrls: ['./ng-view.component.css']
+  selector: "app-ng-view",
+  templateUrl: "./ng-view.component.html",
+  styleUrls: ["./ng-view.component.css"]
 })
 export class NgViewComponent implements OnInit {
   data1 = 10;
@@ -16,9 +13,9 @@ export class NgViewComponent implements OnInit {
 
   ngOnInit() {}
   adfhdaf() {
-    this.data1 += 1
+    this.data1 += 1;
   }
   gsdg() {
-    this.data2 += 3
+    this.data2 += 3;
   }
 }

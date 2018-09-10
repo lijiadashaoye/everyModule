@@ -100,7 +100,7 @@ export class HttpListen {
 export class HostListen {
   @Output()
   emData = new EventEmitter();
-  
+
   @HostListener("click", ["$event"])
   onclick(ev: Event) {
     console.log(ev);

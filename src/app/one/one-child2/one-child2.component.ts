@@ -1,23 +1,16 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup
-} from '@angular/forms';
-import { OneComponent } from '../one.component';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { OneComponent } from "../one.component";
 
 @Component({
-  selector: 'app-one-child2',
-  templateUrl: './one-child2.component.html',
-  styleUrls: ['./one-child2.component.css']
+  selector: "app-one-child2",
+  templateUrl: "./one-child2.component.html",
+  styleUrls: ["./one-child2.component.css"]
 })
 export class OneChild2Component implements OnInit {
-
   imgData;
-  imgData2 = 'assets/4.jpg';
-  imgData3 = 'assets/3.jpg';
+  imgData2 = "assets/4.jpg";
+  imgData3 = "assets/3.jpg";
 
   time;
   ff = false; // 判断是否点击全选
@@ -25,26 +18,32 @@ export class OneChild2Component implements OnInit {
   interval; // 计时只能用在全局，放在嵌套的函数里就不好使（无法停止，this指向不明）
   myForm: FormGroup;
   form: FormGroup;
-  likesArr: string[] = ['喜欢', '不喜欢', '非常喜欢', '超级喜欢', '喜欢得不得了'];
+  likesArr: string[] = [
+    "喜欢",
+    "不喜欢",
+    "非常喜欢",
+    "超级喜欢",
+    "喜欢得不得了"
+  ];
   selects: string[] = [];
   item = {
     id: 1
-  }
+  };
   seeItem;
   formGroupSelect;
   intervals;
 
   constructor(
     private fb: FormBuilder,
-    public oneComponent: OneComponent  // 子组建获取、修改父组件的方法（把父组件注入到子组件中）
-  ) { }
+    public oneComponent: OneComponent // 子组建获取、修改父组件的方法（把父组件注入到子组件中）
+  ) {}
   // 类的get 和 set 属性
   get likes() {
-    return this.myForm.get('likes');
-  };
+    return this.myForm.get("likes");
+  }
   set likes(value) {
-    console.log(value)
-  };
+    console.log(value);
+  }
 
   ngOnInit() {
     this.time = 0;
@@ -55,13 +54,13 @@ export class OneChild2Component implements OnInit {
       one: false,
       two: false,
       three: false,
-      four: false,
+      four: false
     });
 
     this.likes.valueChanges.subscribe(values => {
       let selects: string[] = [];
       values.forEach((selected: boolean, i: number) => {
-        selected === true && selects.push(this.likesArr[i])
+        selected === true && selects.push(this.likesArr[i]);
       });
       this.selects = selects;
     });
@@ -69,7 +68,8 @@ export class OneChild2Component implements OnInit {
     this.intervals = setInterval(() => {
       this.oneComponent.childInterval++;
     }, 1000);
-    this.imgData = 'http://img18.3lian.com/d/file/201712/30/1a8380b9c21b50b370d9bf1ada4e8679.png';
+    this.imgData =
+      "http://img18.3lian.com/d/file/201712/30/1a8380b9c21b50b370d9bf1ada4e8679.png";
   }
 
   start() {
@@ -79,40 +79,42 @@ export class OneChild2Component implements OnInit {
       if (this.time <= 0) {
         clearInterval(this.interval);
       }
-    }, 1000)
+    }, 1000);
   }
   stop() {
-    clearInterval(this.interval)
+    clearInterval(this.interval);
   }
   onSubmit(form, event) {
     event.preventDefault();
-    this.formGroupSelect = form.value
+    this.formGroupSelect = form.value;
   }
-  turnAll(form) { // 点击全选
+  turnAll(form) {
+    // 点击全选
     let value = form.value;
     if (this.ff == true) {
       for (let i in value) {
-        this.form.get(i).patchValue(true)
+        this.form.get(i).patchValue(true);
       }
       this.num = 4;
     } else {
       for (let i in value) {
-        this.form.get(i).patchValue(false)
+        this.form.get(i).patchValue(false);
       }
-      this.num = 0
+      this.num = 0;
     }
   }
-  isAll() { // 判断是否将全部checkbox一个一个点过了
+  isAll() {
+    // 判断是否将全部checkbox一个一个点过了
     for (let i in this.form.value) {
       if (this.form.value[i] == true) {
-        this.num++
+        this.num++;
       }
     }
     if (this.num == 4) {
-      this.ff = true
+      this.ff = true;
     } else {
-      this.ff = false
-      this.num = 0
+      this.ff = false;
+      this.num = 0;
     }
   }
   selectItem(item, ite) {
