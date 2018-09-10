@@ -21,11 +21,12 @@
     height: 400px;
     width: 100px;
     background: rgb(216, 158, 231);
-    border-right:3px  dashed;
+    border-right: 3px dashed;
 }
-.wapperDiv div p{
-    padding:5px;
-    margin:0;
+
+.wapperDiv div p {
+    padding: 5px;
+    margin: 0;
     font-size: 14px
 }
 
@@ -54,7 +55,7 @@
 
 #img2 {
     clip: rect(0, 100px, 100px, 0)
-    /*
+        /*
     rect(top right bottom left)
     表示的含义就是：
     top:最终剪裁的矩形的上边距离原始元素的上边缘30像素；

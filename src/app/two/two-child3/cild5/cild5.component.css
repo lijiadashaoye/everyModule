@@ -1,11 +1,11 @@
-
-.div1{
-    background:rgb(51, 153, 90);
-    flex:1;
-    font-size:20px;
-    color:white;
+.div1 {
+    background: rgb(51, 153, 90);
+    flex: 1;
+    font-size: 20px;
+    color: white;
     text-align: center;
 }
-#cav{
-    background:rgba(0,0,0,.1);
+
+#cav {
+    background: rgba(0, 0, 0, .1);
 }

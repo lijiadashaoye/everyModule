@@ -1,38 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-three-child2',
-  templateUrl: './three-child2.component.html',
-  styleUrls: ['./three-child2.component.css']
+  selector: "app-three-child2",
+  templateUrl: "./three-child2.component.html",
+  styleUrls: ["./three-child2.component.css"]
 })
 export class ThreeChild2Component implements OnInit {
-  text: string = '';
-  quillCom='';
-  constructor() { }
-  ngOnInit() {
-  }
+  text: string = "";
+  quillCom = "";
+  constructor() {}
+  ngOnInit() {}
   save() {
-    console.log(this.text)
-    sessionStorage.setItem('data', this.text);
+    console.log(this.text);
+    sessionStorage.setItem("data", this.text);
   }
   geted() {
-    this.text = sessionStorage.getItem('data');
+    this.text = sessionStorage.getItem("data");
   }
   move() {
-    this.text = '';
-    sessionStorage.removeItem('data');
+    this.text = "";
+    sessionStorage.removeItem("data");
   }
   clear() {
-    this.text = ''
+    this.text = "";
   }
   ngOnDestroy(): void {
-    this.clear()
+    this.clear();
   }
   setFocus($event) {
     $event.focus();
   }
 
   save2() {
-    console.log(this.quillCom)
+    console.log(this.quillCom);
   }
 }

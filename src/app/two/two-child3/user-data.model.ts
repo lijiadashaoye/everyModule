@@ -1,6 +1,6 @@
 export interface UserData {
-    id: '',
-    name: '',
-    age: '',
-    job: '',
+  id: "";
+  name: "";
+  age: "";
+  job: "";
 }

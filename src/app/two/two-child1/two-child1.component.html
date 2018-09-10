@@ -50,8 +50,8 @@
       <div class="form-group">
         <span>爱好</span>
         <label *ngFor="let hobby of hobbies">
-          <input type="checkbox" name="bobby" [value]="hobby.value" [checked]="users.hobbies[hobby.value]" (change)="changeHobby(hobby, $event)"
-          /> {{hobby.display}}
+          <input type="checkbox" name="bobby" [value]="hobby.value" [checked]="users.hobbies[hobby.value]" (change)="changeHobby(hobby, $event)" />
+          {{hobby.display}}
         </label>
       </div>
       <div class="form-group">
