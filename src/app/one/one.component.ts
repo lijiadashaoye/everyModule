@@ -11,9 +11,6 @@ export class OneComponent implements OnInit {
   ngOnInit() {
     this.appService.childService.emit('emit(one)');
   }
-  ngOnDestroy() {
-    this.appService.childService.emit('');
-  }
   canLeave() {
     return confirm('one.component CanDeactivate')
   }
