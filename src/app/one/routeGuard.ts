@@ -43,7 +43,7 @@ export class OneGuardService {
     }
   }
 }
-@Injectable()  // 是否可以打开页面的守卫
+@Injectable() // 是否可以打开页面的守卫
 export class OneGuard implements CanActivate, CanActivateChild {
   constructor(private login: OneGuardService) {}
   canActivate(a: ActivatedRouteSnapshot, b: RouterStateSnapshot) {
