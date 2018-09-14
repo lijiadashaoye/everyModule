@@ -33,6 +33,11 @@
     <button (click)="testasync()">testasync</button>
     <button (click)="testasyncError1()">testasync-error1</button>
     <button (click)="testasyncError2()">testasync-error2</button>
+    <div>
+      <button (click)="normalasync()">normal-async{{tim}}</button><br>
+      {{asyncData|json}}
+    </div>
+
   </div>
   <div>
     <h2>class 学习</h2>

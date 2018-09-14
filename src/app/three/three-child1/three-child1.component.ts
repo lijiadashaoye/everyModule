@@ -150,6 +150,26 @@ export class ThreeChild1Component implements OnInit {
       })
       .catch(err => console.log("ff", err));
   }
+  tim = 0;
+  asyncData = null;
+  intervals;
+  normalasync() {
+    // 使用async 将多个同步函数以异步函数的写法写出来
+    // r1执行完，才执行r2，r2执行完再执行r3，r3执行完，再返回整个example的值，所以用时6秒才返回值
+    this.intervals = setInterval(_ => this.tim++, 1000);
+    async function example() {
+      const r1 = await new Promise(resolve => setTimeout(resolve, 1000, "r1"));
+      const r2 = await new Promise(resolve => setTimeout(resolve, 2000, "r2"));
+      const r3 = await new Promise(resolve => setTimeout(resolve, 3000, "r3"));
+      return [r1, r2, r3];
+    }
+
+    example().then(result => {
+      this.asyncData = result;
+      clearInterval(this.intervals);
+      this.tim = 0;
+    });
+  }
   /*********************************************************************************************************/
   testClass() {
     // 如果在一个方法前，加上static关键字，就表示该方法不会被实例继承(无法通过new 新建后继承方法),
