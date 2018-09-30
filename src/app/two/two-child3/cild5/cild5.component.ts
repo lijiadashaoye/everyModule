@@ -1,14 +1,20 @@
-import { Component, OnInit, ElementRef, Renderer2 } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  Renderer2
+} from "@angular/core";
 import * as $ from "jquery";
-import { Observable } from "rxjs";
+import {
+  Observable
+} from "rxjs";
 @Component({
   selector: "app-cild5",
   templateUrl: "./cild5.component.html",
   styleUrls: ["./cild5.component.css"]
 })
 export class Cild5Component implements OnInit {
-  arr = [
-    {
+  arr = [{
       id: 0,
       num: 3
     },
@@ -54,6 +60,11 @@ export class Cild5Component implements OnInit {
     let cav = this.elem.nativeElement.querySelector("#cav");
     let c = cav.getContext("2d");
 
+    // canvast 提供了三种方法绘制矩形：
+    // fillRect(x, y, width, height)  // 绘制一个填充的矩形
+    // strockRect(x, y, width, height)  // 绘制一个矩形的边框
+    // clearRect(x, y, widh, height)  //清除指定的矩形区域， 然后这块区域会变的完全透明。
+    
     c.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明
     c.fillStyle = "#dddddd"; // 设置颜色
     c.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
