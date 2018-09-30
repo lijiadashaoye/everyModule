@@ -18,6 +18,7 @@ import {
   ValidationErrors
 } from "@angular/forms";
 
+// 自定义验证函数
 export const validateCounterRange: ValidatorFn = (
   control: FormControl
 ): ValidationErrors => {

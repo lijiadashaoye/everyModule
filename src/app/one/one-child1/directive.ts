@@ -67,13 +67,13 @@ export class HighlightDirective {
   selector: "[hostbindingd]"
 })
 export class HostBindTest {
-  @HostBinding("attr.role")
-  role = "button";
+  @HostBinding("attr.role") // 添加一个自定义属性
+  role = "anyRole";
 
-  @HostBinding("class.pressed")
+  @HostBinding("class.pressed") // 如果isPressed=true，则为元素添加class样式
   isPressed: boolean = false;
 
-  @HostListener("click", ["$event"])
+  @HostListener("click", ["$event"]) // 绑定鼠标事件
   onclick(ev: Event) {
     this.isPressed = !this.isPressed;
   }

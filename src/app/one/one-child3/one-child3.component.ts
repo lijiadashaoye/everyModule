@@ -123,20 +123,29 @@ export class OneChild3Component implements OnInit {
     let prefixedHeroes = heroes.map(name => "Super_" + name);
     // heroes.forEach(name => console.log(name));
   }
-  websocket() {
-    let myWebsocket = new WebSocket("ws://www.websocket.org");
-    myWebsocket.onopen = function(evt) {
-      alert("Connection open ...");
-    };
-    myWebsocket.onmessage = function(evt) {
-      alert("Received Message: " + evt.data);
-    };
-    myWebsocket.onclose = function(evt) {
-      alert("Connection closed.");
-    };
 
-    myWebsocket.send("Hello WebSockets!");
-    myWebsocket.close();
+  myWebsocket = null;
+  webstocketMsg = "";
+  open() {
+    this.myWebsocket = new WebSocket("ws://localhost:3000/");
+    this.myWebsocket.onopen = e => {
+      this.webstocketMsg = "已经和服务器建立连接";
+    };
+    this.myWebsocket.onmessage = evt => {
+      this.webstocketMsg = evt.data;
+    };
+    this.myWebsocket.onclose = evt => {
+      this.webstocketMsg = "已经断开连接";
+    };
+  }
+  close() {
+    this.myWebsocket.close();
+  }
+  send(data) {
+    this.myWebsocket.send(data);
+  }
+  socket() {
+    this.myWebsocket.send("open");
   }
   consoleForms() {
     console.log(this.froms);

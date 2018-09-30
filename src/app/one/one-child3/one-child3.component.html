@@ -36,8 +36,19 @@
     </p>
     <button (click)="startWorker()">开始 Worker</button>
     <button (click)="stopWorker()">停止 Worker</button>
-    <h2>Websocket</h2>
-    <button (click)="websocket()">Websocket</button>
+    <h2>用node搭建服务器</h2>
+    <button (click)="open()">开启</button>
+    <button (click)="close()">关闭</button>
+    <button (click)="socket()">服务器推送模式</button>
+    <input #inp type="text">
+    <button (click)="send(inp.value)">发送</button>
+    <p>{{webstocketMsg}}</p>
+    <p>
+      <p>方法：</p>
+      npm install nodejs-websocket<br>
+      定位到nodes文件，然后执行：node index.js, (不要将node文件放在anguar文件夹内)<br>
+      https://github.com/sitegui/nodejs-websocket
+    </p>
   </div>
   <div style="padding:0 10px;font-size: 16px;width:50%;">
     <h2>vscode 设置</h2>
