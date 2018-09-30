@@ -29,7 +29,7 @@
       <button type="button" (click)="consoleForms()">console forms</button>
     </form>
   </div>
-  <div style="width:15%;">
+  <div style="width:20%;">
     <h2>webWorker</h2>
     <p>计数:
       <output id="result"></output>
@@ -43,14 +43,14 @@
     <input #inp type="text">
     <button (click)="send(inp.value)">发送</button>
     <p>{{webstocketMsg}}</p>
-    <p>
+    <div>
       <p>方法：</p>
       npm install nodejs-websocket<br>
-      定位到nodes文件，然后执行：node index.js, (不要将node文件放在anguar文件夹内)<br>
+      定位到nodes文件(service/index.js)，然后执行：'node index.js', (不要将node文件放在anguar文件夹内)<br>
       https://github.com/sitegui/nodejs-websocket
-    </p>
+    </div>
   </div>
-  <div style="padding:0 10px;font-size: 16px;width:50%;">
+  <div style="padding:0 10px;font-size: 16px;width:45%;">
     <h2>vscode 设置</h2>
     <p>1、先按ctrl(mac是command键) + k，再按ctrl(mac是command键) + 0，可以实现vscode代码折叠</p>
     <p>2、按ctrl(mac是command键) + 数学减号'-'，可实现vscode字体变小，数学加号'+'，可实现vscode字体变大</p>
