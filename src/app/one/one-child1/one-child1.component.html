@@ -43,9 +43,9 @@
     </ng-template>
     <div>
       <h2>
-        <h4>用createEmbeddedView() 动态创建ng-template</h4>
+        用createEmbeddedView() 动态创建ng-template
       </h2>
-      <button (click)="createEmbeddedViews()">点击按钮看页面最底下</button>
+      <button (click)="createEmbeddedViews()">点完看页面最底下</button>
     </div>
     <h2>ng-container</h2>
     <button (click)="ngIfs=!ngIfs">clickHere</button>
@@ -102,8 +102,7 @@
 
   <div style="width:22%;">
     <h2>ViewChildren</h2>
-    <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置
-    </p>
+    <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置</p>
     <div style="border:1px dashed rgb(236, 16, 71);padding:10px;">
       <p>这是组件组最终应该放的位置</p>
       <app-ng-view></app-ng-view>
@@ -113,7 +112,7 @@
 
   <div style="width:18%;">
     <h2>ContentChildren</h2>
-    <p>将组件A、B一起放到最终位置，但A标签内放入B标签，同时在A组件的html内，用 ng-content表明B组件应该显示的位置
+    <p>将组件A、B一起放到最终位置，但A标签内放入B标签，同时在A组件的html内，用 ng-content 表明B组件应该显示的位置
     </p>
     <app-ng-content>
       <app-ng-content-child></app-ng-content-child>
@@ -136,7 +135,7 @@
     </div>
 
     <div>
-      <h2>使用Array.from查找元素</h2>
+      <h2>使用Array.from() 查找元素</h2>
       <button (click)="arrayFrom(1)">id="ticked1"</button>
       <button (click)="arrayFrom(2)">id="ticked2"</button>
       <button (click)="arrayFrom(3)">id="ticked3"</button>
@@ -226,7 +225,10 @@
   </div>
   <div style="width:15%;">
     <h2>resolve</h2>
-    <p>resolve要放到最终要获得数据的组件的路由配置上，无论是正常加载还是懒加载，都起作用</p>
+    <p>resolve要放到最终要获得数据的组件的路由配置上，无论是正常加载还是懒加载，都起作用<br>
+      但如果resolve是个需要时间才能执行完毕的（如http请求），则会阻碍页面加载
+      出现页面空白
+    </p>
     <span style="padding:10px;color:tomato;"> {{resolveDatas}}</span>
   </div>
   <div style="width:15%;">

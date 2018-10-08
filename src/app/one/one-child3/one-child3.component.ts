@@ -49,8 +49,6 @@ export class OneChild3Component implements OnInit {
     this.froms.patchValue({
       one1: "patchValue"
     });
-    // this.otherFun();
-    this.otherFunction();
   }
   isSubmit(froms, ev: Event) {
     ev.preventDefault();
@@ -73,8 +71,9 @@ export class OneChild3Component implements OnInit {
       validData: "主表单里验证不通过"
     };
   }
+  isCan = null;
   otherFun() {
-    console.log(navigator.onLine); // 判断设备是否可以上网
+    this.isCan = navigator.onLine; // 判断设备是否可以上网
   }
   startWorker() {
     // web werker
@@ -93,7 +92,7 @@ export class OneChild3Component implements OnInit {
   stopWorker() {
     this.worker.terminate();
   }
-  // sse() {
+  // sse() {   // 接收服务端推送
   //   if (typeof (EventSource) !== "undefined") {
   //     let url = 'http://javascript.ruanyifeng.com/htmlapi/eventsource.html';
   //     this.source = new EventSource(url);
@@ -115,14 +114,6 @@ export class OneChild3Component implements OnInit {
   // closeSSE() {  // 关闭 SSE 连接。
   //   this.source.close()
   // }
-  otherFunction() {
-    // filter ,map ,forEach方法
-    let heroes = ["Windstorm", "Bombasto", "Magneta", "Tornado"];
-    let filterRe = /m/i;
-    let filterHeroes = heroes.filter(name => filterRe.test(name));
-    let prefixedHeroes = heroes.map(name => "Super_" + name);
-    // heroes.forEach(name => console.log(name));
-  }
 
   myWebsocket = null;
   webstocketMsg = "";
@@ -142,7 +133,7 @@ export class OneChild3Component implements OnInit {
     this.myWebsocket.close();
   }
   send(data) {
-    this.myWebsocket.send(data);
+    this.myWebsocket.send(data);  // 发送数据
   }
   socket() {
     this.myWebsocket.send("open");

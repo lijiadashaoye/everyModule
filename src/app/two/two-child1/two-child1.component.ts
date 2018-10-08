@@ -190,7 +190,7 @@ export class TwoChild1Component implements OnInit {
     console.log(value, valid);
   }
   myVar;
-  makeChage2() {
+  makeChage2() {  // ngSwitch
     let arr = ["A", "B", "C", "D"];
     let num = Math.floor(Number(Math.random() * arr.length));
     this.myVar = arr[num];

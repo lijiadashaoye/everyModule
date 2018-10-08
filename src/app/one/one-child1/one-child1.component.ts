@@ -140,7 +140,7 @@ export class OneChild1Component implements OnInit {
   addComponent;
   addComponentFn() {
     // 通过ngComponentOutlet实现添加组件
-    // 将NgContentChildComponent要写到模块的entryComponents里
+    // 要将 NgContentChildComponent 写到模块的 entryComponents 里
     this.addComponent = NgContentChildComponent;
   }
   closeRD() {

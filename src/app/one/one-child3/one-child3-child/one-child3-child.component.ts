@@ -61,7 +61,8 @@ export class OneChild3ChildComponent
     });
   }
   makeChild2() {
-    this.makeChild = "两个input框实现change联动";
+    this.makeChild =
+      "监听输入框的输入完毕(change事件)，不同于正在输入(input事件)";
   }
 
   validate(c: FormControl): { [key: string]: any } {
