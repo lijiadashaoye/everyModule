@@ -224,11 +224,12 @@ export class TwoChild1Component implements OnInit {
   @HostListener("window:scroll", ["$event"])
   onScrollEvent(e) {
     this.fff.nativeElement.innerHTML = "has window:scroll";
-    console.log(e)
+    // console.log(e.target.children[0].scrollTop)
   }
   onscroll(e) {
     this.scrollDatas = "";
     this.scrollDatas = "scrollTop：" + e.target.scrollTop;
+    // console.log(e)
   }
 
   // async(异步) 函数总是返回 Promises
