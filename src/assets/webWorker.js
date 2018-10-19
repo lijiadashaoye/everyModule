@@ -1,6 +1,7 @@
 // 使用onmessage，自动执行，也可以使用XMLHttpRequest构造函数
 self.onmessage = function (event) {
     console.log(event)
+    importScripts('./otherworker.js')
     let result = 0,
         num = event.data;
 
