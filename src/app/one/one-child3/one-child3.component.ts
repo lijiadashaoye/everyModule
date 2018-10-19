@@ -91,6 +91,7 @@ export class OneChild3Component implements OnInit {
     }
   }
   stopWorker() {
+    //立即停止Worker的工作
     this.worker.terminate();
   }
   // sse() {   // 接收服务端推送
