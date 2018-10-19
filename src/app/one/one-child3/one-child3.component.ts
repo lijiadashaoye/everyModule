@@ -80,6 +80,7 @@ export class OneChild3Component implements OnInit {
     this.worker = "";
     if (typeof Worker !== "undefined") {
       this.worker = new Worker("assets/webWorker.js");
+      // 可以序列化为JSON结构的任何值都可以作为参数传递给 postMessage();
       this.worker.postMessage(10);
       this.worker.onmessage = event => {
         document.getElementById("result").innerHTML = event.data;
@@ -133,7 +134,7 @@ export class OneChild3Component implements OnInit {
     this.myWebsocket.close();
   }
   send(data) {
-    this.myWebsocket.send(data);  // 发送数据
+    this.myWebsocket.send(data); // 发送数据
   }
   socket() {
     this.myWebsocket.send("open");
