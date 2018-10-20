@@ -1,6 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { AddressDataChinaService } from "ngx-address/data/china";
-import { HttpService } from "../../http.service";
+import {
+  Component,
+  OnInit
+} from "@angular/core";
+import {
+  AddressDataChinaService
+} from "ngx-address/data/china";
+import {
+  HttpService
+} from "../../http.service";
 
 @Component({
   selector: "app-three-child1",
@@ -39,11 +46,17 @@ export class ThreeChild1Component implements OnInit {
     let promise1 = new Promise(resolve => {
       // do something
       if (type) {
-        return resolve("value");
+        resolve("value");
+        // resolved 的 Promise 总是在本轮事件循环的末尾执行，总是晚于本轮循环的同步任务，即使写在前边
+        console.log('kkkkkkk');
       } else {
         throw new Error("test");
       }
     });
+    // then方法可以接受两个回调函数作为参数。
+    // 第一个回调函数是Promise对象的状态变为resolved时调用，
+    // 第二个回调函数是Promise对象的状态变为rejected时调用
+    // 其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。
     promise1
       .then(value => {
         console.log(value);
@@ -54,25 +67,25 @@ export class ThreeChild1Component implements OnInit {
       });
   }
   testPromiseAll() {
-    var p1 = new Promise(function(resolve, reject) {
+    var p1 = new Promise(function (resolve, reject) {
       setTimeout(resolve, 500, "P1");
     });
-    var p2 = new Promise(function(resolve, reject) {
+    var p2 = new Promise(function (resolve, reject) {
       setTimeout(resolve, 600, "P2");
     });
     // 同时执行p1和p2，并在它们都完成后执行then:
-    Promise.all([p1, p2]).then(function(results) {
+    Promise.all([p1, p2]).then(function (results) {
       console.log(results); // 获得一个Array: ['P1', 'P2']
     });
   }
   testPromiseRace() {
-    var p1 = new Promise(function(resolve, reject) {
+    var p1 = new Promise(function (resolve, reject) {
       setTimeout(resolve, 500, "P1");
     });
-    var p2 = new Promise(function(resolve, reject) {
+    var p2 = new Promise(function (resolve, reject) {
       setTimeout(resolve, 600, "P2");
     });
-    Promise.race([p1, p2]).then(function(result) {
+    Promise.race([p1, p2]).then(function (result) {
       console.log(result); // 'P1'
     });
   }
