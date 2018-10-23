@@ -57,6 +57,7 @@ const main: Routes = [
     data: {
       preload: true
     }
+    // PreloadAllModules 策略不会加载被CanLoad守卫所保护的特性区
     // canLoad: [canLoadGuard]
   },
   {
