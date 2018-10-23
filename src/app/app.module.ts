@@ -21,7 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
     AppService,
     HttpService,
     { provide: BASE_URL, useValue: urlText },
-    { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true } // 拦截器
+    { provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true } // 拦截器，useClass必须用 NoopInterceptor
     // { provide: LOCALE_ID, useValue: 'zh-Hans' }   // 规定国际化为中文简体
   ],
   bootstrap: [AppComponent]
