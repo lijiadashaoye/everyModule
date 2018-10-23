@@ -41,7 +41,8 @@ export class NoopInterceptor implements HttpInterceptor {
     // 拦截器返回的结果是一个 Observable 值
     let reqOptions = {
       // 向拦截器里添加更多有关http的数据
-      headers: new HttpHeaders(headerOptions),
+      // headers: new HttpHeaders(headerOptions),  // 如果http服务里没添加header，可以在拦截器里统一添加
+      headers: req.headers.set("Authorization", "authToken"), // 如果http服务里添加了header，可以在拦截器里以这种方式修改
       withCredentials: true,
       reportProgress: true // 报告进度
     };
