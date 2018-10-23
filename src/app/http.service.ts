@@ -77,6 +77,13 @@ export class HttpService {
   // }
   directiveHttp(data) {
     let url = `http://localhost:3000/fromDirective`; // 使用proxy代理重定向url
+    httpOptions.headers = httpOptions.headers
+      .set(
+        // 可以这样在每个post请求里添加、修改headers
+        "kkkkkk",  // 添加
+        "33333333hdfgh33333"
+      )
+      .set("token", "sadfasdfasdfasdf");  // 修改
     return this.http.post(url, JSON.stringify(data), HEADER);
   }
 }
