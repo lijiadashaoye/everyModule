@@ -35,6 +35,13 @@ export const httpOptions = {
   })
 };
 
+// 最新的angular写服务时，如果服务是注册到 appModule 里，可以直接这样写
+// @Injectable({
+//   providedIn: "root"
+// })
+// 然后就不用在 appModule 的 providers 里添加这个服务
+// 懒加载的模块及服务不能这么写
+
 @Injectable()
 export class HttpService {
   constructor(
@@ -80,10 +87,10 @@ export class HttpService {
     httpOptions.headers = httpOptions.headers
       .set(
         // 可以这样在每个post请求里添加、修改headers
-        "kkkkkk",  // 添加
+        "kkkkkk", // 添加
         "33333333hdfgh33333"
       )
-      .set("token", "sadfasdfasdfasdf");  // 修改
+      .set("token", "sadfasdfasdfasdf"); // 修改
     return this.http.post(url, JSON.stringify(data), HEADER);
   }
 }
