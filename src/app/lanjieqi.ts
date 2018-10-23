@@ -47,6 +47,10 @@ export class NoopInterceptor implements HttpInterceptor {
       reportProgress: true // 报告进度
     };
     let authReq = req.clone(reqOptions); //发送新请求头的http请求;
+    let authReq2 = req.clone({
+      // 只设置header时的简写方法
+      setHeaders: { Authorization: "authToken3333333333" }
+    });
     return next.handle(authReq).do(
       (event: HttpEvent<any>) => {
         // 拦截请求后：正常处理，但不影响数据返回，因为用了 do
