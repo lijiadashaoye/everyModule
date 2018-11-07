@@ -26,7 +26,7 @@ export class OneChild3Component implements OnInit {
   froms: FormGroup;
   worker;
   source;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   // ngOnChanges()	在ngOnInit之前调用，或者当组件输入数据（通过@Input装饰器显式指定的那些变量）变化时调用,
   // 可以实现同时监视多个输入属性值的变化。
@@ -57,8 +57,8 @@ export class OneChild3Component implements OnInit {
   oneValid(
     c: FormControl
   ): {
-    [key: string]: any;
-  } {
+      [key: string]: any;
+    } {
     // 验证器只有出错时才返回值,
     if (!c.value) {
       return null;
@@ -89,6 +89,12 @@ export class OneChild3Component implements OnInit {
       document.getElementById("result").innerHTML =
         "Sorry, your browser does not support Web Workers...";
     }
+
+    // 通过事件监听模式使用Worker
+    // let worderListen = new Worker("assets/webWorker.js");
+    // worderListen.addEventListener('message', function (event) {
+    //   document.getElementById("result").innerHTML = event.data;
+    // })
   }
   stopWorker() {
     //立即停止Worker的工作
