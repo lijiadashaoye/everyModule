@@ -8,6 +8,7 @@ import {
 import {
   HttpService
 } from "../../http.service";
+import { AppService } from "../../serviceEmit.service";
 
 @Component({
   selector: "app-three-child1",
@@ -23,6 +24,7 @@ export class ThreeChild1Component implements OnInit {
   levels: string = "";
 
   constructor(
+    public appService: AppService,
     private china: AddressDataChinaService,
     public http: HttpService
   ) {
@@ -32,7 +34,11 @@ export class ThreeChild1Component implements OnInit {
     };
   }
 
-  ngOnInit() {}
+  comfirmModal() {  // 写在appModule里的命名路由
+    // 这说明，声明在更高级模块的服务，可以被任何子组件、子模块引入使用
+    this.appService.comfirmModal().subscribe(val => console.log(val));
+  }
+  ngOnInit() { }
   show2(data) {
     this.value = data;
   }
