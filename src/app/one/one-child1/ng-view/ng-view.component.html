@@ -3,6 +3,10 @@
   <h4>
     用了两个app-ng-view-child
   </h4>
+  <p style="background:rgb(216, 226, 189);padding:3px;">
+    在A组件的模板中定义的内容B，它是组件的一部分，被称为 View Children
+    <br> 在父组件A的 ngAfterViewInit 生命周期钩子中才能成功获取通过 @ViewChild() 查询的元素B
+  </p>
 </div>
 
 <app-ng-view-child [data3]="data1" [data4]="data2">
@@ -17,13 +21,15 @@
     <p> 这是在父组件中，子组件通过select=".header"选择的内容</p>
   </div>
   <div class="footer">
-    select=".footer",点击按钮可以动态添加投影内容
-    <button (click)="isAdd=!isAdd">clickHere</button>
+    select=".footer",点击按钮可以动态添加投影内容（按钮是写在A组件内的）
+    <button (click)="isAdd=!isAdd">使用 ngProjectAs</button>
   </div>
-
   <ng-container ngProjectAs=".footer" *ngIf="isAdd">
-    <div style="color:red;font-size:16px">动态添加投影内容</div>
+    <div style="color:rgb(218, 0, 0);font-size:16px">
+      当一些内容属于临时添加或者其他原因使得你的内部组件不是包装器的直接子节点时，需要给那些包装器外的内容添加 ngProjectAs 用以指向包装器，以正确的按位置显示
+    </div>
   </ng-container>
+
 </app-ng-view-child>
 <h2>ngOnChanges</h2>
 <button (click)="adfhdaf()">test ngOnChanges1</button>

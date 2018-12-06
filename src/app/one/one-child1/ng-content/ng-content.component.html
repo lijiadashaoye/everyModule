@@ -1,23 +1,31 @@
-<div>
-  ng-content.component
+<div style="background: rgb(192, 255, 229)">
+  这是A组件编写的html标签，ng-content标签不会 "产生" 内容，它只是投影现有的内容，即，被投影的组件只实例化一次
 </div>
-<ng-content></ng-content>
+
+<ng-content select=".B1"></ng-content>
+<div style="background:rgb(238, 236, 105);">
+  <p>这是写在A组件内的其他内容</p>
+  <p>若A组件内需要有多个B组件，就在A组件内，写出多个ng-content标签，并标明 select 选择器
+    select选择器支持 CSS 选择器方式的选择（element，.class，[attribute]，...）来匹配你想要的内容
+    位置就根据需要来定，然后，到最高层次（写A组件标签的组件内），写出匹配多个select 选择器的B组件标签，
+    <br>有select 选择器的会优先于没有的，即使它在模板中的位置靠后
+  </p>
+</div>
+<ng-content select="[name=B2]"></ng-content>
 <div style="background:rgb(226, 189, 189);">
   <p style="background:rgb(189, 189, 226);padding:3px;">B标签在A元素标签中被称为 Content Children
     <br> 在A组件的 ngAfterContentInit 生命周期钩子中才能成功获取通过 @ContentChild() 查询元素B
   </p>
 
-  <p style="background:rgb(216, 226, 189);padding:3px;">
-    在A组件的模板中定义的内容B，它是组件的一部分，被称为 View Children
-    <br> 在父组件A的 ngAfterViewInit 生命周期钩子中才能成功获取通过 @ViewChild() 查询的元素B
-  </p>
-
-  <p style="background:rgb(226, 189, 214);padding:3px;">@ViewChild 装饰器用于获取模板视图中的元素，它支持 Type 类型或 string 类型的选择器，同时支持设置
+  <p style="background:rgb(132, 228, 153);padding:3px;">
+    @ViewChild 装饰器用于获取模板视图中的元素，它支持 Type 类型或 string 类型的选择器，同时支持设置
     read 查询条件，以获取不同类型的实例。
     <br> 而 @ViewChildren 装饰器是用来从模板视 图中获取匹配的多个元素，返回的结果是一个 QueryList 集合。
     <br>@ContentChild()及@ContentChildren()同理
   </p>
-  <p style="background:rgb(238, 100, 9);padding:3px;">
-    @ContentChild()及@ContentChildren()同理
+  <p>
+    @ViewChild(MyCom) 可以获取到页面中的MyCom类型的组件<br>
+    @ViewChild('myCom') 可以获取到被标记为#myCom的组件
+    <br>@ContentChild()及@ContentChildren()同理
   </p>
 </div>

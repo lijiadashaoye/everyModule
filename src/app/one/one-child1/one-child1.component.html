@@ -33,7 +33,7 @@
       <p>@SkipSelf一个构造函数参数装饰器，它告诉DI框架依赖解析应该从父注入器开始</p>
     </div>
   </div>
-  <div style="width:45%;">
+  <div style="width:35%;">
     <h2>ng-template</h2>
     <ng-container *ngTemplateOutlet="tpl"></ng-container>
     <ng-template #tpl>
@@ -104,18 +104,20 @@
     <h2>ViewChildren</h2>
     <p>将多个组件B、C放到一个组件A内，形成组件组， 然后将A组件放到这个组件组应该安放的位置</p>
     <div style="border:1px dashed rgb(236, 16, 71);padding:10px;">
-      <p>这是组件组最终应该放的位置</p>
+      <p>这是组件组最终应该放的位置,只有一个A组件标签</p>
       <app-ng-view></app-ng-view>
     </div>
 
   </div>
 
-  <div style="width:18%;">
+  <div style="width:28%;">
     <h2>ContentChildren</h2>
-    <p>将组件A、B一起放到最终位置，但A标签内放入B标签，同时在A组件的html内，用 ng-content 表明B组件应该显示的位置
+    <p>将组件A、B一起放到最终位置，但A标签内放入B标签<br>
+      同时在A组件的html内，用 ng-content 标明B组件应该显示的位置
     </p>
     <app-ng-content>
-      <app-ng-content-child></app-ng-content-child>
+      <app-ng-content-child class="B1"></app-ng-content-child>
+      <app-ng-content-child name="B2"></app-ng-content-child>
     </app-ng-content>
   </div>
 </div>
