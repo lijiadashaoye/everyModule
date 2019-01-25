@@ -26,6 +26,7 @@ import { NgViewComponent } from "./ng-view/ng-view.component";
   styleUrls: ["./one-child1.component.css"]
 })
 export class OneChild1Component implements OnInit {
+  fontSizePx;
   today = new Date();
   color: string;
   resolveDatas;

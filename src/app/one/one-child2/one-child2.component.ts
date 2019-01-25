@@ -8,6 +8,7 @@ import { OneComponent } from "../one.component";
   styleUrls: ["./one-child2.component.css"]
 })
 export class OneChild2Component implements OnInit {
+  isCheckbox;
   imgData;
   imgData2 = "assets/4.jpg";
   imgData3 = "assets/3.jpg";
