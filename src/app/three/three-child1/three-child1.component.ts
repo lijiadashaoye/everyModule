@@ -130,6 +130,22 @@ export class ThreeChild1Component implements OnInit {
         console.log(_);
       });
   }
+
+  test() {
+    let sleep = function (time) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          // 返回 ‘ok'
+          resolve('ok');
+        }, time);
+      })
+    };
+    let start = async () => {
+      let result = await sleep(2000);
+      console.log(result); // 收到 ‘ok'
+    };
+    start()
+  }
   testasyncError1() {
     function timeout(ms) {
       return new Promise(resolve => {
