@@ -31,8 +31,9 @@
   </div>
   <div style="width:20%;">
     <h2>webWorker</h2>
-    <p>计数:
-      <output id="result"></output>
+    <p>3秒后返回数据</p>
+    <p>
+      {{worker_data|json}}
     </p>
     <button (click)="startWorker()">开始 Worker</button>
     <button (click)="stopWorker()">停止 Worker</button>

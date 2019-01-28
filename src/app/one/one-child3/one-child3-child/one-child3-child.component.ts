@@ -39,7 +39,7 @@ export const validateCounterRange: ValidatorFn = (
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => OneChild3ChildComponent), //  第一种写法：下边需要写以 validate 为名字的验证函数
-      // useValue: validateCounterRange,    // 第二种写法
+      // useValue: validateCounterRange,    // 第二种写法，自定义验证函数
       multi: true
     }
   ]
@@ -48,13 +48,13 @@ export class OneChild3ChildComponent
   implements OnInit, ControlValueAccessor, Validator {
   fromc: FormGroup;
   makeChild;
-  private propagateChange = (_: any) => {}; // 用来承接向上传递数据的函数
-  constructor(private fb: FormBuilder) {}
+  private propagateChange = (_: any) => { }; // 用来承接向上传递数据的函数
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.fromc = this.fb.group({
       child1: ["", Validators.compose([Validators.required, this.validate])],
-      child2: [""]
+      child2: ["", Validators.compose([Validators.required, this.validate])],
     });
     this.fromc.valueChanges.subscribe(val => {
       this.propagateChange(val);
@@ -72,20 +72,19 @@ export class OneChild3ChildComponent
     if (!val) {
       return null;
     }
-
-    if (typeof val == "object") {
+    if (typeof val == "object") {  // 对当前整个表单进行验证，
       if (data.test(val.child1)) {
         return null;
       }
       return {
-        "child1-valid": "表单验证不通过"
+        "child1-valid": "子表单验证不通过"
       };
     } else {
-      if (data.test(val)) {
+      if (data.test(val)) {  // 对当前表单的每个 formcontrol 进行验证
         return null;
       }
       return {
-        "child1-valid": "表单验证不通过"
+        "child1-valid": "子表单验证不通过"
       };
     }
   }
@@ -100,5 +99,5 @@ export class OneChild3ChildComponent
   public registerOnChange(fn: any): void {
     this.propagateChange = fn;
   }
-  public registerOnTouched(fn: any): void {}
+  public registerOnTouched(fn: any): void { }
 }

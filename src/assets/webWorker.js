@@ -1,16 +1,27 @@
 // 使用onmessage，自动执行，也可以使用XMLHttpRequest构造函数
-self.onmessage = function (event) {
-    console.log(event)
-    importScripts('./otherworker.js')
-    let result = 0,
-        num = event.data;
+onmessage = function (event) {
+    // console.log(event)
 
-    for (let i = 1; i < num; i++) {
-        result += i;
-    }
-    //向主线程返回消息
-    postMessage(result);
-    // 停止Worker
-    self.close();
+    let sleep = function (time) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                // 返回 ‘ok'
+                let obj = {
+                    data: 'ok',
+                    type: 'worker'
+                }
+                resolve(obj);
+            }, time);
+        })
+    };
+
+    // 立即执行的 async 函数
+    (async () => {
+        let result = await sleep(event.data);
+        //向主线程返回消息
+        postMessage(result);
+        // 停止Worker
+        close();
+    })();
 }
 // 总结：其实在angular里，webwoker与服务实现的效果一样

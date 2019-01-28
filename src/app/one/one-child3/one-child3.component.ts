@@ -57,8 +57,8 @@ export class OneChild3Component implements OnInit {
   oneValid(
     c: FormControl
   ): {
-      [key: string]: any;
-    } {
+    [key: string]: any;
+  } {
     // 验证器只有出错时才返回值,
     if (!c.value) {
       return null;
@@ -75,15 +75,17 @@ export class OneChild3Component implements OnInit {
   otherFun() {
     this.isCan = navigator.onLine; // 判断设备是否可以上网
   }
+  worker_data = null;
+
   startWorker() {
     // web werker
-    this.worker = "";
     if (typeof Worker !== "undefined") {
+      this.worker_data = {};
       this.worker = new Worker("assets/webWorker.js");
       // 可以序列化为JSON结构的任何值都可以作为参数传递给 postMessage();
-      this.worker.postMessage(10);
+      this.worker.postMessage(3000);
       this.worker.onmessage = event => {
-        document.getElementById("result").innerHTML = event.data;
+        this.worker_data = event.data;
       };
     } else {
       document.getElementById("result").innerHTML =
