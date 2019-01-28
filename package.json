@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently  \"npm run server\" \"npm run json_server\"",
-    "build": "ng build --prod --no-extract-license",
+    "build": "ng build --prod --build-optimizer --no-extract-license",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
