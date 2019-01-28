@@ -10,7 +10,12 @@
         <button (click)="show2(Input2.value)">生成</button>
       </div>
       <div *ngIf="value" style="border:none;">
-        <ngx-qrcode [qrc-value]="value" qrc-class="aclass" qrc-errorCorrectionLevel="levels">
+        <ngx-qrcode 
+        [qrc-value]="value" 
+        
+        qrc-errorCorrectionLevel="levels"
+        [qrc-element-type]="elementType"
+        >
         </ngx-qrcode>
       </div>
     </div>

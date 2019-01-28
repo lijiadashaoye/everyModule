@@ -19,9 +19,11 @@ export class ThreeChild1Component implements OnInit {
   public opt: any;
   id;
   // 二维码
-  aclass = "";
-  value: string = "";
-  levels: string = "";
+  value: string = "";   // 二维码内容
+  levels: string = "";  // 图片清晰度等级
+  // 'url' | 'canvas' | 'img' = 'url';
+  elementType : 'img'
+
 
   constructor(
     public appService: AppService,
