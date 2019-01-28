@@ -22,9 +22,8 @@ export class ThreeChild1Component implements OnInit {
   value: string = "";   // 二维码内容
   levels: string = "";  // 图片清晰度等级
   // 'url' | 'canvas' | 'img' = 'url';
-  elementType : 'img'
-
-
+  elementType : 'img';
+  
   constructor(
     public appService: AppService,
     private china: AddressDataChinaService,
