@@ -14,16 +14,25 @@
         <input type="checkbox" formControlName="check">formControlName="check"
       </label>
       <br>
-      <label>表单组件
+      <label>异步验证
+        <input type="text" placeholder="异步验证" formControlName="testAsycn">
+      </label>
+      <label>
         <app-one-child3-child formControlName="three"></app-one-child3-child>
       </label>
-      <br>
       <div style="background:rgb(240, 243, 250);padding:10px;font-size:14px;">
         froms.valid : {{froms.valid | json}}
-        <br>froms.controls['one1'].errors :
-        <br>{{froms.controls['one1'].errors | json}}
+        <br> froms.value:{{froms.value|json}}
         <br>
-        <br> {{froms.value|json}}
+        <br>froms.controls['one1'].errors :
+        {{froms.controls['one1'].errors | json}}
+        <br>froms.controls['two1'].errors :
+        {{froms.controls['two1'].errors | json}}
+        <br>
+        <br>froms.controls['testAsycn'].valid：
+        {{froms.controls['testAsycn'].valid}}
+        <br>froms.controls['testAsycn'].errors：
+        {{froms.controls['testAsycn'].errors | json}}
       </div>
       <button type="submit">提交</button>
       <button type="button" (click)="consoleForms()">console forms</button>

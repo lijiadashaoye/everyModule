@@ -10,7 +10,9 @@ import {
   FormControl,
   Validators
 } from "@angular/forms";
-import { Observable } from "rxjs/Observable";
+import {
+  Observable
+} from "rxjs/Observable";
 
 @Component({
   selector: "app-one-child3",
@@ -26,7 +28,7 @@ export class OneChild3Component implements OnInit {
   froms: FormGroup;
   worker;
   source;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   // ngOnChanges()	在ngOnInit之前调用，或者当组件输入数据（通过@Input装饰器显式指定的那些变量）变化时调用,
   // 可以实现同时监视多个输入属性值的变化。
@@ -38,18 +40,32 @@ export class OneChild3Component implements OnInit {
       one1: ["", Validators.compose([Validators.required, this.oneValid])],
       two1: ["", Validators.compose([Validators.required, this.oneValid])],
       check: true,
-      three: [
-        {
-          child1: "lichild1",
-          child2: "lichild2"
-        }
-      ]
+      three: [{
+        child1: "lichild1",
+        child2: "lichild2"
+      }],
+      testAsycn: ['', null, this.asyncValidator] // 数组第一项为表单数据，第二项为同步验证函数，第三项为异步验证函数
     });
     // 设置表单值
     this.froms.patchValue({
       one1: "patchValue"
     });
   }
+
+  asyncValidator(control: FormControl): Promise < any > {
+    let data = +control.value;
+    const promise = new Promise < any > (
+      (resolve) => {
+        setTimeout(() => {
+          resolve(data > 5 ? null : {
+            error: '数字需要大于5'
+          });
+        }, 2000);
+      }
+    );
+    return promise;
+  }
+
   isSubmit(froms, ev: Event) {
     ev.preventDefault();
   }
