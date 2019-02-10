@@ -10,6 +10,10 @@ import {
   FormControl,
   Validators
 } from "@angular/forms";
+import {
+  Observable,
+  Subject
+} from "rxjs";
 
 @Component({
   selector: "app-one-child3",
@@ -45,7 +49,7 @@ export class OneChild3Component implements OnInit {
     });
 
   }
-  // 异步验证函数
+  // 异步验证函数，只能用 promise
   asyncValidator(control: FormControl): Promise < any > {
     let data = +control.value;
     const promise = new Promise < any > (
@@ -59,7 +63,8 @@ export class OneChild3Component implements OnInit {
     );
     return promise;
   }
-      // 设置表单值
+
+  // 设置表单值
   toPatchValue() {
     this.froms.patchValue({
       one1: "likkkjkj"
