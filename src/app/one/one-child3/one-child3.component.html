@@ -2,11 +2,12 @@
   <div style="width:35%;font-size:14px;">
     <h2>自定义表单组件</h2>
     <form [formGroup]="froms" (ngSubmit)="isSubmit(froms,$event)">
-      <label>当前表单
+      <label>one1
         <input type="text" placeholder="第一个" formControlName="one1">
+        <button (click)="toPatchValue()">给表单设值</button>
       </label>
       <br>
-      <label>当前表单
+      <label>two1
         <input type="text" minlength="4" placeholder="第二个，minlength=4" formControlName="two1">
       </label>
       <br>
