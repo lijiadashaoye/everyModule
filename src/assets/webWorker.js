@@ -1,6 +1,12 @@
 // 使用onmessage，自动执行，也可以使用XMLHttpRequest构造函数
 onmessage = function (event) {
+
+    // 在 Worker中可以使用的
     // console.log(event)
+    // console.log(navigator)
+    // console.log(location)  // 与window.location 相同，但都是只读的
+    // console.log(XMLHttpRequest)
+    // importScripts('./otherworker.js');// 用来加载当前Worder所用到的外部js代码
 
     let sleep = function (time) {
         return new Promise(function (resolve, reject) {

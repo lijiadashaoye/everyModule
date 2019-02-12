@@ -106,6 +106,7 @@ export class OneChild3Component implements OnInit {
       this.worker.postMessage(3000);
       this.worker.onmessage = event => {
         this.worker_data = event.data;
+        
       };
     } else {
       document.getElementById("result").innerHTML =
