@@ -112,7 +112,7 @@ export class ThreeChild1Component implements OnInit {
   /*********************************************************************************************************/
   // async函数返回一个 Promise 对象，可以使用then方法添加回调函数。
   // 不管在函数体内 return 了什么值, async 函数的实际返回值总是一个 Promise 对象
-  // 当函数执行的时候，一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。
+  // 当函数执行的时候，一旦遇到await就会先暂停在此，等到异步操作完成，再接着执行函数体内后面的语句。
   // await命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时等同于同步操作）。
   // 正常情况下，await命令后面是一个 Promise 对象。如果不是，会被转成一个立即resolve的 Promise 对象。
   testasync() {
@@ -131,7 +131,7 @@ export class ThreeChild1Component implements OnInit {
         console.log(_);
       });
   }
-
+ // async 函数返回的是 Promise 
   test() {
     let sleep = function (time) {
       return new Promise(function (resolve, reject) {
