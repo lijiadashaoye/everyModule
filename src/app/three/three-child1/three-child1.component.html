@@ -7,18 +7,17 @@
     <div class="waper">
       <div style="border:0;">
         <textarea #Input2></textarea>
-        
+
         <button (click)="show2(Input2.value)">生成</button>
       </div>
       <div *ngIf="value" style="border:none;">
-        <ngx-qrcode 
-        [qrc-value]="value" 
-        qrc-errorCorrectionLevel="levels"
-        [qrc-element-type]="elementType"
-        >
+        <ngx-qrcode [qrc-value]="value" qrc-errorCorrectionLevel="levels" [qrc-element-type]="elementType">
         </ngx-qrcode>
       </div>
     </div>
+  </div>
+  <div id="wap">
+    <button (click)="kk2()">使用Promise执行批量分步加载</button>
   </div>
 </div>
 
@@ -26,27 +25,30 @@
   <div>
     <h2>Promise 学习</h2>
     <button (click)="testPromise()">testPromise</button>
-    <button (click)="testPromiseAll()">testPromiseAll</button>
+    <button (click)="testPromiseAll()">testPromiseAll {{do_Time}}</button>
     <button (click)="testPromiseRace()">testPromiseRace</button>
   </div>
   <div>
     <h2>Generator 学习</h2>
-    <button (click)="testGenerator()">testGenerator</button>
+    <button (click)="testGenerator1()">testGenerator1</button>
+    <button (click)="testGenerator2()">testGenerator2</button>
+    <button (click)="testGenerator3()">testGenerator3</button>
+    <button (click)="testGenerator4()">testGenerator3</button>
+    <button (click)="comfirmModal()">命名路由</button>
   </div>
   <div>
     <h2>async 学习</h2>
-    <button (click)="test()">test</button>
-    <button (click)="testasync()">testasync</button>
-    <button (click)="testasyncError1()">testasync-error1</button>
-    <button (click)="testasyncError2()">testasync-error2</button>
+    <button (click)="test()">有返回值 {{time}}</button>
+    <button (click)="test1()">单纯的等待 {{time1}}</button>
+    <button (click)="testasyncError1()">报错后执行其他 await</button>
+    <button (click)="testasyncError2()">报错后添加 then</button>
     <div>
-      <button (click)="normalasync()">normal-async{{tim}}</button><br>
+      <button (click)="normalasync()">逐步执行 {{tim}}</button><br>
       {{asyncData|json}}
     </div>
-
   </div>
   <div>
-    <h2>class 学习</h2>
+    <h2>class static 学习</h2>
     <button (click)="testClass()">testClass</button>
   </div>
   <div>
@@ -54,5 +56,9 @@
     <button (click)="testExtends()">testExtends</button>
   </div>
 </div>
-
-<button (click)="comfirmModal()">命名路由</button>
+<div style="padding:0 10px;">
+  <p>Promise 可以并发执行，使用Promise.all ([new Promise(), new Promise(), new Promise()]) 形式，时间以最长new Promise()
+    的为上限，Promise写出来就立即执行</p>
+  <p>Generator 不可以并发执行，但可以根据需要，逐步执行 next()来执行相应的步骤函数</p>
+  <p>async 不可以并发执行，也不能根据需要逐步执行，只能定义好每一步的顺序，自动执行每一步，最后返回每一步完成的数据组成的数组，执行时间也是累计的</p>
+</div>
