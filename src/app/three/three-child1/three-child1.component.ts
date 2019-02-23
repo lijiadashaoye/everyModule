@@ -151,6 +151,11 @@ export class ThreeChild1Component implements OnInit {
           }
         })
       }
+      // Promise.all(iterable);
+      // iterable:一个可迭代对象，Array 或 String。
+      Promise.all('123456').then(val => {
+        console.log(val)
+      })
       // arr2 是一个promise对象组成的数组
       Promise.all(arr2).then((item) => { // item是一个由 img 对象组成的数组
         let isDiv = this.rd.createElement('div');
@@ -177,6 +182,33 @@ export class ThreeChild1Component implements OnInit {
     setTimeout((val) => {
       this.is_timeout1 = val
     }, 2000, '作为延迟，并添加了额外的参数,setTimeout第三个往后都可以作为参数传入第一个函数内')
+  }
+  kk4() {
+    let wap = this.elem.nativeElement.querySelector('#wap');
+
+    let loadImg = (url) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image()
+        img.style.width = '100px'
+        img.style.marginRight = '3px'
+        img.onload = function () {
+          setTimeout(_ => resolve(img), 1000)
+        }
+        img.onerror = reject
+        img.src = url
+      })
+    }
+    // Promise.resolve() 返回一个解析过带着给定值的Promise对象，
+    // 如果返回值是一个promise对象，则直接返回这个Promise对象。
+    let kk = Promise.resolve(); // 返回解析值为空的 Promise 对象
+    for (let i = 0; i < this.arr1.length; i++) {
+      kk = kk.then(() => loadImg(this.arr1[i])) // 返回的是loadImg函数里返回的 Promise 对象
+        .then(val => {  
+          // 解析 loadImg 函数里返回的 Promise 对象
+          // 相当于 loadImg().then()
+          this.rd.appendChild(wap, val)
+        })
+    }
   }
   /************************************************************ */
   isGeneratorFn(x) {
