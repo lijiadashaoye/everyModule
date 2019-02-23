@@ -194,7 +194,7 @@ export class ThreeChild1Component implements OnInit {
         img.style.width = '100px'
         img.style.marginRight = '3px'
         img.onload = function () {
-          setTimeout(_ => resolve(img), 1000)
+          setTimeout(_ => resolve(img), 500)
         }
         img.onerror = reject
         img.src = url
@@ -227,7 +227,7 @@ export class ThreeChild1Component implements OnInit {
         img.style.width = '100px'
         img.style.marginRight = '3px'
         img.onload = function () {
-          setTimeout(_ => resolve(img), 1000)
+          setTimeout(_ => resolve(img), 500)
         }
         img.onerror = reject
         img.src = url
