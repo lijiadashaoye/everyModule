@@ -18,7 +18,8 @@
   </div>
   <div>
     <button (click)="kk2()">使用Promise.all() 实现逐步加载批量任务</button>
-    <button (click)="kk4()">使用Promise.resolve() 实现逐步加载</button>
+    <button (click)="kk4()">使用Promise.resolve()+for 循环 实现逐步加载</button>
+    <button (click)="kk5()">使用Promise.resolve()+reduce 实现逐步加载</button>
     <div id='wap'></div>
   </div>
 </div>
@@ -31,7 +32,7 @@
     <button (click)="testPromiseRace()">testPromiseRace</button>
     <button (click)="kk3()">setTimeout 用法</button>
     <p>{{is_timeout}}<br>
-    {{is_timeout1}}</p>
+      {{is_timeout1}}</p>
   </div>
   <div>
     <h2>Generator 学习</h2>

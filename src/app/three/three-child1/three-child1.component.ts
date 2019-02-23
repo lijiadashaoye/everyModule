@@ -183,6 +183,7 @@ export class ThreeChild1Component implements OnInit {
       this.is_timeout1 = val
     }, 2000, '作为延迟，并添加了额外的参数,setTimeout第三个往后都可以作为参数传入第一个函数内')
   }
+  // 使用 Promise.resolve() 进行逐步操作
   kk4() {
     let wap = this.elem.nativeElement.querySelector('#wap');
 
@@ -216,6 +217,28 @@ export class ThreeChild1Component implements OnInit {
         })
 
     }
+  }
+  kk5() {
+    let wap = this.elem.nativeElement.querySelector('#wap');
+
+    let loadImg = (url) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image()
+        img.style.width = '100px'
+        img.style.marginRight = '3px'
+        img.onload = function () {
+          setTimeout(_ => resolve(img), 1000)
+        }
+        img.onerror = reject
+        img.src = url
+      })
+    }
+    this.arr1.reduce((total, now) => {
+      return total.then(() => loadImg(now))
+        .then(val => {
+          this.rd.appendChild(wap, val)
+        })
+    }, Promise.resolve())
   }
   /************************************************************ */
   isGeneratorFn(x) {
