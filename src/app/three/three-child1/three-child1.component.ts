@@ -186,7 +186,8 @@ export class ThreeChild1Component implements OnInit {
   kk4() {
     let wap = this.elem.nativeElement.querySelector('#wap');
 
-    let loadImg = (url) => {
+    let loadImg = (url, num) => {
+      console.log(num)
       return new Promise((resolve, reject) => {
         const img = new Image()
         img.style.width = '100px'
@@ -200,14 +201,20 @@ export class ThreeChild1Component implements OnInit {
     }
     // Promise.resolve() 返回一个解析过带着给定值的Promise对象，
     // 如果返回值是一个promise对象，则直接返回这个Promise对象。
-    let kk = Promise.resolve(); // 返回解析值为空的 Promise 对象
+    let kk;
     for (let i = 0; i < this.arr1.length; i++) {
-      kk = kk.then(() => loadImg(this.arr1[i])) // 返回的是loadImg函数里返回的 Promise 对象
-        .then(val => {  
+      // 对 kk 变量进行赋值的语句是有过程的，而这个过程就是插入图片，
+      // 等图片插入了，这个过程才结束 resolve 了，然后执行后边的then，
+      // 等全部then执行完了，才给kk变量进行赋值，为一个 resolve() 的 Promise 对象
+      // 这个 for 循环才可以向下继续执行
+      kk = Promise.resolve(kk) // 使 kk 为一个返回解析值为空的 Promise 对象才可以衔接后边的 then
+        .then(() => loadImg(this.arr1[i], i)) // 返回的是loadImg函数里返回的 Promise 对象
+        .then(val => {
           // 解析 loadImg 函数里返回的 Promise 对象
           // 相当于 loadImg().then()
           this.rd.appendChild(wap, val)
         })
+
     }
   }
   /************************************************************ */
