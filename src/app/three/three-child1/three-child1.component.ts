@@ -108,48 +108,65 @@ export class ThreeChild1Component implements OnInit {
       console.log(result); // 'P1'
     });
   }
+  arr1 = [
+    'http://pic.vjshi.com/2017-05-19/1175b476b9ffad11a3f5ff043289185b/00002.jpg?x-oss-process=style/watermark',
+    'http://attachments.gfan.net.cn/forum/201806/02/150827jqzbh5rjxh2q5tvj.jpg',
+    'http://t.qianlong.com/data/attachment/forum/201410/03/165837iflyv2obob00b2b0.jpg',
+    'http://pic.vjshi.com/2016-08-13/5fcf97554572faa8b05a4bea600ca8d0/00001.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2017-06-02/ee7a3b528af8b96d6fb6d3f8b8a542e7/00002.jpg?x-oss-process=style/watermark',
 
-  kk2() {
-    let time = 5,
-      inter = 0;
+    'http://pic.vjshi.com/2017-06-28/98c570be0c152a14e53e4546ed761dfe/00004.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2018-04-16/2e7e6fa1ab7f511ad58cc5874a96019c/00001.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2017-06-22/93edd7a15b49c1e14365670a04acf025/00004.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2017-04-09/b0798a0518ff26ba62b4798e9d19f3bd/00001.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2017-11-26/c7d55feb941d6952c12458d62c0c4ae1/00001.jpg?x-oss-process=style/watermark',
+
+    'http://pic.vjshi.com/2017-12-13/242e96828d06f10b78bed08b81ea5bee/00004.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2017-07-05/6e4092479107296eb0c813ae4ecdd902/00002.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2017-09-02/7ea08afbf212386d028c1f8e635fab01/00001.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2017-03-09/971ba628f962bdd27b15b59bdcf50cb5/00003.jpg?x-oss-process=style/watermark',
+    'http://img1.imgtn.bdimg.com/it/u=3921059015,1323318258&fm=26&gp=0.jpg',
+
+    'http://pic.vjshi.com/2017-06-28/98c570be0c152a14e53e4546ed761dfe/00003.jpg?x-oss-process=style/watermark',
+    'http://pic1.win4000.com/wallpaper/4/5875f71244fb1.jpg?down',
+    'http://pic.vjshi.com/2017-08-29/c7b675ad7701682284537983473641de/00002.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2016-07-18/614117a1d58db452e249f9ecaf32d4dd/00001.jpg?x-oss-process=style/watermark',
+    'http://pic.vjshi.com/2016-07-11/18145e1ee17c534d564fad11bef830bb/00001.jpg?x-oss-process=style/watermark',
+  ]
+  num = 4; // 每次加载的图片数量
+  kk2() { // 使用 Promis.all() 并发
     let wap = this.elem.nativeElement.querySelector('#wap');
     let arr2 = [];
-    let arr1 = [
-      'http://pic.vjshi.com/2018-07-06/39f4a47d5d96e97e2a8fdba98fcd942b/00004.jpg?x-oss-process=style/watermark',
-      'http://pic.vjshi.com/2017-05-19/1175b476b9ffad11a3f5ff043289185b/00002.jpg?x-oss-process=style/watermark',
-      'http://attachments.gfan.net.cn/forum/201806/02/150827jqzbh5rjxh2q5tvj.jpg',
-      'http://t.qianlong.com/data/attachment/forum/201410/03/165837iflyv2obob00b2b0.jpg',
-      'http://pic.vjshi.com/2016-08-13/5fcf97554572faa8b05a4bea600ca8d0/00001.jpg?x-oss-process=style/watermark',
-    ]
-    let promis_all_test = () => {
-      inter++;
-      for (let i = 5; i--;) {
+    let inter = 0;
+    let promis_all = () => {
+      let now = this.arr1.slice(inter, inter + this.num);
+      for (let i = this.num; i--;) {
         arr2[i] = new Promise(resolve => {
           let img = new Image();
-          img.style.width = '40px';
+          img.style.width = '90px';
           img.style.marginRight = '5px';
-          img.src = arr1[i];
+          img.src = now[i]
           img.onload = () => {
             resolve(img)
           }
         })
       }
-      let hr = this.rd.createElement('hr');
-      hr.style.margin = '2px'
       // arr2 是一个promise对象组成的数组
       Promise.all(arr2).then((item) => { // item是一个由 img 对象组成的数组
-        this.rd.appendChild(wap, hr)
+        let isDiv = this.rd.createElement('div');
+        this.rd.appendChild(wap, isDiv)
         item.forEach(val => { // 遍历 item 数组，将 img 对象插入 DOM 树
-          this.rd.appendChild(wap, val)
+          this.rd.appendChild(isDiv, val)
         })
-      })
-      setTimeout(() => {
-        if (inter < time) {
-          promis_all_test()
+      }).then(_ => { // 使用 then 保证上边的执行完才执行下边的
+        inter += this.num;
+        let isTrue = inter < this.arr1.length;
+        if (isTrue) {
+          setTimeout(promis_all, 1000)
         }
-      }, 1000)
+      })
     }
-    promis_all_test()
+    promis_all()
   }
   /************************************************************ */
   isGeneratorFn(x) {
@@ -326,7 +343,7 @@ export class ThreeChild1Component implements OnInit {
   /****************************************************************/
   testExtends() {
     class A {
-      x='father';
+      x = 'father';
       z;
       constructor(yy) {
         this.z = 'get' + yy;
@@ -347,10 +364,10 @@ export class ThreeChild1Component implements OnInit {
       m() {
         // super作为对象时，在普通方法中，指向父类的原型对象；
         // 在静态方法中，指向父类。当于A.prototype.p()
-        super.print(this.x);  // 读取重新赋值的 x
+        super.print(this.x); // 读取重新赋值的 x
         super.print(this.y);
         super.print.call(this, this.y); // 只借用父类的方法，与 super.print(this.y) 同效果
-        super.print(this.z);  // 调用父类的函数，并调用父类的变量
+        super.print(this.z); // 调用父类的函数，并调用父类的变量
       }
     }
     let b = new B();
