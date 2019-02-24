@@ -141,9 +141,10 @@ export class ThreeChild1Component implements OnInit {
     let promis_all = () => {
       let now = this.arr1.slice(inter, inter + this.num);
       for (let i = this.num; i--;) {
-        arr2[i] = new Promise((resolve, reject) => {
+        arr2[i] = new Promise((resolve) => {
           if (i == 2) {
-            throw (false)
+            // throw (false)     // 只有自定义的错误提示
+            throw new Error('报错了'); // 有完整错误数据的 Erro对象
           }
           let img = new Image();
           img.style.width = '90px';
