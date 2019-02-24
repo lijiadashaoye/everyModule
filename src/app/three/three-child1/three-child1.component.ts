@@ -134,7 +134,7 @@ export class ThreeChild1Component implements OnInit {
     'http://pic.vjshi.com/2016-07-11/18145e1ee17c534d564fad11bef830bb/00001.jpg?x-oss-process=style/watermark',
   ]
   num = 5; // 每次加载的图片数量
-  kk2() { // 使用 Promis.all() 并发
+  kk2() { // 使用 Promis.all() 并发，每次同时加载固定数量
     let wap = this.elem.nativeElement.querySelector('#wap');
     let arr2 = [];
     let inter = 0;
@@ -191,7 +191,57 @@ export class ThreeChild1Component implements OnInit {
     }
     promis_all()
   }
+  kk10() { // 先加载固定数量，然后再一张一张的添加，直到全加载完
+    let wap = this.elem.nativeElement.querySelector('#wap'),
+      start = true;
+    // 生成 img 标签 Promise
+    let makeImg = (now) => {
+      return new Promise((resolve) => {
+        let img = new Image();
+        img.style.width = '90px';
+        img.style.marginRight = '5px';
+        img.src = now;
+        img.onload = () => {
+          if (start) {
+            resolve(img)
+          } else {
+            setTimeout(_ => resolve(img), 1000)
+          }
+        }
+      })
+    }
+    let promis_all = () => {
+      let now = this.arr1.slice(0, this.num),
+        arr2 = [];
+      for (let i = this.num; i--;) {
+        arr2[i] = makeImg(now[i]);
+      }
+      return arr2
+    }
 
+    let inside = (item) => {
+      item.forEach(val => {
+        // 遍历 item 数组，将 img 对象插入 DOM 树
+        this.rd.appendChild(wap, val)
+      })
+    }
+
+    // arr2 是一个promise.then() 组成的数组，这样可以避免Promise.all()遇到reject后就停止向下继续执行
+    Promise.all(promis_all()).then((item) => { // item是一个由 img 对象组成的数组
+        inside(item)
+      })
+      .then(_ => { // 使用 then 保证上边的执行完才执行下边的
+        let arr = this.arr1.slice(this.num, this.arr1.length);
+        start = false;
+        arr.reduce((total, now) => {
+          return total.then(() => makeImg(now))
+            .then(val => {
+              this.rd.appendChild(wap, val)
+            })
+        }, Promise.resolve())
+      })
+
+  }
   // setTimeout 学习
   is_timeout1 = ''
   is_timeout = ''
