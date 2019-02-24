@@ -141,52 +141,52 @@ export class ThreeChild1Component implements OnInit {
     let promis_all = () => {
       let now = this.arr1.slice(inter, inter + this.num);
       for (let i = this.num; i--;) {
-        if (i === 4) {
-          // 假设有一个请求出错了，返回reject状态的Promis，返回 undefined ，下边需要加判断
-          arr2[i] = new Promise(reject => {
-            reject()
-          })
-          // 假设有一个请求出错了，返回reject状态的Promis，使用本地图片占位
-          // arr2[i] = new Promise(reject => {
-          //   let img = new Image();
-          //   img.style.width = '60px';
-          //   img.style.marginRight = '5px';
-          //   img.src = 'assets/4.jpg'
-          //   img.onload = () => {
-          //     reject(img)
-          //   }
-          // })
-        } else {
-          arr2[i] = new Promise(resolve => {
-            let img = new Image();
-            img.style.width = '90px';
-            img.style.marginRight = '5px';
-            img.src = now[i]
-            img.onload = () => {
-              resolve(img)
-            }
-          })
-        }
+        arr2[i] = new Promise((resolve, reject) => {
+          if (i == 2) {
+            throw (false)
+          }
+          let img = new Image();
+          img.style.width = '90px';
+          img.style.marginRight = '5px';
+          img.src = now[i]
+          img.onload = () => {
+            resolve(img)
+          }
+        }).catch(e => {
+          // 一定要添加错误处理，否则后边Promise.all() 无法正常遍历所有数据
+          // 同时也对错误进行处理（使用本地图片补位）
+          console.log(e)
+          let img = new Image();
+          img.style.width = '50px';
+          img.style.marginRight = '5px';
+          img.src = 'assets/4.jpg'
+          img.onload = () => {
+            arr2[i] = img
+          }
+          return img
+        });
       }
-      Promise.all(arr2).then((item) => { // item是一个由 img 对象组成的数组
-        let isDiv = this.rd.createElement('div');
-        this.rd.appendChild(wap, isDiv)
-        item.forEach(val => {
-          // 遍历 item 数组，将 img 对象插入 DOM 树
-          // 但需要判断是否有reject（无值）的状态(不用本地图片占位时需要加判断)
-          if (val) {
+      Promise.all(arr2)
+        .then((item) => { // item是一个由 img 对象组成的数组
+          let isDiv = this.rd.createElement('div');
+          this.rd.appendChild(wap, isDiv)
+          item.forEach(val => {
+            // 遍历 item 数组，将 img 对象插入 DOM 树
             this.rd.appendChild(isDiv, val)
-          } else {
-            console.log(val)
+            // throw '00000'  
+          })
+        })
+        .then(_ => { // 使用 then 保证上边的执行完才执行下边的
+          inter += this.num;
+          let isTrue = inter < this.arr1.length;
+          if (isTrue) {
+            setTimeout(promis_all, 1000)
           }
         })
-      }).then(_ => { // 使用 then 保证上边的执行完才执行下边的
-        inter += this.num;
-        let isTrue = inter < this.arr1.length;
-        if (isTrue) {
-          setTimeout(promis_all, 1000)
-        }
-      })
+        .catch((reason) => {
+          // 这个catch是用来处理 Promise.all(arr2) 产生的错误
+          console.log(reason)
+        })
     }
     promis_all()
   }
