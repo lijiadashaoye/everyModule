@@ -133,7 +133,7 @@ export class ThreeChild1Component implements OnInit {
     'http://pic.vjshi.com/2016-07-18/614117a1d58db452e249f9ecaf32d4dd/00001.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2016-07-11/18145e1ee17c534d564fad11bef830bb/00001.jpg?x-oss-process=style/watermark',
   ]
-  num = 4; // 每次加载的图片数量
+  num = 5; // 每次加载的图片数量
   kk2() { // 使用 Promis.all() 并发
     let wap = this.elem.nativeElement.querySelector('#wap');
     let arr2 = [];
@@ -141,27 +141,44 @@ export class ThreeChild1Component implements OnInit {
     let promis_all = () => {
       let now = this.arr1.slice(inter, inter + this.num);
       for (let i = this.num; i--;) {
-        arr2[i] = new Promise(resolve => {
-          let img = new Image();
-          img.style.width = '90px';
-          img.style.marginRight = '5px';
-          img.src = now[i]
-          img.onload = () => {
-            resolve(img)
-          }
-        })
+        if (i === 4) {
+          // 假设有一个请求出错了，返回reject状态的Promis，返回 undefined ，下边需要加判断
+          arr2[i] = new Promise(reject => {
+            reject()
+          })
+          // 假设有一个请求出错了，返回reject状态的Promis，使用本地图片占位
+          // arr2[i] = new Promise(reject => {
+          //   let img = new Image();
+          //   img.style.width = '60px';
+          //   img.style.marginRight = '5px';
+          //   img.src = 'assets/4.jpg'
+          //   img.onload = () => {
+          //     reject(img)
+          //   }
+          // })
+        } else {
+          arr2[i] = new Promise(resolve => {
+            let img = new Image();
+            img.style.width = '90px';
+            img.style.marginRight = '5px';
+            img.src = now[i]
+            img.onload = () => {
+              resolve(img)
+            }
+          })
+        }
       }
-      // Promise.all(iterable);
-      // iterable:一个可迭代对象，Array 或 String。
-      Promise.all('123456').then(val => {
-        console.log(val)
-      })
-      // arr2 是一个promise对象组成的数组
       Promise.all(arr2).then((item) => { // item是一个由 img 对象组成的数组
         let isDiv = this.rd.createElement('div');
         this.rd.appendChild(wap, isDiv)
-        item.forEach(val => { // 遍历 item 数组，将 img 对象插入 DOM 树
-          this.rd.appendChild(isDiv, val)
+        item.forEach(val => {
+          // 遍历 item 数组，将 img 对象插入 DOM 树
+          // 但需要判断是否有reject（无值）的状态(不用本地图片占位时需要加判断)
+          if (val) {
+            this.rd.appendChild(isDiv, val)
+          } else {
+            console.log(val)
+          }
         })
       }).then(_ => { // 使用 then 保证上边的执行完才执行下边的
         inter += this.num;
@@ -173,6 +190,8 @@ export class ThreeChild1Component implements OnInit {
     }
     promis_all()
   }
+
+  // setTimeout 学习
   is_timeout1 = ''
   is_timeout = ''
   kk3() {
