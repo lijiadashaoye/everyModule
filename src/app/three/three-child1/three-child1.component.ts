@@ -242,6 +242,49 @@ export class ThreeChild1Component implements OnInit {
       })
 
   }
+  kk11() { // 先加载4张，然后再一张一张的添加，直到全加载完
+    let wap = this.elem.nativeElement.querySelector('#wap'),
+      start = true;
+    // 生成 img 标签 Promise
+    let makeImg = (now) => {
+      return new Promise((resolve) => {
+        let img = new Image();
+        img.style.width = '90px';
+        img.style.marginRight = '5px';
+        img.src = now;
+        img.onload = () => {
+          setTimeout(_ => resolve(img), 500)
+        }
+      })
+    }
+    let arr2 = [];
+    let now = this.arr1;
+    for (let i = now.length; i--;) {
+      arr2[i] = makeImg(now[i]);
+    }
+
+    let fun = (nowArr) => {
+      Promise.race(nowArr).then((item) => { // item是一个由 img 对象组成的数组
+        this.rd.appendChild(wap, item)
+        return item
+      }).then(arrs => {
+        arr2 = [];
+        now = now.filter(val => val !== arrs['src']);
+
+        if (now.length) {
+          for (let i = now.length; i--;) {
+            arr2[i] = makeImg(now[i]);
+          }
+          fun(arr2)
+        } else {
+          let isDiv = this.rd.createElement('br');
+          this.rd.appendChild(wap, isDiv)
+        }
+      })
+    }
+
+    fun(arr2)
+  }
   // setTimeout 学习
   is_timeout1 = ''
   is_timeout = ''
