@@ -45,7 +45,7 @@ export class ThreeChild1Component implements OnInit {
     // 这说明，声明在更高级模块的服务，可以被任何子组件、子模块引入使用
     this.appService.comfirmModal().subscribe(val => console.log(val));
   }
-  ngOnInit() {}
+  ngOnInit() { }
   show2(data) {
     this.value = data;
   }
@@ -125,7 +125,7 @@ export class ThreeChild1Component implements OnInit {
     'http://pic.vjshi.com/2017-07-05/6e4092479107296eb0c813ae4ecdd902/00002.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-09-02/7ea08afbf212386d028c1f8e635fab01/00001.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-03-09/971ba628f962bdd27b15b59bdcf50cb5/00003.jpg?x-oss-process=style/watermark',
-    'http://img1.imgtn.bdimg.com/it/u=3921059015,1323318258&fm=26&gp=0.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551068008008&di=7c1b261b6568aad7aa4977c1df6b2691&imgtype=0&src=http%3A%2F%2F1mhvqt3xoj4u2otrxo1recge-wpengine.netdna-ssl.com%2Fwp-content%2Fuploads%2F2015%2F01%2Fearth-from-space-3840x2160.jpg',
 
     'http://pic.vjshi.com/2017-06-28/98c570be0c152a14e53e4546ed761dfe/00003.jpg?x-oss-process=style/watermark',
     'http://pic1.win4000.com/wallpaper/4/5875f71244fb1.jpg?down',
@@ -153,10 +153,10 @@ export class ThreeChild1Component implements OnInit {
           img.onload = () => {
             resolve(img)
           }
-        }).catch(e => {
+        }).catch(err => {
           // 一定要添加错误处理，否则后边Promise.all() 无法正常遍历所有数据
           // 同时也对错误进行处理（使用本地图片补位）
-          console.log(e)
+          console.log(err)
           let img = new Image();
           img.style.width = '50px';
           img.style.marginRight = '5px';
@@ -205,7 +205,7 @@ export class ThreeChild1Component implements OnInit {
           if (start) {
             resolve(img)
           } else {
-            setTimeout(_ => resolve(img), 1000)
+            setTimeout(_ => resolve(img), 500)
           }
         }
       })
@@ -228,8 +228,8 @@ export class ThreeChild1Component implements OnInit {
 
     // arr2 是一个promise.then() 组成的数组，这样可以避免Promise.all()遇到reject后就停止向下继续执行
     Promise.all(promis_all()).then((item) => { // item是一个由 img 对象组成的数组
-        inside(item)
-      })
+      inside(item)
+    })
       .then(_ => { // 使用 then 保证上边的执行完才执行下边的
         let arr = this.arr1.slice(this.num, this.arr1.length);
         start = false;
@@ -355,14 +355,14 @@ export class ThreeChild1Component implements OnInit {
   }
   /************************************************************ */
   isGeneratorFn(x) {
-      return (x + 10)
-    }
-    * gen(x) {
-      // 一个yield内如果执行多个语句，要用小括号括起来，一定要将返回的值放到最后
-      yield(console.log('执行1'), console.log('执行2'), x + 2)
-      yield this.isGeneratorFn(x)
-      yield x + 20
-    }
+    return (x + 10)
+  }
+  * gen(x) {
+    // 一个yield内如果执行多个语句，要用小括号括起来，一定要将返回的值放到最后
+    yield (console.log('执行1'), console.log('执行2'), x + 2)
+    yield this.isGeneratorFn(x)
+    yield x + 20
+  }
   gener = null;
   testGenerator1() {
     // 初始化 Generator 函数，使 x 固定为 2，后续在next里写的参数，没用！！
