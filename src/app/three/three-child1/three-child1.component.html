@@ -30,8 +30,10 @@
   <div>
     <h2>Promise 学习</h2>
     <button (click)="testPromise()">testPromise</button>
-    <button (click)="testPromiseAll()">testPromiseAll {{do_Time}}</button>
+    <button (click)="testPromiseAll()">testPromiseAll</button>
+    <p>Promis.all 使用的时间长短，取决于最慢的那个：用时{{do_Time}}秒</p>
     <button (click)="testPromiseRace()">testPromiseRace</button>
+    <p>Promise.race 使用的时间长短，取决于最快的那个，只取最快的结果</p>
     <button (click)="kk3()">setTimeout 用法</button>
     <p>{{is_timeout}}<br>
       {{is_timeout1}}</p>

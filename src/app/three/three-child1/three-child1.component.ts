@@ -242,7 +242,7 @@ export class ThreeChild1Component implements OnInit {
       })
 
   }
-  kk11() { // 先加载4张，然后再一张一张的添加，直到全加载完
+  kk11() { // 一张一张的添加，直到全加载完没
     let wap = this.elem.nativeElement.querySelector('#wap'),
       start = true;
     // 生成 img 标签 Promise
