@@ -58,7 +58,7 @@ export class TwoChild1Component implements OnInit {
     public rd: Renderer2,
     public http: HttpClient,
     private elem: ElementRef
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // console.log(document.documentElement.clientHeight)
@@ -283,10 +283,10 @@ export class TwoChild1Component implements OnInit {
     xhr.open("POST", "http://other.server/and/path/to/script");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(data);
-    xhr.onprogress = function(ev) {
+    xhr.onprogress = function (ev) {
       console.log("下载量:" + ev.loaded + "下载总量" + ev.total);
     };
-    xhr.upload.onprogress = function(ev) {
+    xhr.upload.onprogress = function (ev) {
       console.log("发送量:" + ev.loaded + "发送总量" + ev.total);
     };
     // 重置表单
@@ -304,17 +304,17 @@ export class TwoChild1Component implements OnInit {
     let blobdata = new Blob([item.files[0]], {
       type: "image/png"
     }); // 新建二进制Blob对象
-    // var blob = new Blob([xhr.response], {type: 'image/png'});   // 下载时，读取xhr.response
-    // this.http.request(new HttpRequest('POST', 'URL', 'body', {
-    //     reportProgress: true
-    //   }))
-    //   .subscribe(event => {
-    //     if (event.type === HttpEventType.DownloadProgress) {}
-    //     if (event.type === HttpEventType.UploadProgress) {}
-    //     if (event.type === HttpEventType.Response) {
-    //       console.log(event.body);
-    //     }
-    //   })
+    // var blob = new Blob([xhr.response], { type: 'image/png' });   // 下载时，读取xhr.response
+    this.http.request(new HttpRequest('POST', 'URL', 'body', {
+      reportProgress: true
+    }))
+      .subscribe(event => {
+        if (event.type === HttpEventType.DownloadProgress) { }
+        if (event.type === HttpEventType.UploadProgress) { }
+        if (event.type === HttpEventType.Response) {
+          console.log(event.body);
+        }
+      })
   }
 
   datas = [12, 23, 16, 21, 45, 3];
@@ -323,16 +323,15 @@ export class TwoChild1Component implements OnInit {
   toSort(type) {
     this.arr = [...this.datas]; // 使用...拓展符号，克隆数组
 
-    if (type) {
-      this.arr = this.arr.sort(function(a, b) {
+    if (type) {  // 从小到大
+      this.arr = this.arr.sort(function (a, b) {
         return a - b;
       });
-    } else {
-      this.arr = this.arr.sort(function(a, b) {
+    } else {  // 从大到小
+      this.arr = this.arr.sort(function (a, b) {
         return b - a;
       });
     }
-
     this.dat = this.arr.reduce((a, b) => a + b, 10);
   }
   otherTableFun() {
@@ -386,7 +385,7 @@ export class TwoChild1Component implements OnInit {
           target,
           "style",
           `width:${this.offw}px;height:${this.offh}px;left:${
-            this.offLeft
+          this.offLeft
           }px;top:${this.offTop}px`
         );
         let img2 = this.elem.nativeElement.querySelector("#img2");
@@ -412,7 +411,7 @@ export class TwoChild1Component implements OnInit {
           target,
           "style",
           `width:${this.offw}px;height:${this.offh}px;left:${
-            this.offLeft
+          this.offLeft
           }px;top:${this.offTop}px`
         );
         let img2 = this.elem.nativeElement.querySelector("#img2");
@@ -459,7 +458,7 @@ export class TwoChild1Component implements OnInit {
           let img2 = this.elem.nativeElement.querySelector("#img2");
           let kk = `clip:rect(${target.parentNode.offsetTop}px 
             ${e.target.parentNode.offsetLeft +
-              e.target.parentNode.offsetWidth}px
+            e.target.parentNode.offsetWidth}px
             ${target.parentNode.offsetHeight + target.parentNode.offsetTop}px 
             ${target.parentNode.offsetLeft}px)`;
 
@@ -491,7 +490,7 @@ export class TwoChild1Component implements OnInit {
           let img2 = this.elem.nativeElement.querySelector("#img2");
           let kk = `clip:rect(${target.parentNode.offsetTop}px 
             ${e.target.parentNode.offsetLeft +
-              e.target.parentNode.offsetWidth}px
+            e.target.parentNode.offsetWidth}px
             ${target.parentNode.offsetHeight + target.parentNode.offsetTop}px 
             ${target.parentNode.offsetLeft}px)`;
 
