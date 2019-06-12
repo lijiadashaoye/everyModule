@@ -47,6 +47,7 @@ export class TwoChild1Component implements OnInit {
   public scrollDatas;
   public asyncData;
   public ismultiple = false;
+  page=true;
 
   // 截图
   offLeft;

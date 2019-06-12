@@ -50,13 +50,15 @@
       <div class="form-group">
         <span>爱好</span>
         <label *ngFor="let hobby of hobbies">
-          <input type="checkbox" name="bobby" [value]="hobby.value" [checked]="users.hobbies[hobby.value]" (change)="changeHobby(hobby, $event)" />
+          <input type="checkbox" name="bobby" [value]="hobby.value" [checked]="users.hobbies[hobby.value]"
+            (change)="changeHobby(hobby, $event)" />
           {{hobby.display}}
         </label>
       </div>
       <div class="form-group">
         <label>地址</label>
-        <select name="province" class="form-control" [(ngModel)]="users.province" (change)="changeProvince($event.target.value)">
+        <select name="province" class="form-control" [(ngModel)]="users.province"
+          (change)="changeProvince($event.target.value)">
           <option *ngFor="let province of provinces" [value]="province.pk">
             {{province.pv}}
           </option>
@@ -173,7 +175,7 @@
       <button (click)="upFile(files)">upFile</button>
     </div>
     <div>
-      <h2>ngIf ... else,2秒后变</h2>
+      <h2>*ngIf;else：使用可观察对象延迟,2秒后变</h2>
       <p *ngIf="shown | async as datas; else hidden">
         {{datas}}
       </p>
@@ -181,6 +183,19 @@
         <p style="background: aqua">*ngIf="shown | async as datas; else hidden"</p>
       </ng-template>
       <button (click)="makeChage3()">clickHere</button>
+    </div>
+
+    <div>
+      <h2>立即改变</h2>
+      <button (click)="page=!page">切换</button>
+      <div *ngIf="page else page1">
+       *ngIf 默认加载
+      </div>
+      <ng-template #page1>
+        <div>
+          else 加载
+        </div>
+      </ng-template>
     </div>
   </div>
   <div ngNonBindable>
