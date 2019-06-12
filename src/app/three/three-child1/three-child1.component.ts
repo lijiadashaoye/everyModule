@@ -415,6 +415,7 @@ export class ThreeChild1Component implements OnInit {
         clearInterval(inter);
         this.time = 0
       })
+      console.log('await 执行完成后才执行的方法')
     })()
   }
   test1() {
@@ -453,15 +454,15 @@ export class ThreeChild1Component implements OnInit {
         await timeout(ms);
         throw Error("fadfadsfasdf");
       } catch (err) {
-        console.log("这里是asycn函数里第一个await执行完的报错" + err);
+        console.log("这里是asycn函数里第一个await执行完的报错：" + err);
       }
       await timeout(ms);
-      return "第二个await正常执行并返回值" + value;
+      return "第二个await正常执行并返回值：" + value;
     }
 
-    asyncPrint("hello world", 2000).then(_ => {
+    asyncPrint("hello world", 2000).then(data => {
       // then可以正常执行
-      console.log(_);
+      console.log(data);
     });
   }
   testasyncError2() {
@@ -481,7 +482,7 @@ export class ThreeChild1Component implements OnInit {
       })
       .catch(err => console.log(err))
       .then(_ => {
-        console.log('可以继续添加then');
+        console.log('可以继续添加then，要写到catch后边');
       })
       .then(_ => {
         console.log('可以继续添加then');
@@ -506,6 +507,12 @@ export class ThreeChild1Component implements OnInit {
       clearInterval(this.intervals);
       this.tim = 0;
     });
+  }
+  lijizhixing() {
+    (async () => {
+      await setTimeout(() => console.log('await 异步'), 3000)
+      console.log('await 后的同步代码')
+    })()
   }
   /***************************************************************/
   testClass() {
