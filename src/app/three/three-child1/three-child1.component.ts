@@ -114,19 +114,16 @@ export class ThreeChild1Component implements OnInit {
     'http://t.qianlong.com/data/attachment/forum/201410/03/165837iflyv2obob00b2b0.jpg',
     'http://pic.vjshi.com/2016-08-13/5fcf97554572faa8b05a4bea600ca8d0/00001.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-06-02/ee7a3b528af8b96d6fb6d3f8b8a542e7/00002.jpg?x-oss-process=style/watermark',
-
     'http://pic.vjshi.com/2017-06-28/98c570be0c152a14e53e4546ed761dfe/00004.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2018-04-16/2e7e6fa1ab7f511ad58cc5874a96019c/00001.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-06-22/93edd7a15b49c1e14365670a04acf025/00004.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-04-09/b0798a0518ff26ba62b4798e9d19f3bd/00001.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-11-26/c7d55feb941d6952c12458d62c0c4ae1/00001.jpg?x-oss-process=style/watermark',
-
     'http://pic.vjshi.com/2017-12-13/242e96828d06f10b78bed08b81ea5bee/00004.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-07-05/6e4092479107296eb0c813ae4ecdd902/00002.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-09-02/7ea08afbf212386d028c1f8e635fab01/00001.jpg?x-oss-process=style/watermark',
     'http://pic.vjshi.com/2017-03-09/971ba628f962bdd27b15b59bdcf50cb5/00003.jpg?x-oss-process=style/watermark',
-    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551068008008&di=7c1b261b6568aad7aa4977c1df6b2691&imgtype=0&src=http%3A%2F%2F1mhvqt3xoj4u2otrxo1recge-wpengine.netdna-ssl.com%2Fwp-content%2Fuploads%2F2015%2F01%2Fearth-from-space-3840x2160.jpg',
-
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1561986644533&di=f3425e92f7942bf3d1c5f9b332567593&imgtype=0&src=http%3A%2F%2Fpic.3h3.com%2Fup%2F2014-5%2F20145517170837545344.jpg',
     'http://pic.vjshi.com/2017-06-28/98c570be0c152a14e53e4546ed761dfe/00003.jpg?x-oss-process=style/watermark',
     'http://pic1.win4000.com/wallpaper/4/5875f71244fb1.jpg?down',
     'http://pic.vjshi.com/2017-08-29/c7b675ad7701682284537983473641de/00002.jpg?x-oss-process=style/watermark',
