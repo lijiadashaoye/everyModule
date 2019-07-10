@@ -70,6 +70,7 @@ export class ThreeChild1Component implements OnInit {
     // 第一个回调函数是Promise对象的状态变为resolved时调用，
     // 第二个回调函数是Promise对象的状态变为rejected时调用
     // 其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。
+
     promise1
       .then(value => {
         console.log(value);
@@ -166,6 +167,9 @@ export class ThreeChild1Component implements OnInit {
         }).catch(err => {
           // 一定要添加错误处理，否则后边Promise.all() 无法正常遍历所有数据
           // 同时也对错误进行处理（使用本地图片补位）
+
+          // 一般推荐在 Promise 链的最后添加一个 catch 函数，
+          // 因为对于一个没有错误处理函数的 Promise 链，任何错误都会在链中被传播下去，直到你注册了错误处理函数。
           console.log(err)
           let img = new Image();
           img.style.width = '50px';
