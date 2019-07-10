@@ -108,6 +108,19 @@ export class ThreeChild1Component implements OnInit {
       console.log(result); // 'P1'
     });
   }
+  tongbu_yibu() {
+    // 即使 promise 对象立刻进入 resolved 状态，即同步调用 resolve 函数，
+    // then 函数中指定的方法依然是异步进行的。
+    let promise = new Promise(function (resolve) {
+      resolve();
+      console.log(1);
+    });
+    promise.then(function () {
+      console.log(2);
+    });
+    console.log(3);
+    // 1 3 2
+  }
   arr1 = [
     'http://pic.vjshi.com/2017-05-19/1175b476b9ffad11a3f5ff043289185b/00002.jpg?x-oss-process=style/watermark',
     'http://attachments.gfan.net.cn/forum/201806/02/150827jqzbh5rjxh2q5tvj.jpg',
@@ -291,7 +304,7 @@ export class ThreeChild1Component implements OnInit {
     }, 1000)
     setTimeout((val) => {
       this.is_timeout1 = val
-    }, 2000, '作为延迟，并添加了额外的参数,setTimeout第三个往后都可以作为参数传入第一个函数内')
+    }, 2000, '作为延迟，并添加了额外的参数(输出的是参数),setTimeout第三个往后都可以作为参数传入第一个函数内')
   }
   // 使用 Promise.resolve() 进行逐步操作
   kk4() {
