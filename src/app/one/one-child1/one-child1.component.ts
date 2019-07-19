@@ -56,7 +56,7 @@ export class OneChild1Component implements OnInit {
     private componentFactoryResolver: ComponentFactoryResolver,
     private adService: AdService,
     private rd: Renderer2
-  ) {}
+  ) { }
 
   @ViewChild("tpl")
   tplRef: TemplateRef<any>;
@@ -220,19 +220,21 @@ export class OneChild1Component implements OnInit {
     console.log(pad1); // 在前边补
     console.log(pad2); // 在后边补
     /**********************************************************************/
-    // Math.trunc方法用于去除一个数的小数部分，返回整数部分。
+    // Math.trunc方法用于去除一个数的小数部分，返回整数部分，没有四舍五入。
     let one = Math.trunc(4.231);
+    let two = Math.trunc(6.831);
     console.log(one);
+    console.log(two);
     /**********************************************************************/
     let arr1 = [1, 2, 3, 4, 5, 6, 7];
     console.log(arr1.filter(x => x > 3)); // 返回一个符合条件的数组
     console.log(arr1.find(x => x > 3)); // 返回第一个符合条件的数组元素
+    console.log(arr1.findIndex(x => x > 3)); // 返回第一个符合条件的数组元素的索引
     /**********************************************************************/
     // 比较任意两个值是否完全相等
     console.log(Object.is("foo", "foo")); // true
     console.log(Object.is(+0, -0)); // false
     console.log(Object.is(NaN, NaN)); // true
-
     // Object.keys()：返回对象自身的所有可枚举的属性的键名（不含继承的）。
     /**********************************************************************/
     // 用Set函数进行数组去重
@@ -261,13 +263,13 @@ export class OneChild1Component implements OnInit {
     // 使用proxy 对对象进行读取拦截
     let lll = {
       // 参数target是目标对象，参数prop是属性名。返回值如果含有该属性，返回true，否则返回false
-      set: function(obj, prop, value) {
+      set: function (obj, prop, value) {
         obj[prop] = value;
         return true;
       },
       // get方法用于拦截某个属性的读取操作，可以接受三个参数，依次为目标对象、属性名
       // 和 proxy 实例本身（严格地说，是操作行为所针对的对象），其中最后一个参数可选。
-      get: function(target, property) {
+      get: function (target, property) {
         if (property in target) {
           return target[property] + "*******";
         } else {
@@ -281,11 +283,11 @@ export class OneChild1Component implements OnInit {
     console.log(proxy["time"]);
     /**********************************************************************/
     // 使用proxy 对函数进行执行拦截
-    let target = function() {
+    let target = function () {
       return "I am the target";
     };
     let handler = {
-      apply: function() {
+      apply: function () {
         return "I am the proxy";
       }
     };

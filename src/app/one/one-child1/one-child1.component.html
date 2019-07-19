@@ -78,17 +78,17 @@
       <div class="mouseEvent">
         <div>
           <div (mousemove)="Move($event)" (mouseout)="Out($event)">
-            move
+            move 闪
             <div *ngIf="moveNum" class="innerDiv">{{moveNum}}</div>
           </div>
           <div (mouseout)="Out($event)" (mouseover)="Over($event)">
-            out，over
+            out，over 闪
             <div *ngIf="type=='over'" class="innerDiv">{{type}}</div>
           </div>
         </div>
         <div>
           <div (mouseenter)="Enter($event)" (mouseleave)="Leave($event)">
-            enter，leave
+            enter，leave 不闪
             <div *ngIf="type=='enter'" class="innerDiv">{{type}}</div>
           </div>
           <div (mouseup)="Up($event)" (mousedown)="Down($event)">
