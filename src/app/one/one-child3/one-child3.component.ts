@@ -29,7 +29,7 @@ export class OneChild3Component implements OnInit {
   froms: FormGroup;
   worker;
   source;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   // ngOnChanges()	在ngOnInit之前调用，或者当组件输入数据（通过@Input装饰器显式指定的那些变量）变化时调用,
   // 可以实现同时监视多个输入属性值的变化。
@@ -50,9 +50,9 @@ export class OneChild3Component implements OnInit {
 
   }
   // 异步验证函数，只能用 promise
-  asyncValidator(control: FormControl): Promise < any > {
+  asyncValidator(control: FormControl): Promise<any> {
     let data = +control.value;
-    const promise = new Promise < any > (
+    const promise = new Promise<any>(
       (resolve) => {
         setTimeout(() => {
           resolve(data > 5 ? null : {
@@ -106,7 +106,6 @@ export class OneChild3Component implements OnInit {
       this.worker.postMessage(3000);
       this.worker.onmessage = event => {
         this.worker_data = event.data;
-        
       };
     } else {
       document.getElementById("result").innerHTML =

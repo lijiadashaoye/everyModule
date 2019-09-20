@@ -6,7 +6,7 @@ onmessage = function (event) {
     // console.log(navigator)
     // console.log(location)  // 与window.location 相同，但都是只读的
     // console.log(XMLHttpRequest)
-    // importScripts('./otherworker.js');// 用来加载当前Worder所用到的外部js代码
+    importScripts('./otherworker.js'); // 用来加载当前Worder所用到的外部js代码
 
     let sleep = function (time) {
         return new Promise(function (resolve, reject) {
@@ -26,6 +26,8 @@ onmessage = function (event) {
         let result = await sleep(event.data);
         //向主线程返回消息
         postMessage(result);
+        // 使用另外一个js文件
+        console.log('在使用importScripts()的文件中调用：'+kk())
         // 停止Worker
         close();
     })();
