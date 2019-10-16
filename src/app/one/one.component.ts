@@ -15,3 +15,4 @@ export class OneComponent implements OnInit {
     return confirm("one.component CanDeactivate");
   }
 }
+ 

@@ -189,7 +189,7 @@
       <h2>立即改变</h2>
       <button (click)="page=!page">切换</button>
       <div *ngIf="page else page1">
-       *ngIf 默认加载
+        *ngIf 默认加载
       </div>
       <ng-template #page1>
         <div>
@@ -199,8 +199,8 @@
     </div>
   </div>
   <div ngNonBindable>
-    <h2>使用 ngNonBindable</h2>
-    {{
+    <h2>使用 ngNonBindable，让Angular 不去识别 {{ }}</h2>
+    <strong>{{</strong>
     <br> 目前 Angular 支持的内建 validators 如下：
     <br> required - 设置表单控件值是非空的。
     <br> email - 设置表单控件值的格式是 email。
@@ -212,7 +212,8 @@
     <br> userName: ['', [Validators.required, Validators.minLength(3)]],
     <br> email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+_]+@[a-z0-9.-]+')]]
     <br> });
-    <br> }}
+    <br>
+    <strong> }}</strong>
   </div>
   <div>
     <h2>array sort</h2>

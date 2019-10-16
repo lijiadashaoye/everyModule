@@ -155,6 +155,7 @@
   <div style="width:28%;">
     <h2>angular内建管道</h2>
     <div>
+      ngNonBindable使用方法看组件： two-child1.component
       <p ngNonBindable>1.大写转换：{{ 'Angular' | uppercase }}</p>
       <p class="outPut">{{ 'Angular' | uppercase }}</p>
     </div>
@@ -179,7 +180,7 @@
       <p class="outPut"> {{today | date:'yyyy-MM-dd HH:mm aa'}}</p>
     </div>
     <div>
-      <p ngNonBindable>7.JavaScript 对象序列化：{{ { name: 'joy' } | json }}</p>
+      <p ngNonBindable>7.JavaScript 对象JSON序列化：{{ { name: 'joy' } | json }}</p>
       <p class="outPut">{{ { name: 'joy' } | json }}</p>
     </div>
     <div>

@@ -37,7 +37,7 @@ export class OneChild2Component implements OnInit {
   constructor(
     private fb: FormBuilder,
     public oneComponent: OneComponent // 子组建获取、修改父组件的方法（把父组件注入到子组件中）
-  ) {}
+  ) { }
   // 类的get 和 set 属性，虽然像函数，但操作的是属性
   get likes() {
     return this.myForm.get("likes");
@@ -65,7 +65,7 @@ export class OneChild2Component implements OnInit {
       });
       this.selects = selects;
     });
-
+    // 注入其他组件
     this.intervals = setInterval(() => {
       this.oneComponent.childInterval++;
     }, 1000);
